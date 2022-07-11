@@ -1,0 +1,113 @@
+@import './nullstyle.scss';
+
+.wrapper {
+    display: grid;
+    min-height: 100vh;
+    grid-template: minmax(64px, auto) 1fr minmax(60px, auto) / 1fr;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer"
+    ;
+
+    .header {
+        grid-area: header;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 50;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        &__body {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 64px;
+            display: grid;
+            grid-template: 1fr / 1fr minmax(auto, 140px) minmax(auto, 880px) minmax(auto, 50px) 1fr;
+            align-items: center;
+            background-color: rgb(131, 190, 84);
+            padding: 0px 10px;
+            z-index: 2;
+        }
+
+        &__logo {
+            grid-column: 2/3;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        &__logo img {
+            max-width: 100%;
+            display: block;
+        }
+
+        &__menu {
+            grid-column: 3/4;
+        }
+
+        &__list {
+            display: grid;
+            grid-auto-flow: column;
+            justify-items: end;
+            margin-bottom: 0;
+        }
+
+        &__link {
+            color: #fff;
+        }
+
+        &__burger {
+            grid-column: 4/5;
+        }
+    }
+
+    .main {
+        grid-area: main;
+        display: grid;
+        grid-template: 1fr / 1fr minmax(auto, 920px) minmax(auto, 300px) 1fr;
+        padding: 20px 15px;
+
+        .content {
+            grid-column: 2/3;
+            padding: 0 0 0 20px;
+        }
+
+        .sidebar {
+            grid-column: 3/4;
+
+
+        }
+    }
+
+    .footer {
+        grid-area: footer;
+        display: grid;
+        grid-template: 1fr / 1fr minmax(auto, 140px) minmax(auto, 880px) 1fr;
+        align-items: center;
+        background-color: rgb(131, 190, 84);
+        padding: 10px 10px;
+        color: #fff;
+
+        &__copy {
+            grid-column: 2/3;
+        }
+
+        &__text {
+            grid-column: 3/4;
+            text-align: end;
+        }
+    }
+}
