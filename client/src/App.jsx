@@ -27,7 +27,46 @@ const App = () => {
           content
         </section>
         <aside className="sidebar">
-          sidebar
+          <div className="sidebar__form form">
+            <div className="form__flex make__flex">
+              <div className="form__header">Авторизация</div>
+              <div className="form__login">
+                <input type="text" placeholder='login' />
+              </div>
+              <div className="form__password">
+                <input type="text" placeholder='password' />
+              </div>
+              <div className="form__forget">Забыли пароль?</div>
+              <div className="form__button">Войти</div>
+              <div className="form__registration">Регистрация</div>
+              <div className="form__or">
+                <div className="form__section_or">
+                  <span>или</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="form__social social">
+              <div href="#" className="social__vk">
+                <img src={require('./img/social_vk.png')} alt="form__vk" />
+              </div>
+              <div href="" className="social__fb">
+                <img src={require('./img/social_vk.png')} alt="form__fb" />
+              </div>
+              <div href="" className="social__twitter">
+                <img src={require('./img/social_vk.png')} alt="form__twitter" />
+              </div>
+              <div href="" className="social__gmail">
+                <img src={require('./img/social_vk.png')} alt="form__gmail" />
+              </div>
+            </div>
+          </div>
+
+          <div className="make__flex">
+            <div className="sidebar__addpost">Добавить пост</div>
+            <div className="sidebar__createpublic">Создать сообщество</div>
+          </div>
         </aside>
       </div>
       <div className="footer">

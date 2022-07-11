@@ -183,8 +183,8 @@ h6 {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr;
-  -ms-grid-columns: 1fr minmax(auto, 920px) minmax(auto, 300px) 1fr;
-      grid-template: 1fr/1fr minmax(auto, 920px) minmax(auto, 300px) 1fr;
+  -ms-grid-columns: 1fr minmax(auto, 702px) minmax(auto, 300px) 1fr;
+      grid-template: 1fr/1fr minmax(auto, 702px) minmax(auto, 300px) 1fr;
   padding: 20px 15px;
 }
 
@@ -192,13 +192,224 @@ h6 {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
-  padding: 0 0 0 20px;
+  padding: 0 20px;
 }
 
 .wrapper .main .sidebar {
   -ms-grid-column: 3;
   -ms-grid-column-span: 1;
   grid-column: 3/4;
+}
+
+.wrapper .main .sidebar .form {
+  padding: 25px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.99);
+          box-shadow: 0 0 1px rgba(0, 0, 0, 0.99);
+  margin: 0 0 18px 0;
+}
+
+.wrapper .main .sidebar .form__flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .main .sidebar .form__header {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.wrapper .main .sidebar .form__login {
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  line-height: 30px;
+  min-height: 30px;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  border-radius: 2px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: block;
+  width: 100%;
+  margin: 0 0 12px 0;
+}
+
+.wrapper .main .sidebar .form__password {
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  line-height: 28px;
+  min-height: 30px;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  border-radius: 2px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: block;
+  width: 100%;
+  margin: 0 0 12px 0;
+}
+
+.wrapper .main .sidebar .form__login input,
+.wrapper .main .sidebar .form__password input {
+  padding: 0 20px;
+  background-color: #E8F0FE;
+  color: #212121;
+  display: block;
+  width: 100%;
+}
+
+.wrapper .main .sidebar .form__forget {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--color-black-700);
+  font-style: italic;
+  margin: 0 0 12px 0;
+}
+
+.wrapper .main .sidebar .form__button {
+  background-color: #8AC858;
+  width: 100%;
+  text-align: center;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 32px;
+  font-weight: 500;
+  padding: 0 20px;
+  color: #fff;
+  margin: 0 0 12px 0;
+  border-radius: 2px;
+}
+
+.wrapper .main .sidebar .form__registration {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #75AA4B;
+  cursor: pointer;
+}
+
+.wrapper .main .sidebar .form__or {
+  margin: 15px 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  overflow: hidden;
+  height: 24px;
+}
+
+.wrapper .main .sidebar .form__section_or {
+  font-style: normal;
+  font-size: 12px;
+  color: #757575;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  line-height: 20px;
+  position: relative;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.wrapper .main .sidebar .form__section_or::before {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.wrapper .main .sidebar .form__section_or::after {
+  left: 100%;
+  margin-left: 15px;
+}
+
+.wrapper .main .sidebar .form__section_or::before, .wrapper .main .sidebar .form__section_or::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  background-color: #E9E9E9;
+  width: 1200px;
+}
+
+.wrapper .main .sidebar .form .social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.wrapper .main .sidebar .form .social__vk, .wrapper .main .sidebar .form .social__fb, .wrapper .main .sidebar .form .social__twitter, .wrapper .main .sidebar .form .social__gmail {
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+}
+
+.wrapper .main .sidebar .form .social__vk img,
+.wrapper .main .sidebar .form .social__fb img,
+.wrapper .main .sidebar .form .social__twitter img,
+.wrapper .main .sidebar .form .social__gmail img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrapper .main .sidebar .make__flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .main .sidebar__addpost {
+  display: block;
+  font-size: 14px;
+  line-height: 40px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+  background-color: #8AC858;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  cursor: pointer;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 8px 0;
+  border-radius: 2px;
+}
+
+.wrapper .main .sidebar__createpublic {
+  display: block;
+  font-size: 14px;
+  line-height: 40px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+  background-color: #E9E9E9;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  cursor: pointer;
+  font-weight: 500;
+  color: #757575;
+  margin: 0 0 8px 0;
+  border-radius: 2px;
 }
 
 .wrapper .footer {
