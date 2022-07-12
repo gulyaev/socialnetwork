@@ -30,7 +30,7 @@ const App = (props) => {
         <div className="main">
           <section className="content">
             <Routes>
-              <Route path="/profile" element={<Profile postsData={props.state.postsData} />} />
+              <Route path="/profile" element={<Profile postsData={props.state.postsData} addPost={props.addPost} />} />
               <Route path="/dialogs" element={<Dialogs dialogsData={props.state.dialogsData} />} />
               <Route path="/dialogs/:id" element={<Dialogs dialogsData={props.state.dialogsData} />} />
               <Route exact path="/" element={<Main />} />
