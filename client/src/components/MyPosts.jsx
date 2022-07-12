@@ -7,7 +7,6 @@ const MyPosts = (props) => {
     let textareaRef = React.createRef()
 
     const addPost = () => {
-        alert(textareaRef.current.value)
         props.addPost(textareaRef.current.value)
         textareaRef.current.value = '';
     }
