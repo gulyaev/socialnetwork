@@ -1,6 +1,5 @@
 import React from 'react'
 import './css/App.css'
-import { Button } from 'antd';
 import { BrowserRouter, NavLink, Route, Routes, withRouter } from 'react-router-dom'
 import Profile from './pages/Profile';
 import Dialogs from './pages/Dialogs';
@@ -30,7 +29,7 @@ const App = (props) => {
         <div className="main">
           <section className="content">
             <Routes>
-              <Route path="/profile" element={<Profile postsData={props.state.postsData} addPost={props.addPost} />} />
+              <Route path="/profile" element={<Profile postsData={props.state.postsData} dispatch={props.dispatch} />} />
               <Route path="/dialogs" element={<Dialogs dialogsData={props.state.dialogsData} />} />
               <Route path="/dialogs/:id" element={<Dialogs dialogsData={props.state.dialogsData} />} />
               <Route exact path="/" element={<Main />} />

@@ -1,3 +1,5 @@
+const ADD_POST = 'ADD-POST'
+
 let store = {
     _rerenderEntireTree: function () {
         console.log("state is changed");
@@ -21,20 +23,32 @@ let store = {
         return this._state
     },
 
-    addPost: function (newPostMessage) {
-        let newPost = {
-            id: 3,
-            text: newPostMessage,
-            likesCount: 53,
-            disLikesCount: 3
-        };
-
-        this._state.postsData.push(newPost);
-        this._rerenderEntireTree()
+    dispatch: function (action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                let newPost = {
+                    id: Date.now(),
+                    text: action.payload,
+                    likesCount: 53,
+                    disLikesCount: 3
+                };
+                this._state.postsData.push(newPost);
+                this._rerenderEntireTree()
+                break
+            default:
+                return this._state
+        }
     },
 
     subscribe: function (observer) {
         this._rerenderEntireTree = observer
+    }
+}
+
+export const addPostActionCreator = (text) => {
+    return {
+        type: ADD_POST,
+        payload: text
     }
 }
 

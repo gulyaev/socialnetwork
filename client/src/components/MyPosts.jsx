@@ -1,13 +1,15 @@
 import React from 'react'
 import Post from './Post'
+import { addPostActionCreator } from '../redux/store';
 import { Typography } from 'antd';
 const { Title } = Typography;
+
 
 const MyPosts = (props) => {
     let textareaRef = React.createRef()
 
     const addPost = () => {
-        props.addPost(textareaRef.current.value)
+        props.dispatch(addPostActionCreator(textareaRef.current.value))
         textareaRef.current.value = '';
     }
 
