@@ -1,4 +1,5 @@
-const ADD_POST = 'ADD-POST'
+import postsReducer from './postsReducer'
+import dialogsReducer from './dialogsReducer'
 
 let store = {
     _rerenderEntireTree: function () {
@@ -24,31 +25,14 @@ let store = {
     },
 
     dispatch: function (action) {
-        switch (action.type) {
-            case 'ADD-POST':
-                let newPost = {
-                    id: Date.now(),
-                    text: action.payload,
-                    likesCount: 53,
-                    disLikesCount: 3
-                };
-                this._state.postsData.push(newPost);
-                this._rerenderEntireTree()
-                break
-            default:
-                return this._state
-        }
+        postsReducer(this._state.postsData, action)
+        dialogsReducer(this._state.dialogsData, action)
+
+        this._rerenderEntireTree();
     },
 
     subscribe: function (observer) {
         this._rerenderEntireTree = observer
-    }
-}
-
-export const addPostActionCreator = (text) => {
-    return {
-        type: ADD_POST,
-        payload: text
     }
 }
 

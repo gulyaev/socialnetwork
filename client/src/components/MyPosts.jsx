@@ -1,6 +1,6 @@
 import React from 'react'
 import Post from './Post'
-import { addPostActionCreator } from '../redux/store';
+import { addPostActionCreator } from '../redux/postsReducer';
 import { Typography } from 'antd';
 const { Title } = Typography;
 
@@ -12,7 +12,6 @@ const MyPosts = (props) => {
         props.dispatch(addPostActionCreator(textareaRef.current.value))
         textareaRef.current.value = '';
     }
-
     return (
         <div className="myposts">
             <div className="myposts__container">
