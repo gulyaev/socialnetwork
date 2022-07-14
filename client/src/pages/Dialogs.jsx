@@ -4,6 +4,10 @@ import Message from '../components/Message'
 
 const Dialogs = (props) => {
     return (
+        <div>Эта компонента требует рефакторинга</div>
+    )
+    /* требует рефакторинга
+    return (
         <div className="dialogs">
             <div className="dialogs__users users">
                 {
@@ -24,6 +28,7 @@ const Dialogs = (props) => {
 
         </div>
     )
+    */
 }
 
 export default Dialogs
