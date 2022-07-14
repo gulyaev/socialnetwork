@@ -1,6 +1,9 @@
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
-const dialogsReducer = (state, action) => {
+let initialState = {
+}
+
+const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         default:

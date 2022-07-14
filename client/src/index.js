@@ -2,15 +2,21 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import 'antd/dist/antd.css'
-import store from './redux/store'
+import store from './redux/redux-store'
 
-let rerenderEntireTree = () => {
-  const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+let rerenderEntireTree = (state) => {
   root.render(
-    <App state={store.getState()} dispatch={store.dispatch.bind(store)} />
+    <App state={state} dispatch={store.dispatch.bind(store)} />
   );
 }
 
-rerenderEntireTree()
+rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+//store.subscribe(rerenderEntireTree)
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderEntireTree(state);
+});
+
