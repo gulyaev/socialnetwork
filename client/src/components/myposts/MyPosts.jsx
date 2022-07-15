@@ -18,7 +18,7 @@ const MyPosts = (props) => {
                 <div className="myposts__btn" onClick={addPost}>Добавить пост</div>
                 <div className="myposts__posts posts">
                     {
-                        props.postsData.map((post) => {
+                        props.postsData.postsData.map((post) => {
                             return (
                                 <Post text={post.text} likesCount={post.likesCount} disLikesCount={post.disLikesCount} />
                             )
