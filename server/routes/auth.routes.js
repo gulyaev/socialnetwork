@@ -3,6 +3,8 @@ const router = new Router()
 const db = require('../db')
 const bcrypt = require('bcryptjs')
 const { check, validationResult } = require('express-validator')
+const config = require("config");
+const jwt = require("jsonwebtoken");
 
 router.post('/register',
     [
@@ -30,5 +32,32 @@ router.post('/register',
             res.send({ message: "Server error" })
         }
     })
+
+
+router.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body
+        const user = await db.query(`select * from person where email=$1`, [email])
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
+        } else {
+            const isPassValid = bcrypt.compareSync(password, user.rows[0].password)
+            if (!isPassValid) {
+                return res.status(400).json({ message: 'Invalid password' })
+            }
+            const token = jwt.sign({ id: user.rows[0].id }, config.get("secretKey"), { expiresIn: "1h" })
+            return res.json({
+                token,
+                user: {
+                    id: user.rows[0].id,
+                    email: user.rows[0].email
+                }
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        res.send({ message: "Server error" })
+    }
+})
 
 module.exports = router
