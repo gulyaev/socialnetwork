@@ -1,4 +1,6 @@
-import { combineReducers, legacy_createStore as createStore } from 'redux'
+import { combineReducers, legacy_createStore as createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from "redux-devtools-extension";
+import { thunk } from 'redux-thunk'
 import postsReducer from './postsReducer'
 import dialogsReducer from './dialogsReducer'
 
@@ -7,7 +9,7 @@ let rootReducer = combineReducers({
     dialogsData: dialogsReducer
 })
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 window.store = store;
 
