@@ -1,16 +1,6 @@
 const db = require('../db')
 
 class UserController {
-    async createUser(req, res) {
-        try {
-            const { email, password } = req.body
-            const user = await db.query(`insert into person (email, password) values ($1, $2) RETURNING *`, [email, password])
-            res.status(200).json(user.rows[0])
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     async getUsers(req, res) {
         try {
             const users = await db.query(`select * from person`)
