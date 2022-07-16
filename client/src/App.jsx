@@ -4,6 +4,8 @@ import { BrowserRouter, NavLink, Route, Routes, withRouter } from 'react-router-
 import Profile from './pages/Profile';
 import Dialogs from './pages/Dialogs';
 import Main from './pages/Main';
+import Login from './components/authform/Login';
+import Registration from './components/authform/Registration';
 
 const App = (props) => {
   return (
@@ -34,29 +36,15 @@ const App = (props) => {
               <Route path="/dialogs/:id" element={<Dialogs />} />
               <Route exact path="/" element={<Main />} />
             </Routes>
-
-
           </section>
           <aside className="sidebar">
-            <div className="sidebar__form form">
-              <div className="form__flex make__flex">
-                <div className="form__header">Авторизация</div>
-                <div className="form__login">
-                  <input type="text" placeholder='login' />
-                </div>
-                <div className="form__password">
-                  <input type="text" placeholder='password' />
-                </div>
-                <div className="form__forget">Забыли пароль?</div>
-                <div className="form__button">Войти</div>
-                <div className="form__registration">Регистрация</div>
-                <div className="form__or">
-                  <div className="form__section_or">
-                    <span>или</span>
-                  </div>
-                </div>
-              </div>
 
+            <div className="sidebar__form form">
+              <Routes>
+                <Route path="/registration" element={<Registration />} />
+                <Route path="/login" element={<Login />} />
+                <Route exact path="/" element={<Login />} />
+              </Routes>
 
               <div className="form__social social">
                 <div href="#" className="social__vk">

@@ -465,6 +465,11 @@ h6 {
   cursor: pointer;
 }
 
+.wrapper .main .sidebar .form__registration a.active,
+.wrapper .main .sidebar .form__registration a {
+  color: #75AA4B;
+}
+
 .wrapper .main .sidebar .form__or {
   margin: 15px 0;
   position: relative;
