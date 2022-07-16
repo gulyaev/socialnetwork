@@ -316,6 +316,11 @@
                     cursor: pointer;
                 }
 
+                &__registration a.active,
+                &__registration a {
+                    color: #75AA4B;
+                }
+
                 &__or {
                     margin: 15px 0;
                     position: relative;
