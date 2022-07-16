@@ -9,21 +9,22 @@ const jwt = require("jsonwebtoken");
 router.post('/register',
     [
         check('email', 'Email is not correct').isEmail(),
+        check('nikname', 'Nikname should be 3 and 12').isLength({ min: 3, max: 12 }),
         check('password', 'Password should be 3 and 12').isLength({ min: 3, max: 12 })
     ],
     async (req, res) => {
         try {
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
-                res.status(400).json({ message: "Uncorrect email or password", errors })
+                res.status(400).json({ message: "Uncorrect email, nikname or password", errors })
             } else {
-                const { email, password } = req.body
-                const candidate = await db.query(`select * from person where email=$1`, [email])
+                const { email, nikname, password } = req.body
+                const candidate = await db.query(`select * from person where email=$1 or nikname=$2`, [email, nikname])
                 if (candidate.rows.length !== 0) {
                     res.json({ message: "Allready exists" })
                 } else {
                     const hashedpassword = await bcrypt.hash(password, 15)
-                    const newUser = await db.query(`insert into person (email, password) values ($1, $2) RETURNING *`, [email, hashedpassword])
+                    const newUser = await db.query(`insert into person (email, nikname, password) values ($1, $2, $3) RETURNING *`, [email, nikname, hashedpassword])
                     res.status(200).json({ message: "User was created" })
                 }
             }
