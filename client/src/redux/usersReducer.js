@@ -2,7 +2,7 @@ const SET_USERS = 'SET-USERS'
 
 const initialState = {
     usersData: [
-        {}
+        { id: 17, nikname: "nikname1", email: "name1@mail.ru" }
     ],
     currentUser: {},
     isAuth: false

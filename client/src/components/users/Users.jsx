@@ -8,24 +8,16 @@ const Users = (props) => {
                 <div className="users__all">все</div>
             </div>
             <div className="users__items">
-                <div className="users__item">
-                    <div className="users__image">
-                        <img src={require('../../img/logo.jpeg')} alt="ava" />
-                    </div>
-                    <div className="users__name">Никнейм</div>
-                </div>
-                <div className="users__item">
-                    <div className="users__image">
-                        <img src={require('../../img/logo.jpeg')} alt="ava" />
-                    </div>
-                    <div className="users__name">Никнейм</div>
-                </div>
-                <div className="users__item">
-                    <div className="users__image">
-                        <img src={require('../../img/logo.jpeg')} alt="ava" />
-                    </div>
-                    <div className="users__name">Никнейм</div>
-                </div>
+                {
+                    props.usersData.usersData.map((user) => {
+                        return (<div className="users__item">
+                            <div className="users__image">
+                                <img src={require('../../img/logo.jpeg')} alt="ava" />
+                            </div>
+                            <div className="users__name">{user.nikname}</div>
+                        </div>)
+                    })
+                }
             </div>
         </div>
     )
