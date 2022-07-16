@@ -6,6 +6,7 @@ import Dialogs from './pages/Dialogs';
 import Main from './pages/Main';
 import Login from './components/authform/Login';
 import Registration from './components/authform/Registration';
+import Users from './components/users/Users';
 
 const App = (props) => {
   return (
@@ -71,8 +72,7 @@ const App = (props) => {
               <div className="menu__item"><NavLink to='/profile' className="menu__navlink">Профиль</NavLink></div>
               <div className="menu__item active"><NavLink to='/dialogs' className="menu__navlink">Сообщения</NavLink></div>
             </div>
-
-
+            <Users />
           </aside>
         </div>
         <div className="footer">
