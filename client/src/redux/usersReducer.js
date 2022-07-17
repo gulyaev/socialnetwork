@@ -14,7 +14,7 @@ const usersReducer = (state = initialState, action) => {
             return (
                 {
                     ...state,
-                    usersData: [...state.usersData, action.payload]
+                    usersData: action.payload
                 }
             )
         default:
