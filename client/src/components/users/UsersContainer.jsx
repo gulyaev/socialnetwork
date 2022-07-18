@@ -10,7 +10,6 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = (dispatch) => {
-    debugger
     return {
         setSidebarUsers: (usersSidebarData) => dispatch(setUsersActionCreator(usersSidebarData))
     }

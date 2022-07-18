@@ -15,7 +15,6 @@ const initialState = {
 const usersPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS:
-            debugger
             return (
                 {
                     ...state,
