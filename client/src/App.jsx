@@ -7,6 +7,7 @@ import Main from './pages/Main';
 import Login from './components/authform/Login';
 import Registration from './components/authform/Registration';
 import UsersContainer from './components/users/UsersContainer';
+import UsersPageContainer from './pages/users/UsersPageContainer';
 
 const App = (props) => {
   return (
@@ -35,6 +36,7 @@ const App = (props) => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/dialogs" element={<Dialogs />} />
               <Route path="/dialogs/:id" element={<Dialogs />} />
+              <Route path="/users" element={<UsersPageContainer />} />
               <Route exact path="/" element={<Main />} />
             </Routes>
           </section>
@@ -72,7 +74,10 @@ const App = (props) => {
               <div className="menu__item"><NavLink to='/profile' className="menu__navlink">Профиль</NavLink></div>
               <div className="menu__item active"><NavLink to='/dialogs' className="menu__navlink">Сообщения</NavLink></div>
             </div>
-            <UsersContainer />
+            {
+              //<UsersContainer />
+            }
+
           </aside>
         </div>
         <div className="footer">

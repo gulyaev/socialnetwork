@@ -1,17 +1,18 @@
 import React from "react"
 import Users from "./Users"
 import { connect } from 'react-redux'
-import { setUsersActionCreator } from "../../redux/usersReducer"
+import { setUsersActionCreator } from "../../redux/usersSidebarReducer"
 
 let mapStateToProps = (state) => {
     return {
-        usersData: state.usersData
+        usersSidebarData: state.usersSidebarData
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
+    debugger
     return {
-        setUsers: (users) => dispatch(setUsersActionCreator(users))
+        setSidebarUsers: (usersSidebarData) => dispatch(setUsersActionCreator(usersSidebarData))
     }
 }
 
