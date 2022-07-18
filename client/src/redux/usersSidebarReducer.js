@@ -1,5 +1,4 @@
-const SET_USERS = 'SET-USERS'
-
+const SET_SIDEBAR_USERS = 'SET-SIDEBAR-USERS'
 
 const initialState = {
     usersSidebarData: [],
@@ -9,7 +8,7 @@ const initialState = {
 
 const usersSidebarReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_USERS:
+        case SET_SIDEBAR_USERS:
             return (
                 {
                     ...state,
@@ -21,9 +20,6 @@ const usersSidebarReducer = (state = initialState, action) => {
     }
 }
 
-export const setUsersActionCreator = (usersSidebarData) => {
-    debugger
-    return { type: SET_USERS, payload: usersSidebarData }
-}
+export const setUsersActionCreator = (usersSidebarData) => { return { type: SET_SIDEBAR_USERS, payload: usersSidebarData } }
 
 export default usersSidebarReducer

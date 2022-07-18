@@ -75,7 +75,7 @@ const App = (props) => {
               <div className="menu__item active"><NavLink to='/dialogs' className="menu__navlink">Сообщения</NavLink></div>
             </div>
             {
-              //<UsersContainer />
+              <UsersContainer />
             }
 
           </aside>

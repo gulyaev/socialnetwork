@@ -1,42 +1,40 @@
-import React from "react"
+import React, {useEffect} from "react"
 import axios from "axios"
 import { Avatar, List } from 'antd';
 
-class UsersPage extends React.Component {
-    componentDidMount() {
-        axios.get(`http://localhost:5000/api/user?currentpage=${this.props.currentPage}&perpage=${this.props.perPage}`).then(res => {
-            this.props.setUsers(res.data.results, res.data.totalCount)
-        })
-    }
+const UsersPageF = (props) => {
+        let currentPage = props.currentPage
 
-    componentDidUpdate() {
-        axios.get(`http://localhost:5000/api/user?currentpage=${this.props.currentPage}&perpage=${this.props.perPage}`).then(res => {
-            this.props.setUsers(res.data.results, res.data.totalCount)
+        useEffect(()=>{
+            debugger
+            axios.get(`http://localhost:5000/api/user?currentpage=${props.currentPage}&perpage=${props.perPage}`).then(res => {
+            props.setUsers(res.data.results, res.data.totalCount)
         })
-    }
+        console.log("render update");
+        }, [currentPage])
 
-    render = () => {
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.perPage)
+        let pagesCount = Math.ceil(props.totalUsersCount / props.perPage)
 
         let pages = []
 
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
+debugger
         return (
             <div className="userspage">
                 <div className="userspage__pagination">
                     {pages.map((page, index) =>
                         <span key={index}
-                            className={this.props.currentPage == page ? "current-page" : "page"}
-                            onClick={() => this.props.setCurrentPage(page)} >
+                            className={props.currentPage == page ? "current-page" : "page"}
+                            onClick={() => props.setCurrentPage(page)} >
                             {page}
                         </span>
                     )}
                 </div>
                 <List
                     itemLayout="horizontal"
-                    dataSource={this.props.usersData.usersData}
+                    dataSource={props.usersData.usersData}
                     renderItem={(item) => (
                         <List.Item>
                             <List.Item.Meta
@@ -48,8 +46,11 @@ class UsersPage extends React.Component {
                     )}
                 />
             </div>
+
+
+
         )
-    }
+    
 }
 
-export default UsersPage
+export default UsersPageF

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import UsersPage from "./UsersPage"
 
 let mapStateToProps = (state) => {
-    debugger
     return {
         usersData: state.usersData,
         totalUsersCount: state.usersData.totalUsersCount,
