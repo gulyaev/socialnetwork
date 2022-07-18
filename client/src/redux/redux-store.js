@@ -3,12 +3,14 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from 'redux-thunk'
 import postsReducer from './postsReducer'
 import dialogsReducer from './dialogsReducer'
-import usersReducer from './usersReducer';
+import usersPageReducer from './usersPageReducer';
+import usersSidebarReducer from './usersSidebarReducer';
 
 let rootReducer = combineReducers({
     postsData: postsReducer,
     dialogsData: dialogsReducer,
-    usersData: usersReducer
+    usersSidebarData: usersSidebarReducer,
+    usersData: usersPageReducer
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

@@ -3,8 +3,43 @@ const db = require('../db')
 class UserController {
     async getUsers(req, res) {
         try {
+            const currentPage = parseInt(req.query.currentpage);
+            const perPage = parseInt(req.query.perpage);
+
+            const startIndex = (currentPage - 1) * perPage;
+            const endIndex = currentPage * perPage;
+
             const users = await db.query(`select * from person`)
-            res.status(200).json(users.rows)
+
+            const results = {}
+
+            if (endIndex < users.rows.length) {
+                results.next = {
+                    currentPage: currentPage + 1,
+                    perPage: perPage
+                }
+            }
+
+            if (startIndex > 0) {
+                results.previous = {
+                    currentPage: currentPage - 1,
+                    perPage: perPage
+                }
+            }
+            results.totalCount = users.rows.length;
+
+            //вывод пользователей в пределах заданного размера порции:
+            results.results = users.rows.slice(startIndex, endIndex);
+
+            if (!users) throw Error('No items');
+
+            if (currentPage && perPage) {
+                res.status(200).json(results);
+            } else {
+                res.status(200).json(users.rows);
+            }
+
+
         } catch (error) {
             console.log(error)
         }
