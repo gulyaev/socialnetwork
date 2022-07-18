@@ -220,6 +220,19 @@ h6 {
   max-width: 100%;
 }
 
+.wrapper .main .content .profileinfo__nikname {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+  color: #212121;
+}
+
+.wrapper .main .content .profileinfo__mail {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
 .wrapper .main .content .myposts {
   display: -ms-grid;
   display: grid;

@@ -1,7 +1,8 @@
 const SET_USERS = 'SET-USERS'
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const SET_PERPAGE = 'SET-PERPAGE'
 const SET_IS_FETCHING = "SET-IS-FETCHING" 
+const SET_CURRENT_USER = "SET-CURRENT-USER" 
 
 const initialState = {
     usersData: [],
@@ -23,6 +24,11 @@ const usersPageReducer = (state = initialState, action) => {
                     totalUsersCount: action.payload.totalCount,
                 }
             )
+        case SET_CURRENT_USER: 
+            return {
+                ...state,
+                currentUser: action.payload
+            }
         case SET_CURRENT_PAGE: {
             return {
                 ...state,
@@ -41,6 +47,7 @@ const usersPageReducer = (state = initialState, action) => {
 }
 
 export const setUsersActionCreator = (usersData, totalCount) => { return { type: SET_USERS, payload: { usersData, totalCount } } }
+export const setCurrentUserActionCreator = (userData) => { return { type: SET_CURRENT_USER, payload: userData } }
 export const setCurrentPageActionCreator = (pageNumber) => { return { type: SET_CURRENT_PAGE, payload: pageNumber } }
 export const setCountUsersPerPageActionCreator = (count) => { return { type: SET_PERPAGE, payload: count } }
 export const setToggleIsFetchingActionCreator = (isFetching) => { return { type: SET_IS_FETCHING, payload: isFetching  } }
