@@ -227,6 +227,14 @@
             .userspage {
                 padding: 20px 0;
 
+                &__loader {
+                    text-align: center;
+
+                    .ant-spin-dot-item {
+                        background-color: #95de64;
+                    }
+                }
+
                 &__pagination {
                     margin: 0 0 30px 0;
 

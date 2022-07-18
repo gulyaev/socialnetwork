@@ -362,6 +362,14 @@ h6 {
   padding: 20px 0;
 }
 
+.wrapper .main .content .userspage__loader {
+  text-align: center;
+}
+
+.wrapper .main .content .userspage__loader .ant-spin-dot-item {
+  background-color: #95de64;
+}
+
 .wrapper .main .content .userspage__pagination {
   margin: 0 0 30px 0;
 }

@@ -1,16 +1,22 @@
 import React from "react"
 import axios from "axios"
 import { Avatar, List } from 'antd';
+import Loader from "../../components/Loader"
 
 class UsersPage extends React.Component {
     componentDidMount() {
+        this.props.setIsFetching(true)
         axios.get(`http://localhost:5000/api/user?currentpage=${this.props.currentPage}&perpage=${this.props.perPage}`).then(res => {
+            this.props.setIsFetching(false)
             this.props.setUsers(res.data.results, res.data.totalCount)
         })
     }
 
-    componentDidUpdate() {
+    onPageChanged = (page) => {
+        this.props.setCurrentPage(page)
+        this.props.setIsFetching(true)
         axios.get(`http://localhost:5000/api/user?currentpage=${this.props.currentPage}&perpage=${this.props.perPage}`).then(res => {
+            this.props.setIsFetching(false)
             this.props.setUsers(res.data.results, res.data.totalCount)
         })
     }
@@ -25,11 +31,22 @@ class UsersPage extends React.Component {
         }
         return (
             <div className="userspage">
+                {
+                this.props.isFetching 
+                ? 
+                <div className="userspage__loader">
+                <Loader />
+                </div>
+                :
+                null
+                }
+                
+                
                 <div className="userspage__pagination">
                     {pages.map((page, index) =>
                         <span key={index}
                             className={this.props.currentPage == page ? "current-page" : "page"}
-                            onClick={() => this.props.setCurrentPage(page)} >
+                            onClick={() => this.onPageChanged(page)} >
                             {page}
                         </span>
                     )}
