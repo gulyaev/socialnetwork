@@ -5,7 +5,7 @@ import MyPostsContainer from '../../components/myposts/MyPostsContainer'
 const Profile = (props) => {
     return (
         <>
-            <ProfileInfo currentUser={props.currentUser} setCurrentUser={props.setCurrentUser}/>
+            <ProfileInfo currentUser={props.currentUser}/>
             <MyPostsContainer />
         </>
     )
