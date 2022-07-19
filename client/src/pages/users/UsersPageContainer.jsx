@@ -1,6 +1,53 @@
+import React from "react"
 import { setCountUsersPerPageActionCreator, setCurrentPageActionCreator, setUsersActionCreator, setCurrentUserActionCreator, setToggleIsFetchingActionCreator } from "../../redux/usersPageReducer"
 import { connect } from 'react-redux'
+import axios from "axios"
 import UsersPage from "./UsersPage"
+
+class UsersPageContainer extends React.Component {
+    componentDidMount() {
+        this.props.setIsFetching(true)
+        axios.get(`http://localhost:5000/api/user?currentpage=${this.props.currentPage}&perpage=${this.props.perPage}`).then(res => {
+            this.props.setIsFetching(false)
+            this.props.setUsers(res.data.results, res.data.totalCount)
+        })
+    }
+
+    onPageChanged = (page) => {
+        this.props.setCurrentPage(page)
+        this.props.setIsFetching(true)
+        axios.get(`http://localhost:5000/api/user?currentpage=${this.props.currentPage}&perpage=${this.props.perPage}`).then(res => {
+            this.props.setIsFetching(false)
+            this.props.setUsers(res.data.results, res.data.totalCount)
+        })
+    }
+
+    clickUserHandler = (id) => {
+        debugger
+        this.props.setIsFetching(true)
+        axios.get(`http://localhost:5000/api/user/${id}`).then(res => {
+            debugger
+            this.props.setIsFetching(false)
+            console.log(res.data)
+            this.props.setCurrentUser(res.data)
+        })
+    }
+
+    render = () => {
+        debugger
+        return (
+            <UsersPage totalUsersCount={this.props.totalUsersCount} 
+            perPage={this.props.perPage}
+            isFetching={this.props.isFetching}
+            currentPage={this.props.currentPage}
+            usersData={this.props.usersData}
+            onPageChanged={this.props.onPageChanged}
+            clickUserHandler={this.props.clickUserHandler}
+            />
+        )
+    }
+}
+
 
 let mapStateToProps = (state) => {
     return {
@@ -22,6 +69,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const UsersPageContainer = connect(mapStateToProps, mapDispatchToProps)(UsersPage)
-
-export default UsersPageContainer
+export default connect(mapStateToProps, mapDispatchToProps)(UsersPageContainer)
