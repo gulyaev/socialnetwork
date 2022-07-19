@@ -1,50 +1,66 @@
 import Profile from "./Profile"
 import React from "react"
 import {connect} from "react-redux"
-import { setCurrentUserActionCreator } from "../../redux/usersPageReducer"
+import { setCurrentUserActionCreator, setToggleIsFetchingActionCreator } from "../../redux/usersPageReducer"
+import LoaderBig from "../../components/LoaderBig"
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
         const userId = this.props.params.id
-        // this.props.setIsFetching(true)
+        /*
+        if (!userId) {
+            userId = "id залогинненого пользователя";
+        }
+        */
+        this.props.setIsFetching(true)
         axios.get(`http://localhost:5000/api/user/${userId}`).then(res => {
-        //     this.props.setIsFetching(false)
+        this.props.setIsFetching(false)
             console.log(res.data)
             this.props.setCurrentUser(res.data)
         })
     }
 
     render = () => {
-        return (
+        return (<>
+            {
+                this.props.isFetching 
+                ? 
+                <div className="userspage__loader">
+                <LoaderBig />
+                </div>
+                :
+                null
+                }
             <Profile currentUser = {this.props.currentUser} />
+            </>
         )
     }
 }
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
-    // etc... other react-router-dom v6 hooks
   
     return (
       <WrappedComponent
         {...props}
         params={params}
-        // etc...
       />
     );
   };
 
 let mapStateToProps = (state) => {
     return {
-        currentUser: state.usersData.currentUser
+        currentUser: state.usersData.currentUser,
+        isFetching: state.usersData.isFetching
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentUser: (userData) => dispatch(setCurrentUserActionCreator(userData))
+        setCurrentUser: (userData) => dispatch(setCurrentUserActionCreator(userData)),
+        setIsFetching: (isFetching) => dispatch(setToggleIsFetchingActionCreator(isFetching))
     }
 }
 
