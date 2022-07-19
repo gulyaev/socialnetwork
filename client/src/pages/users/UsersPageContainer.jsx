@@ -41,7 +41,7 @@ class UsersPageContainer extends React.Component {
             isFetching={this.props.isFetching}
             currentPage={this.props.currentPage}
             usersData={this.props.usersData}
-            onPageChanged={this.props.onPageChanged}
+            onPageChanged={this.onPageChanged}
             clickUserHandler={this.props.clickUserHandler}
             />
         )

@@ -1,3 +1,5 @@
+//UsersPage and ProfilePage
+
 const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const SET_PERPAGE = 'SET-PERPAGE'
