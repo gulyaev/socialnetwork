@@ -110,7 +110,7 @@ h6 {
 }
 
 .wrapper .header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -362,7 +362,7 @@ h6 {
 }
 
 .wrapper .main .content .dialogs .users__item.active::before {
-  content: '';
+  content: "";
   position: absolute;
   display: inline-block;
   left: -10px;
@@ -389,7 +389,7 @@ h6 {
 
 .wrapper .main .content .userspage__pagination .page,
 .wrapper .main .content .userspage__pagination .current-page {
-  border: 1px solid #75AA4B;
+  border: 1px solid #75aa4b;
   border-radius: 100%;
   padding: 5px 10px;
   margin: 0 10px;
@@ -397,7 +397,7 @@ h6 {
 }
 
 .wrapper .main .content .userspage__pagination .current-page {
-  border: 2px solid #75AA4B;
+  border: 2px solid #75aa4b;
   font-weight: 700;
 }
 
@@ -455,7 +455,7 @@ h6 {
 .wrapper .main .sidebar .form__nikname input,
 .wrapper .main .sidebar .form__password input {
   padding: 0 20px;
-  background-color: #E8F0FE;
+  background-color: #e8f0fe;
   color: #212121;
   display: block;
   width: 100%;
@@ -471,7 +471,7 @@ h6 {
 }
 
 .wrapper .main .sidebar .form__button {
-  background-color: #8AC858;
+  background-color: #8ac858;
   width: 100%;
   text-align: center;
   font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
@@ -489,13 +489,13 @@ h6 {
   font-size: 13px;
   line-height: 20px;
   font-weight: 500;
-  color: #75AA4B;
+  color: #75aa4b;
   cursor: pointer;
 }
 
 .wrapper .main .sidebar .form__registration a.active,
 .wrapper .main .sidebar .form__registration a {
-  color: #75AA4B;
+  color: #75aa4b;
 }
 
 .wrapper .main .sidebar .form__or {
@@ -535,7 +535,7 @@ h6 {
   position: absolute;
   top: 50%;
   height: 1px;
-  background-color: #E9E9E9;
+  background-color: #e9e9e9;
   width: 1200px;
 }
 
@@ -585,7 +585,7 @@ h6 {
   width: 100%;
   text-align: center;
   padding: 0 20px;
-  background-color: #8AC858;
+  background-color: #8ac858;
   font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
   cursor: pointer;
   font-weight: 500;
@@ -602,7 +602,7 @@ h6 {
   width: 100%;
   text-align: center;
   padding: 0 20px;
-  background-color: #E9E9E9;
+  background-color: #e9e9e9;
   font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
   cursor: pointer;
   font-weight: 500;
@@ -624,7 +624,7 @@ h6 {
 }
 
 .wrapper .main .sidebar .menu__item.active::before {
-  content: '';
+  content: "";
   position: absolute;
   display: inline-block;
   left: 0px;
@@ -674,13 +674,13 @@ h6 {
   font-size: 13px;
   line-height: 20px;
   font-weight: 400;
-  color: #75AA4B;
+  color: #75aa4b;
   cursor: pointer;
 }
 
 .wrapper .main .sidebar .users__all a.active,
 .wrapper .main .sidebar .users__all a {
-  color: #75AA4B;
+  color: #75aa4b;
 }
 
 .wrapper .main .sidebar .users__items {
@@ -721,6 +721,118 @@ h6 {
 }
 
 .wrapper .main .sidebar .users__navlink {
+  color: #212121;
+  width: 100%;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.wrapper .main .sidebar .userscard {
+  border: 1px solid #e9e9e9;
+  margin: 0 0 16px 0;
+}
+
+.wrapper .main .sidebar .userscard__header {
+  padding: 16px 24px;
+  background-color: #f9f9fb;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .main .sidebar .userscard__avatar {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  margin: 0 15px 0 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 48px;
+          flex: 0 0 48px;
+  overflow: hidden;
+}
+
+.wrapper .main .sidebar .userscard__avatar img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrapper .main .sidebar .userscard__nik_container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+.wrapper .main .sidebar .userscard__nik_big {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  color: #212121;
+  margin: 0;
+}
+
+.wrapper .main .sidebar .userscard__logout {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #757575;
+  cursor: pointer;
+}
+
+.wrapper .main .sidebar .userscard__settings {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #75aa4b;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  cursor: pointer;
+}
+
+.wrapper .main .sidebar .userscard__all a.active,
+.wrapper .main .sidebar .userscard__all a {
+  color: #75aa4b;
+}
+
+.wrapper .main .sidebar .userscard__items {
+  padding: 16px 24px;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.wrapper .main .sidebar .userscard__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .main .sidebar .userscard__char {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.wrapper .main .sidebar .userscard__ranking {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #757575;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  padding-bottom: 2px;
+}
+
+.wrapper .main .sidebar .userscard__navlink {
   color: #212121;
   width: 100%;
   line-height: 30px;
