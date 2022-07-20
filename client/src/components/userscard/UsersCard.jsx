@@ -10,7 +10,7 @@ const UsersCard = (props) => {
           <img src={require("../../img/logo.jpeg")} width="48px" alt="" />
         </div>
         <div className="userscard__nik_container">
-          <div className="userscard__nik_big">Пользователь</div>
+          <div className="userscard__nik_big">{props.nikname}</div>
           <div className="userscard__logout">Выйти</div>
         </div>
         <div className="userscard__settings">
