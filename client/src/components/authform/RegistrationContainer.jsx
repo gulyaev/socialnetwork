@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import { setAuthDataActionCreator } from "../../redux/authReducer"
+import { setRegisterDataActionCreator } from "../../redux/authReducer"
 import { setToggleIsFetchingActionCreator } from "../../redux/usersPageReducer"
 import Registration from "./Registration"
 import axios from "axios"
@@ -34,7 +34,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         //setIsFetching: (isFetching) => dispatch(setToggleIsFetchingActionCreator(isFetching)),
-        register: (authData) => {dispatch(setAuthDataActionCreator(authData))}
+        register: (registerData) => {dispatch(setRegisterDataActionCreator(registerData))}
     }
 }
 

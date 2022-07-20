@@ -4,12 +4,15 @@ import { BrowserRouter, NavLink, Route, Routes, withRouter } from 'react-router-
 import ProfileContainer from './pages/profile/ProfileContainer';
 import Dialogs from './pages/Dialogs';
 import Main from './pages/Main';
-import Login from './components/authform/Login';
+import LoginContainer from './components/authform/login/LoginContainer';
 import RegistrationContainer from './components/authform/RegistrationContainer';
 import UsersContainer from './components/users/UsersContainer';
 import UsersPageContainer from './pages/users/UsersPageContainer';
+import {useSelector} from "react-redux";
 
 const App = (props) => {
+  const isAuth = useSelector(state=>state.auth.isAuth)
+  
   return (
     <BrowserRouter>
       <div className="wrapper">
@@ -44,11 +47,13 @@ const App = (props) => {
           <aside className="sidebar">
 
             <div className="sidebar__form form">
+            {!isAuth &&
               <Routes>
                 <Route path="/registration" element={<RegistrationContainer />} />
-                <Route path="/login" element={<Login />} />
-                <Route exact path="/" element={<Login />} />
+                <Route path="/login" element={<LoginContainer />} />
+                <Route exact path="/" element={<LoginContainer />} />
               </Routes>
+            }
 
               <div className="form__social social">
                 <div href="#" className="social__vk">

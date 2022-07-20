@@ -7,6 +7,13 @@ const Registration = (props) => {
     const [nikname, setNikname] = useState("")
     const [password, setPassword] = useState("")
 
+    let register = (email, nikname, password) => {
+        props.register(email, nikname, password)
+        setEmail("")
+        setNikname("")
+        setPassword("")
+    }
+
     return (
         <div className="form__flex make__flex">
             <div className="form__header">Регистрация</div>
@@ -19,7 +26,7 @@ const Registration = (props) => {
             <div className="form__password">
                 <Input type="text" placeholder='Пароль' value={password} setValue={setPassword} />
             </div>
-            <div className="form__button" onClick={()=>{props.register(email, nikname, password)}}>Создать аккаунт</div>
+            <div className="form__button" onClick={()=>{register(email, nikname, password)}}>Создать аккаунт</div>
             <div className="form__registration"><NavLink to="/login">Авторизация</NavLink></div>
             <div className="form__or">
                 <div className="form__section_or">
