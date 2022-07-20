@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const config = require("config");
 const jwt = require("jsonwebtoken");
+const authMiddleware = require("../middleware/auth.middleware");
 
 router.post(
   "/register",
@@ -76,6 +77,34 @@ router.post("/login", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.send({ message: "Server error" });
+  }
+});
+
+router.get("/auth", authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await db.query(`select * from person where id=$1`, [userId]);
+
+    if (!user) {
+      res.status(404).json({ message: "user not found" });
+    } else {
+      //res.status(200).json(user.rows[0].id)
+      const token = jwt.sign({ id: user.rows[0].id }, config.get("secretKey"), {
+        expiresIn: "1h",
+      });
+
+      return res.json({
+        token,
+        user: {
+          id: user.rows[0].id,
+          email: user.rows[0].email,
+          nikname: user.rows[0].nikname,
+        },
+      });
+    }
+  } catch (e) {
+    console.log(e);
     res.send({ message: "Server error" });
   }
 });
