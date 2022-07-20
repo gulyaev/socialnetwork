@@ -6,6 +6,7 @@ import Dialogs from './pages/Dialogs';
 import Main from './pages/Main';
 import LoginContainer from './components/authform/login/LoginContainer';
 import RegistrationContainer from './components/authform/RegistrationContainer';
+import UsersCard from './components/userscard/UsersCard';
 import UsersContainer from './components/users/UsersContainer';
 import UsersPageContainer from './pages/users/UsersPageContainer';
 import {useSelector} from "react-redux";
@@ -46,14 +47,13 @@ const App = (props) => {
           </section>
           <aside className="sidebar">
 
+          {!isAuth &&
             <div className="sidebar__form form">
-            {!isAuth &&
               <Routes>
                 <Route path="/registration" element={<RegistrationContainer />} />
                 <Route path="/login" element={<LoginContainer />} />
                 <Route exact path="/" element={<LoginContainer />} />
               </Routes>
-            }
 
               <div className="form__social social">
                 <div href="#" className="social__vk">
@@ -69,8 +69,13 @@ const App = (props) => {
                   <img src={require('./img/social_vk.png')} alt="form__gmail" />
                 </div>
               </div>
+              
             </div>
-
+          }
+          {isAuth &&
+              <UsersCard />
+          }
+          
             <div className="sidebar__flex flex__center">
               <div className="sidebar__addpost">Добавить пост</div>
               <div className="sidebar__createpublic">Создать сообщество</div>
