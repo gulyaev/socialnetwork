@@ -5,7 +5,7 @@ import ProfileContainer from './pages/profile/ProfileContainer';
 import Dialogs from './pages/Dialogs';
 import Main from './pages/Main';
 import Login from './components/authform/Login';
-import Registration from './components/authform/Registration';
+import RegistrationContainer from './components/authform/RegistrationContainer';
 import UsersContainer from './components/users/UsersContainer';
 import UsersPageContainer from './pages/users/UsersPageContainer';
 
@@ -45,7 +45,7 @@ const App = (props) => {
 
             <div className="sidebar__form form">
               <Routes>
-                <Route path="/registration" element={<Registration />} />
+                <Route path="/registration" element={<RegistrationContainer />} />
                 <Route path="/login" element={<Login />} />
                 <Route exact path="/" element={<Login />} />
               </Routes>

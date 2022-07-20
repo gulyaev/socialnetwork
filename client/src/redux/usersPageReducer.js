@@ -9,7 +9,6 @@ const SET_CURRENT_USER = "SET-CURRENT-USER"
 const initialState = {
     usersData: [],
     currentUser: {},
-    isAuth: false,
     totalUsersCount: 0,
     perPage: 1,
     currentPage: 1,

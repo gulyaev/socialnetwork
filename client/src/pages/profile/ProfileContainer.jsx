@@ -2,7 +2,7 @@ import Profile from "./Profile"
 import React from "react"
 import {connect} from "react-redux"
 import { setCurrentUserActionCreator, setToggleIsFetchingActionCreator } from "../../redux/usersPageReducer"
-import LoaderBig from "../../components/LoaderBig"
+import LoaderLarge from "../../components/LoaderLarge"
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ class ProfileContainer extends React.Component {
                 this.props.isFetching 
                 ? 
                 <div className="userspage__loader">
-                <LoaderBig />
+                <LoaderLarge />
                 </div>
                 :
                 null

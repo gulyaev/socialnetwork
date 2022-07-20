@@ -23,10 +23,8 @@ class UsersPageContainer extends React.Component {
     }
 
     clickUserHandler = (id) => {
-        debugger
         this.props.setIsFetching(true)
         axios.get(`http://localhost:5000/api/user/${id}`).then(res => {
-            debugger
             this.props.setIsFetching(false)
             console.log(res.data)
             this.props.setCurrentUser(res.data)
@@ -34,7 +32,6 @@ class UsersPageContainer extends React.Component {
     }
 
     render = () => {
-        debugger
         return (
             <UsersPage totalUsersCount={this.props.totalUsersCount} 
             perPage={this.props.perPage}
