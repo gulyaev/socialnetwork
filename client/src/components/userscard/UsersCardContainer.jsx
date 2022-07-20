@@ -1,10 +1,15 @@
 import React from "react";
 import UsersCard from "./UsersCard";
 import { connect } from "react-redux";
+import { logoutActionCreator } from "../../redux/authReducer";
 
 class UsersCardContainer extends React.Component {
+  logout = () => {
+    this.props.logout();
+  };
+
   render = () => {
-    return <UsersCard nikname={this.props.nikname} />;
+    return <UsersCard nikname={this.props.nikname} logout={this.logout} />;
   };
 }
 
@@ -15,7 +20,11 @@ let mapStateToProps = (state) => {
 };
 
 let mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    logout: () => {
+      dispatch(logoutActionCreator());
+    },
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersCardContainer);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./css/App.css";
 import {
   BrowserRouter,
@@ -10,11 +10,13 @@ import {
 import ProfileContainer from "./pages/profile/ProfileContainer";
 import Dialogs from "./pages/Dialogs";
 import Main from "./pages/Main";
+import UsersPageContainer from "./pages/users/UsersPageContainer";
+import HeaderContainer from "./components/header/HeaderContainer";
 import LoginContainer from "./components/authform/login/LoginContainer";
 import RegistrationContainer from "./components/authform/RegistrationContainer";
 import UsersCardContainer from "./components/userscard/UsersCardContainer";
 import UsersContainer from "./components/users/UsersContainer";
-import UsersPageContainer from "./pages/users/UsersPageContainer";
+
 import { useSelector } from "react-redux";
 
 const App = (props) => {
@@ -23,43 +25,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <div className="wrapper">
-        <div className="header">
-          <div className="header__body">
-            <a href="#" className="header__logo">
-              <img src={require("./img/logo.jpeg")} alt="logo" />
-            </a>
-            <nav className="header__menu">
-              <ul className="header__list">
-                <li className="header__link">
-                  <NavLink to="/">Главная</NavLink>
-                </li>
-                <li>
-                  <a href="" className="header__link">
-                    Пункт меню
-                  </a>
-                </li>
-                <li>
-                  <a href="" className="header__link">
-                    Пункт меню
-                  </a>
-                </li>
-                <li>
-                  <a href="" className="header__link">
-                    Пункт меню
-                  </a>
-                </li>
-                <li>
-                  <a href="" className="header__link">
-                    Пункт меню
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <div className="header__burger">
-              <span></span>
-            </div>
-          </div>
-        </div>
+        <HeaderContainer />
         <div className="main">
           <section className="content">
             <Routes>

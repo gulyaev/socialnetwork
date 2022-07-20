@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { SettingFilled } from "@ant-design/icons";
 
 const UsersCard = (props) => {
+  debugger;
   return (
     <div className="sidebar__flex userscard">
       <div className="userscard__header">
@@ -11,7 +12,14 @@ const UsersCard = (props) => {
         </div>
         <div className="userscard__nik_container">
           <div className="userscard__nik_big">{props.nikname}</div>
-          <div className="userscard__logout">Выйти</div>
+          <div
+            className="userscard__logout"
+            onClick={() => {
+              props.logout();
+            }}
+          >
+            Выйти
+          </div>
         </div>
         <div className="userscard__settings">
           <NavLink to="/settings">
