@@ -5,12 +5,14 @@ import postsReducer from './postsReducer'
 import dialogsReducer from './dialogsReducer'
 import usersPageReducer from './usersPageReducer';
 import usersSidebarReducer from './usersSidebarReducer';
+import authReducer from './authReducer';
 
 let rootReducer = combineReducers({
     postsData: postsReducer,
     dialogsData: dialogsReducer,
     usersSidebarData: usersSidebarReducer,
-    usersData: usersPageReducer
+    usersData: usersPageReducer,
+    auth: authReducer
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

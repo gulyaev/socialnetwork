@@ -25,7 +25,8 @@ router.post('/register',
                 } else {
                     const hashedpassword = await bcrypt.hash(password, 15)
                     const newUser = await db.query(`insert into person (email, nikname, password) values ($1, $2, $3) RETURNING *`, [email, nikname, hashedpassword])
-                    res.status(200).json({ message: "User was created" })
+                    //res.status(200).json({ message: "User was created" })
+                    res.status(200).json(newUser.rows[0])
                 }
             }
         } catch (error) {

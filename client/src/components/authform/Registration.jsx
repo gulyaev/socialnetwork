@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Input from "../input/Input"
 import { NavLink } from "react-router-dom"
 
-const Registration = () => {
+const Registration = (props) => {
     const [email, setEmail] = useState("")
     const [nikname, setNikname] = useState("")
     const [password, setPassword] = useState("")
@@ -19,7 +19,7 @@ const Registration = () => {
             <div className="form__password">
                 <Input type="text" placeholder='Пароль' value={password} setValue={setPassword} />
             </div>
-            <div className="form__button">Создать аккаунт</div>
+            <div className="form__button" onClick={()=>{props.register(email, nikname, password)}}>Создать аккаунт</div>
             <div className="form__registration"><NavLink to="/login">Авторизация</NavLink></div>
             <div className="form__or">
                 <div className="form__section_or">

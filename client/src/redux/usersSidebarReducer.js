@@ -4,7 +4,6 @@ const SET_IS_FETCHING = "SET-IS-FETCHING"
 const initialState = {
     usersSidebarData: [],
     currentUser: {},
-    isAuth: false,
     isFetching: false
 }
 
