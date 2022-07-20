@@ -1,10 +1,16 @@
 import React, { useState } from "react"
-import Input from "../input/Input"
+import Input from "../../input/Input"
 import { NavLink } from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    let login = (email, password) => {
+        props.login(email, password)
+        setEmail("")
+        setPassword("")
+    }
 
     return (
         <div className="form__flex make__flex">
@@ -16,7 +22,7 @@ const Login = () => {
                 <Input type="text" placeholder='password' value={password} setValue={setPassword} />
             </div>
             <div className="form__forget">Забыли пароль?</div>
-            <div className="form__button">Войти</div>
+            <div className="form__button" onClick={()=>{login(email, password)}}>Войти</div>
             <div className="form__registration"><NavLink to="/registration">Регистрация</NavLink></div>
             <div className="form__or">
                 <div className="form__section_or">

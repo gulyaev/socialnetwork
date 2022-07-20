@@ -1,4 +1,5 @@
-const SET_AUTH_DATA =  'SET-AUTH-DATA'
+const SET_REGISTER_DATA =  'SET-REGISTER-DATA'
+const SET_LOGIN_DATA =  'SET-LOGIN-DATA'
 
 let initialState = {
     usersId: null,
@@ -10,7 +11,7 @@ let initialState = {
 
 const authReducer = (state=initialState, action) => {
     switch (action.type) {
-        case SET_AUTH_DATA:
+        case SET_REGISTER_DATA:
             return {
                 ...state,
                 usersId: action.payload.id, 
@@ -19,11 +20,21 @@ const authReducer = (state=initialState, action) => {
                 isAuth: true,
                 message: "Аккаунт создан"
             }
+        case SET_LOGIN_DATA:
+            return {
+                ...state,
+                usersId: action.payload.user.id, 
+                nikname: action.payload.user.nikname, 
+                email: action.payload.user.email, 
+                isAuth: true,
+                message: "Вы авторизованы"
+            }
         default:
             return state
     }
 }
 
-export const setAuthDataActionCreator = (authData) => {return {type: SET_AUTH_DATA, payload: authData}}
+export const setRegisterDataActionCreator = (registerData) => { return {type: SET_REGISTER_DATA, payload: registerData} }
+export const setLoginDataActionCreator = (loginData) => { return {type: SET_LOGIN_DATA, payload: loginData} }
 
 export default authReducer
