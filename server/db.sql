@@ -5,6 +5,15 @@ create table person (
     password VARCHAR(255)
 );
 
+ALTER TABLE person 
+add column followers INTEGER[];
+
+update person 
+  set followers  = ARRAY[]::integer[];
+
+
+
+
 create table post (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),

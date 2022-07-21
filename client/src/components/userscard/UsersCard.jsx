@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { SettingFilled } from "@ant-design/icons";
 
 const UsersCard = (props) => {
-  debugger;
   return (
     <div className="sidebar__flex userscard">
       <div className="userscard__header">
