@@ -96,61 +96,6 @@ class UserController {
     });
   }
 
-  followUserDemo(req, res) {
-    const { id } = req.body; // following to
-    const userId = req.user.id; //loggedin
-
-    const p = new Promise((resolve, reject) => {
-      const user = db.query(`select * from person where id=$1`, [userId]);
-      resolve(user);
-
-      // const user = db.query(
-      //   `update person set followings = array_append(followings, $1) where id=$2 RETURNING *`,
-      //   [id, userId]
-      // );
-      // resolve(user);
-    });
-    p.then((data) => {
-      return new Promise((resolve, reject) => {
-        for (var i = 0; i < data.rows[0].followings.length; i++) {
-          if (data.rows[0].followings[i] == id) {
-            //res.send({ message: "Allready exists" });
-            //console.log("Allready exists");
-            reject(data);
-          }
-        }
-      })
-        .catch((err) => {
-          console.log("Allready exists");
-          //console.error("Error: ", err);
-          res.send("error");
-        })
-        .then(() => {
-          // console.log('receivedData ', receivedData)
-          // receivedData.fromPromise = true
-          // return receivedData
-          const user = db.query(
-            `update person set followings = array_append(followings, $1) where id=$2 RETURNING *`,
-            [id, userId]
-          );
-        })
-        .then((data) => {
-          console.log("Modified", data.rows[0]);
-        });
-
-      // const user = db.query(
-      //   `update person set followings = array_append(followings, $1) where id=$2 RETURNING *`,
-      //   [id, userId]
-      // );
-
-      // db.query(
-      //   `update person set followers = array_append(followers, $2) where id=$1 RETURNING *`,
-      //   [id, userId]
-      // );
-      //res.status(200).json(data.rows[0]);
-    });
-  }
-
   unfollowUser(req, res) {
     const { id } = req.body; // following to
     const userId = req.user.id; //loggedin
