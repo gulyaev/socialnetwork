@@ -11,7 +11,6 @@ class HeaderContainer extends React.Component {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
-        debugger;
         this.props.login(res.data);
         localStorage.setItem("token", res.data.token);
       })

@@ -92,19 +92,54 @@
 
       .profileinfo {
         display: grid;
-        grid-template: 1fr / 2fr 3fr;
+        grid-template: 1fr / minmax(auto, 155px) 1fr;
 
         &__avatar {
           overflow: hidden;
-          height: 140px;
-          width: 140px;
+          height: 155px;
+          width: 155px;
           //border-radius: 50%;
           border-radius: 5px;
+          margin: 0 0 15px 0;
         }
 
         &__avatar img {
           display: block;
           max-width: 100%;
+        }
+
+        &__follow {
+          color: #fff;
+          background-color: #8ac858;
+          padding: 0 20px;
+          border-radius: 2px;
+          cursor: pointer;
+          font-size: 13px;
+          line-height: 32px;
+          font-weight: 500;
+          text-align: center;
+        }
+
+        .ant-btn-primary {
+          background-color: #8ac858;
+          border-color: #8ac858;
+          font-size: 13px;
+          line-height: 15px;
+          font-weight: 500;
+        }
+
+        .ant-btn-icon-only {
+          width: 32px;
+          height: 32px;
+          padding: 2.4px 0;
+          font-size: 16px;
+          border-radius: 2px;
+          vertical-align: -3px;
+          background-color: green;
+        }
+
+        &__description {
+          padding: 0 0 0 30px;
         }
 
         &__nikname {
@@ -123,12 +158,13 @@
 
       .myposts {
         display: grid;
-        grid-template: 1fr / 1fr 3fr;
+        grid-template: 1fr / minmax(auto, 155px) 1fr;
 
         &__container {
           grid-column: 2/3;
           display: grid;
           grid-auto-flow: row;
+          padding: 0 0 0 30px;
         }
 
         &__input {
