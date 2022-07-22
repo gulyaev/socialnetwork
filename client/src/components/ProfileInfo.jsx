@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Menu, Space } from "antd";
+import { Dropdown, Menu, Space, Button } from "antd";
 
 import { Typography } from "antd";
 const { Title } = Typography;
@@ -30,7 +30,7 @@ const ProfileInfo = (props) => {
     props.unfollow();
     setFollow(!follow);
   };
-
+  //debugger;
   return (
     <div className="profileinfo">
       <div className="profileinfo__container">
@@ -38,13 +38,21 @@ const ProfileInfo = (props) => {
           <img src={require("../img/logo.jpeg")} alt="avatar" />
         </div>
         {follow ? (
-          <Dropdown.Button type="primary" overlay={menu}>
+          <Dropdown.Button
+            type="primary"
+            overlay={menu}
+            disabled={props.followingInProgress}
+          >
             Вы подписаны
           </Dropdown.Button>
         ) : (
-          <div className="profileinfo__follow" onClick={() => followHandler()}>
+          <Button
+            className="profileinfo__follow"
+            onClick={() => followHandler()}
+            disabled={props.followingInProgress}
+          >
             Подписаться
-          </div>
+          </Button>
         )}
       </div>
       <div className="profileinfo__description">
