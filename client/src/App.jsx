@@ -8,7 +8,7 @@ import {
   withRouter,
 } from "react-router-dom";
 import ProfileContainer from "./pages/profile/ProfileContainer";
-import Dialogs from "./pages/Dialogs";
+import DialogsContainer from "./pages/dialogs/DialogsContainer";
 import Main from "./pages/Main";
 import UsersPageContainer from "./pages/users/UsersPageContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
@@ -31,9 +31,10 @@ const App = (props) => {
             <Routes>
               <Route path="/profile" element={<ProfileContainer />} />
               <Route path="/profile/:id" element={<ProfileContainer />} />
-              <Route path="/dialogs" element={<Dialogs />} />
-              <Route path="/dialogs/:id" element={<Dialogs />} />
+              <Route path="/dialogs" element={<DialogsContainer />} />
+              <Route path="/dialogs/:id" element={<DialogsContainer />} />
               <Route path="/users" element={<UsersPageContainer />} />
+              <Route path="/login" element={<Main />} />
               <Route exact path="/" element={<Main />} />
             </Routes>
           </section>

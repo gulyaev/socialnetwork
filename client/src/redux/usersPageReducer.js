@@ -1,4 +1,5 @@
 //UsersPage and ProfilePage
+import { userApi } from "../api/api";
 
 const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
@@ -69,6 +70,16 @@ export const setToggleIsFetchingActionCreator = (isFetching) => {
 };
 export const setFollowingInProgressActionCreator = (isFollowing) => {
   return { type: SET_IS_FOLLOWING, payload: isFollowing };
+};
+
+export const getUsersThunkCreator = (currentPage, perPage) => {
+  return (dispatch) => {
+    dispatch(setToggleIsFetchingActionCreator(true));
+    userApi.getUsers(currentPage, perPage).then((res) => {
+      dispatch(setToggleIsFetchingActionCreator(false));
+      dispatch(setUsersActionCreator(res.data.results, res.data.totalCount));
+    });
+  };
 };
 
 export default usersPageReducer;

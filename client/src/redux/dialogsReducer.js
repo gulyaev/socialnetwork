@@ -1,16 +1,18 @@
-const ADD_MESSAGE = 'ADD-MESSAGE'
+const ADD_MESSAGE = "ADD-MESSAGE";
 
 let initialState = {
-}
+  messageData: {},
+};
 
 const dialogsReducer = (state = initialState, action) => {
-    switch (action.type) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
 
-        default:
-            return state
-    }
-}
+export const addMessageActionCreator = (message) => {
+  return { type: ADD_MESSAGE, payload: message };
+};
 
-export const addMessageActionCreator = (message) => { return { type: ADD_MESSAGE, payload: message } }
-
-export default dialogsReducer
+export default dialogsReducer;
