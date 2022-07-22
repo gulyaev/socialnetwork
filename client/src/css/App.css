@@ -221,16 +221,14 @@ h6 {
   max-width: 100%;
 }
 
-.wrapper .main .content .profileinfo__follow {
-  color: #fff;
+.wrapper .main .content .profileinfo .ant-btn-default {
   background-color: #8ac858;
-  padding: 0 20px;
-  border-radius: 2px;
-  cursor: pointer;
+  border-color: #8ac858;
   font-size: 13px;
-  line-height: 32px;
+  line-height: 15px;
   font-weight: 500;
-  text-align: center;
+  color: #fff;
+  width: 155px;
 }
 
 .wrapper .main .content .profileinfo .ant-btn-primary {

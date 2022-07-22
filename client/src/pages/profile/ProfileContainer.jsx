@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {
   setCurrentUserActionCreator,
   setToggleIsFetchingActionCreator,
+  setFollowingInProgressActionCreator,
 } from "../../redux/usersPageReducer";
 import LoaderLarge from "../../components/LoaderLarge";
 import { useParams } from "react-router-dom";
@@ -24,6 +25,7 @@ class ProfileContainer extends React.Component {
   }
 
   follow = () => {
+    //debugger;
     const userId1 = this.props.params.id;
     const bodyParameters = {
       //id: 35,
@@ -32,9 +34,11 @@ class ProfileContainer extends React.Component {
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     };
+    this.props.setIsFollowing(true);
     axios
       .put(`http://localhost:5000/api/follow`, bodyParameters, config)
       .then((res) => {
+        this.props.setIsFollowing(false);
         console.log(res.data);
       });
   };
@@ -48,9 +52,11 @@ class ProfileContainer extends React.Component {
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     };
+    this.props.setIsFollowing(true);
     axios
       .put(`http://localhost:5000/api/unfollow`, bodyParameters, config)
       .then((res) => {
+        this.props.setIsFollowing(false);
         console.log(res.data);
       });
   };
@@ -67,6 +73,7 @@ class ProfileContainer extends React.Component {
           currentUser={this.props.currentUser}
           follow={this.follow}
           unfollow={this.unfollow}
+          followingInProgress={this.props.followingInProgress}
         />
       </>
     );
@@ -84,6 +91,7 @@ let mapStateToProps = (state) => {
     currentUser: state.usersData.currentUser,
     isFetching: state.usersData.isFetching,
     userId: state.auth.usersId,
+    followingInProgress: state.usersData.followingInProgress,
   };
 };
 
@@ -93,6 +101,8 @@ let mapDispatchToProps = (dispatch) => {
       dispatch(setCurrentUserActionCreator(userData)),
     setIsFetching: (isFetching) =>
       dispatch(setToggleIsFetchingActionCreator(isFetching)),
+    setIsFollowing: (isFollowing) =>
+      dispatch(setFollowingInProgressActionCreator(isFollowing)),
   };
 };
 

@@ -9,6 +9,7 @@ const Profile = (props) => {
         currentUser={props.currentUser}
         follow={props.follow}
         unfollow={props.unfollow}
+        followingInProgress={props.followingInProgress}
       />
       <MyPostsContainer />
     </>
