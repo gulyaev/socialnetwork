@@ -5,25 +5,22 @@ import {
   setUsersActionCreator,
   setCurrentUserActionCreator,
   setToggleIsFetchingActionCreator,
+  getUsersThunkCreator,
 } from "../../redux/usersPageReducer";
 import { connect } from "react-redux";
 import axios from "axios";
 import UsersPage from "./UsersPage";
-import { getUsers, getOneUser } from "../../actions/user";
+import { userApi } from "../../api/api";
 
 class UsersPageContainer extends React.Component {
   componentDidMount() {
-    this.props.setIsFetching(true);
-    getUsers(this.props.currentPage, this.props.perPage).then((res) => {
-      this.props.setIsFetching(false);
-      this.props.setUsers(res.data.results, res.data.totalCount);
-    });
+    this.props.getUsersThunkCreator(this.props.currentPage, this.props.perPage);
   }
 
   onPageChanged = (page) => {
     this.props.setCurrentPage(page);
     this.props.setIsFetching(true);
-    getUsers(this.props.currentPage, this.props.perPage).then((res) => {
+    userApi.getUsers(this.props.currentPage, this.props.perPage).then((res) => {
       this.props.setIsFetching(false);
       this.props.setUsers(res.data.results, res.data.totalCount);
     });
@@ -31,7 +28,7 @@ class UsersPageContainer extends React.Component {
 
   clickUserHandler = (id) => {
     this.props.setIsFetching(true);
-    getOneUser(id).then((res) => {
+    userApi.getOneUser(id).then((res) => {
       this.props.setIsFetching(false);
       console.log(res.data);
       this.props.setCurrentUser(res.data);
@@ -65,16 +62,16 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    setUsers: (usersData, totalCount) =>
-      dispatch(setUsersActionCreator(usersData, totalCount)),
+    //setUsers: (usersData, totalCount) => dispatch(setUsersActionCreator(usersData, totalCount)),
     setCurrentUser: (userData) =>
       dispatch(setCurrentUserActionCreator(userData)),
     setCountUsersPerPage: (count) =>
       dispatch(setCountUsersPerPageActionCreator(count)),
     setCurrentPage: (pageNumber) =>
       dispatch(setCurrentPageActionCreator(pageNumber)),
-    setIsFetching: (isFetching) =>
-      dispatch(setToggleIsFetchingActionCreator(isFetching)),
+    //setIsFetching: (isFetching) => dispatch(setToggleIsFetchingActionCreator(isFetching)),
+    getUsersThunkCreator: (currentPage, perPage) =>
+      dispatch(getUsersThunkCreator(currentPage, perPage)),
   };
 };
 

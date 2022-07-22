@@ -74,6 +74,7 @@ class ProfileContainer extends React.Component {
           follow={this.follow}
           unfollow={this.unfollow}
           followingInProgress={this.props.followingInProgress}
+          isAuth={this.props.isAuth}
         />
       </>
     );
@@ -92,6 +93,7 @@ let mapStateToProps = (state) => {
     isFetching: state.usersData.isFetching,
     userId: state.auth.usersId,
     followingInProgress: state.usersData.followingInProgress,
+    isAuth: state.auth.isAuth,
   };
 };
 
