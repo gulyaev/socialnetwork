@@ -1,14 +1,8 @@
 import React from "react";
 import DialogItem from "../../components/DialogItem";
 import Message from "../../components/Message";
-import { Navigate } from "react-router-dom";
 
 const Dialogs = (props) => {
-  if (!props.isAuth) {
-    alert("Войдите чтобы читать и отправлять сообщеия");
-    return <Navigate to={"/login"} />;
-  }
-
   return <div>Эта компонента требует рефакторинга</div>;
   /* требует рефакторинга 
   return (

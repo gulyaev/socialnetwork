@@ -2,6 +2,8 @@ import React from "react";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 import { addMessageActionCreator } from "../../redux/dialogsReducer";
+import { Navigate } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import axios from "axios";
 
 class DialogsContainer extends React.Component {
@@ -18,7 +20,6 @@ class DialogsContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     messageData: state.dialogsData.messageData,
-    isAuth: state.auth.isAuth,
   };
 };
 
@@ -30,4 +31,12 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DialogsContainer);
+let AuthRedirectComponentContainer = withAuthRedirect(
+  DialogsContainer,
+  "Войдите, чтобы посмотреть сообщения"
+);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthRedirectComponentContainer);
