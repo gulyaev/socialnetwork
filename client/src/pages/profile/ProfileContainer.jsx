@@ -7,8 +7,9 @@ import {
   setFollowingInProgressActionCreator,
 } from "../../redux/usersPageReducer";
 import LoaderLarge from "../../components/LoaderLarge";
-import { useParams } from "react-router-dom";
 import axios from "axios";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { withRouter } from "../../hoc/withRouter";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -25,7 +26,6 @@ class ProfileContainer extends React.Component {
   }
 
   follow = () => {
-    //debugger;
     const userId1 = this.props.params.id;
     const bodyParameters = {
       //id: 35,
@@ -81,19 +81,12 @@ class ProfileContainer extends React.Component {
   };
 }
 
-const withRouter = (WrappedComponent) => (props) => {
-  const params = useParams();
-
-  return <WrappedComponent {...props} params={params} />;
-};
-
 let mapStateToProps = (state) => {
   return {
     currentUser: state.usersData.currentUser,
     isFetching: state.usersData.isFetching,
     userId: state.auth.usersId,
     followingInProgress: state.usersData.followingInProgress,
-    isAuth: state.auth.isAuth,
   };
 };
 
@@ -108,7 +101,11 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-let WithURLDataContainerComponent = withRouter(ProfileContainer);
+let AuthRedirectComponentContainer = withAuthRedirect(
+  ProfileContainer,
+  "Войдите, чтобы посмотреть профиль"
+);
+let WithURLDataContainerComponent = withRouter(AuthRedirectComponentContainer);
 
 export default connect(
   mapStateToProps,
