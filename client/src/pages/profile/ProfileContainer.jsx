@@ -10,6 +10,7 @@ import LoaderLarge from "../../components/LoaderLarge";
 import axios from "axios";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { withRouter } from "../../hoc/withRouter";
+import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -64,11 +65,11 @@ class ProfileContainer extends React.Component {
   render = () => {
     return (
       <>
-        {this.props.isFetching ? (
+        {/* {this.props.isFetching ? (
           <div className="userspage__loader">
             <LoaderLarge />
           </div>
-        ) : null}
+        ) : null} */}
         <Profile
           currentUser={this.props.currentUser}
           follow={this.follow}
@@ -101,13 +102,8 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-let AuthRedirectComponentContainer = withAuthRedirect(
-  ProfileContainer,
-  "Войдите, чтобы посмотреть профиль"
-);
-let WithURLDataContainerComponent = withRouter(AuthRedirectComponentContainer);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WithURLDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer, "Войдите, чтобы посмотреть профиль");
