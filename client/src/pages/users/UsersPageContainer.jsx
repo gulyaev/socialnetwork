@@ -19,9 +19,9 @@ class UsersPageContainer extends React.Component {
 
   onPageChanged = (page) => {
     this.props.setCurrentPage(page);
-    this.props.setIsFetching(true);
+    //this.props.setIsFetching(true);
     userApi.getUsers(this.props.currentPage, this.props.perPage).then((res) => {
-      this.props.setIsFetching(false);
+      //this.props.setIsFetching(false);
       this.props.setUsers(res.data.results, res.data.totalCount);
     });
   };
@@ -62,7 +62,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    //setUsers: (usersData, totalCount) => dispatch(setUsersActionCreator(usersData, totalCount)),
+    setUsers: (usersData, totalCount) =>
+      dispatch(setUsersActionCreator(usersData, totalCount)),
     setCurrentUser: (userData) =>
       dispatch(setCurrentUserActionCreator(userData)),
     setCountUsersPerPage: (count) =>

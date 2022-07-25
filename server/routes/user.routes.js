@@ -9,5 +9,7 @@ router.put("/user", userController.updateUser);
 router.delete("/user/:id", userController.deleteUser);
 router.put("/follow", authMiddleware, userController.followUser);
 router.put("/unfollow", authMiddleware, userController.unfollowUser);
+router.get("/status", authMiddleware, userController.getStatus);
+router.put("/user/status", authMiddleware, userController.updateStatus);
 
 module.exports = router;

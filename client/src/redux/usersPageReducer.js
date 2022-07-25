@@ -74,10 +74,20 @@ export const setFollowingInProgressActionCreator = (isFollowing) => {
 
 export const getUsersThunkCreator = (currentPage, perPage) => {
   return (dispatch) => {
-    dispatch(setToggleIsFetchingActionCreator(true));
+    //dispatch(setToggleIsFetchingActionCreator(true));
     userApi.getUsers(currentPage, perPage).then((res) => {
-      dispatch(setToggleIsFetchingActionCreator(false));
+      //dispatch(setToggleIsFetchingActionCreator(false));
       dispatch(setUsersActionCreator(res.data.results, res.data.totalCount));
+    });
+  };
+};
+
+export const updateStatusThunkCreator = (status) => {
+  return (dispatch) => {
+    //dispatch(setToggleIsFetchingActionCreator(true));
+    userApi.updateStatus(status).then((res) => {
+      //dispatch(setToggleIsFetchingActionCreator(false));
+      dispatch(setCurrentUserActionCreator(res.data));
     });
   };
 };

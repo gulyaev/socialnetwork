@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ProfileStatus from "./profilestatus/ProfileStatus";
 
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space, Button } from "antd";
@@ -57,6 +58,10 @@ const ProfileInfo = (props) => {
       </div>
       <div className="profileinfo__description">
         <div className="profileinfo__nikname">{props.currentUser.nikname}</div>
+        <ProfileStatus
+          status={props.currentUser.status}
+          updateStatus={props.updateStatus}
+        />
         <div className="profileinfo__mail">
           Почта для связи: {props.currentUser.email}
         </div>
