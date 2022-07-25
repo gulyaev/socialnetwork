@@ -5,30 +5,36 @@ import {
   setCurrentUserActionCreator,
   setToggleIsFetchingActionCreator,
   setFollowingInProgressActionCreator,
+  updateStatusThunkCreator,
 } from "../../redux/usersPageReducer";
 import LoaderLarge from "../../components/LoaderLarge";
 import axios from "axios";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { withRouter } from "../../hoc/withRouter";
+import { compose } from "redux";
+import { userApi } from "../../api/api";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.params.id;
-    // if (!userId) {
-    //   userId = this.props.userId;
-    // }
+    if (!userId) {
+      userId = this.props.userId;
+    }
+
     this.props.setIsFetching(true);
     axios.get(`http://localhost:5000/api/user/${userId}`).then((res) => {
       this.props.setIsFetching(false);
-      console.log(res.data);
       this.props.setCurrentUser(res.data);
     });
   }
 
+  updateStatus = (status) => {
+    this.props.updateStatusThunkCreator(status);
+  };
+
   follow = () => {
     const userId1 = this.props.params.id;
     const bodyParameters = {
-      //id: 35,
       id: userId1,
     };
     const config = {
@@ -46,7 +52,6 @@ class ProfileContainer extends React.Component {
   unfollow = () => {
     const userId1 = this.props.params.id;
     const bodyParameters = {
-      //id: 34,
       id: userId1,
     };
     const config = {
@@ -62,19 +67,21 @@ class ProfileContainer extends React.Component {
   };
 
   render = () => {
+    console.log("render");
     return (
       <>
-        {this.props.isFetching ? (
+        {/* {this.props.isFetching ? (
           <div className="userspage__loader">
             <LoaderLarge />
           </div>
-        ) : null}
+        ) : null} */}
         <Profile
           currentUser={this.props.currentUser}
           follow={this.follow}
           unfollow={this.unfollow}
           followingInProgress={this.props.followingInProgress}
           isAuth={this.props.isAuth}
+          updateStatus={this.updateStatus}
         />
       </>
     );
@@ -98,16 +105,13 @@ let mapDispatchToProps = (dispatch) => {
       dispatch(setToggleIsFetchingActionCreator(isFetching)),
     setIsFollowing: (isFollowing) =>
       dispatch(setFollowingInProgressActionCreator(isFollowing)),
+    updateStatusThunkCreator: (status) =>
+      dispatch(updateStatusThunkCreator(status)),
   };
 };
 
-let AuthRedirectComponentContainer = withAuthRedirect(
-  ProfileContainer,
-  "Войдите, чтобы посмотреть профиль"
-);
-let WithURLDataContainerComponent = withRouter(AuthRedirectComponentContainer);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WithURLDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer, "Войдите, чтобы посмотреть профиль");

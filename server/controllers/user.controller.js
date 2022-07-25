@@ -115,6 +115,32 @@ class UserController {
       res.status(200).json(data.rows[0]);
     });
   }
+
+  async getStatus(req, res) {
+    try {
+      const userId = req.user.id;
+      const status = await db.query(`SELECT * FROM person where id=$1`, [
+        userId,
+      ]);
+      res.json(status.rows[0].status);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async updateStatus(req, res) {
+    try {
+      const userId = req.user.id;
+      const { status } = req.body;
+      const newStatus = await db.query(
+        `update person set status=$2 where id=$1 RETURNING *`,
+        [userId, status]
+      );
+      res.json(newStatus.rows[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 module.exports = new UserController();
