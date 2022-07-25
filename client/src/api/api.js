@@ -27,3 +27,12 @@ export const userApi = {
     return axios.put(baseURL + `user/status`, bodyParameters, config);
   },
 };
+
+export const authApi = {
+  auth() {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    };
+    return axios.get(baseURL + `auth`, config);
+  },
+};
