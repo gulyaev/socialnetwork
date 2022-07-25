@@ -10,7 +10,7 @@ import {
 import LoaderLarge from "../../components/LoaderLarge";
 import axios from "axios";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { withRouter } from "../../hoc/withRouter";
+import { withMyRouter } from "../../hoc/withMyRouter";
 import { compose } from "redux";
 import { userApi } from "../../api/api";
 
@@ -19,6 +19,9 @@ class ProfileContainer extends React.Component {
     let userId = this.props.params.id;
     if (!userId) {
       userId = this.props.userId;
+      // if (!userId) {
+      //   debugger;
+      // }
     }
 
     this.props.setIsFetching(true);
@@ -112,6 +115,6 @@ let mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withRouter,
+  withMyRouter,
   withAuthRedirect
 )(ProfileContainer, "Войдите, чтобы посмотреть профиль");
