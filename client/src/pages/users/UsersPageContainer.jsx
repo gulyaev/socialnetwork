@@ -7,6 +7,13 @@ import {
   setToggleIsFetchingActionCreator,
   getUsersThunkCreator,
 } from "../../redux/usersPageReducer";
+import {
+  getUsersData,
+  getTotalUsersCount,
+  getPerPage,
+  getCurrentPage,
+  getIsFetching,
+} from "../../redux/usersSelectors";
 import { connect } from "react-redux";
 import axios from "axios";
 import UsersPage from "./UsersPage";
@@ -22,6 +29,7 @@ class UsersPageContainer extends React.Component {
     //this.props.setIsFetching(true);
     userApi.getUsers(this.props.currentPage, this.props.perPage).then((res) => {
       //this.props.setIsFetching(false);
+      debugger;
       this.props.setUsers(res.data.results, res.data.totalCount);
     });
   };
@@ -52,11 +60,11 @@ class UsersPageContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    usersData: state.usersData,
-    totalUsersCount: state.usersData.totalUsersCount,
-    perPage: state.usersData.perPage,
-    currentPage: state.usersData.currentPage,
-    isFetching: state.usersData.isFetching,
+    usersData: getUsersData(state),
+    totalUsersCount: getTotalUsersCount(state),
+    perPage: getPerPage(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
   };
 };
 
