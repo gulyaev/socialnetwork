@@ -59,6 +59,7 @@ const ProfileInfo = (props) => {
       <div className="profileinfo__description">
         <div className="profileinfo__nikname">{props.currentUser.nikname}</div>
         <ProfileStatus
+          isFetching={props.isFetching}
           status={props.currentUser.status}
           updateStatus={props.updateStatus}
         />

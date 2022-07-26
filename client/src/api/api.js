@@ -26,6 +26,28 @@ export const userApi = {
 
     return axios.put(baseURL + `user/status`, bodyParameters, config);
   },
+
+  follow(userId) {
+    const bodyParameters = {
+      id: userId,
+    };
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    };
+
+    return axios.put(baseURL + `follow`, bodyParameters, config);
+  },
+
+  unfollow(userId) {
+    const bodyParameters = {
+      id: userId,
+    };
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    };
+
+    return axios.put(baseURL + `unfollow`, bodyParameters, config);
+  },
 };
 
 export const authApi = {

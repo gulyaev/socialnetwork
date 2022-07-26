@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Loader from "../Loader";
 
 class ProfileStatus extends React.Component {
   state = {
@@ -26,9 +27,15 @@ class ProfileStatus extends React.Component {
   };
 
   render = () => {
-    return (
-      <>
-        {this.state.editMode && (
+    if (this.props.isFetching) {
+      return (
+        <div className="userspage__loader">
+          <Loader />
+        </div>
+      );
+    } else {
+      if (this.state.editMode) {
+        return (
           <input
             type="text"
             value={this.state.status}
@@ -36,14 +43,15 @@ class ProfileStatus extends React.Component {
             onBlur={this.deactivateEditMode}
             onChange={this.onStatusChange}
           />
-        )}
-        {!this.state.editMode && (
+        );
+      } else if (!this.state.editMode) {
+        return (
           <div onClick={this.activateEditMode} className="profile__status">
             {this.props.status || "ваш статус"}
           </div>
-        )}
-      </>
-    );
+        );
+      }
+    }
   };
 }
 
