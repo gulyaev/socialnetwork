@@ -2,10 +2,10 @@ import Profile from "./Profile";
 import React from "react";
 import { connect } from "react-redux";
 import {
-  updateStatusThunkCreator,
-  setCurrentUserThunkCreator,
-  followThunkCreator,
-  unfollowThunkCreator,
+  updateStatus,
+  setCurrentUser,
+  follow,
+  unfollow,
 } from "../../redux/usersPageReducer";
 import LoaderLarge from "../../components/LoaderLarge";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -22,21 +22,21 @@ class ProfileContainer extends React.Component {
       // }
     }
 
-    this.props.setCurrentUserThunkCreator(userId);
+    this.props.setCurrentUser(userId);
   }
 
   updateStatus = (status) => {
-    this.props.updateStatusThunkCreator(status);
+    this.props.updateStatus(status);
   };
 
   follow = () => {
     let userId = this.props.params.id;
-    this.props.followThunkCreator(userId);
+    this.props.follow(userId);
   };
 
   unfollow = () => {
     let userId = this.props.params.id;
-    this.props.unfollowThunkCreator(userId);
+    this.props.unfollow(userId);
   };
 
   render = () => {
@@ -71,19 +71,13 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    setCurrentUserThunkCreator: (userId) =>
-      dispatch(setCurrentUserThunkCreator(userId)),
-    updateStatusThunkCreator: (status) =>
-      dispatch(updateStatusThunkCreator(status)),
-    followThunkCreator: (userId) => dispatch(followThunkCreator(userId)),
-    unfollowThunkCreator: (userId) => dispatch(unfollowThunkCreator(userId)),
-  };
-};
-
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, {
+    setCurrentUser,
+    updateStatus,
+    follow,
+    unfollow,
+  }),
   withMyRouter,
   withAuthRedirect
 )(ProfileContainer, "Войдите, чтобы посмотреть профиль");
