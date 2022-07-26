@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import ProfileStatus from "./profilestatus/ProfileStatus";
-
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space, Button } from "antd";
-
-import { Typography } from "antd";
-const { Title } = Typography;
 
 const ProfileInfo = (props) => {
   const [follow, setFollow] = useState(false);
@@ -31,7 +27,6 @@ const ProfileInfo = (props) => {
     props.unfollow();
     setFollow(!follow);
   };
-  //debugger;
   return (
     <div className="profileinfo">
       <div className="profileinfo__container">

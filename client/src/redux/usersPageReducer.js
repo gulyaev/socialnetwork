@@ -82,17 +82,18 @@ export const getUsersThunkCreator = (currentPage, perPage) => {
   };
 };
 
-export const updateStatusThunkCreator = (status) => {
+export const updateStatus = (status) => {
   return (dispatch) => {
     dispatch(setToggleIsFetchingActionCreator(true));
     userApi.updateStatus(status).then((res) => {
+      debugger;
       dispatch(setToggleIsFetchingActionCreator(false));
       dispatch(setCurrentUserActionCreator(res.data));
     });
   };
 };
 
-export const setCurrentUserThunkCreator = (userId) => {
+export const setCurrentUser = (userId) => {
   return (dispatch) => {
     dispatch(setToggleIsFetchingActionCreator(true));
     userApi.getOneUser(userId).then((res) => {
@@ -102,20 +103,22 @@ export const setCurrentUserThunkCreator = (userId) => {
   };
 };
 
-export const followThunkCreator = (userId) => {
+export const follow = (userId) => {
   return (dispatch) => {
     dispatch(setFollowingInProgressActionCreator(true));
     userApi.follow(userId).then((res) => {
+      debugger;
       dispatch(setFollowingInProgressActionCreator(false));
       console.log(res.data);
     });
   };
 };
 
-export const unfollowThunkCreator = (userId) => {
+export const unfollow = (userId) => {
   return (dispatch) => {
     dispatch(setFollowingInProgressActionCreator(true));
     userApi.unfollow(userId).then((res) => {
+      debugger;
       dispatch(setFollowingInProgressActionCreator(false));
       console.log(res.data);
     });
