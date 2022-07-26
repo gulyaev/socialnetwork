@@ -29,7 +29,6 @@ class UsersPageContainer extends React.Component {
     //this.props.setIsFetching(true);
     userApi.getUsers(this.props.currentPage, this.props.perPage).then((res) => {
       //this.props.setIsFetching(false);
-      debugger;
       this.props.setUsers(res.data.results, res.data.totalCount);
     });
   };

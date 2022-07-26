@@ -62,7 +62,7 @@ export const authThunkCreator = () => {
     return authApi
       .auth()
       .then((res) => {
-        debugger;
+        //debugger;
         dispatch(setLoginDataActionCreator(res.data));
         localStorage.setItem("token", res.data.token);
       })

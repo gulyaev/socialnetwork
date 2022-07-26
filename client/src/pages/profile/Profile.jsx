@@ -11,6 +11,7 @@ const Profile = (props) => {
         unfollow={props.unfollow}
         followingInProgress={props.followingInProgress}
         updateStatus={props.updateStatus}
+        isFetching={props.isFetching}
       />
       <MyPostsContainer />
     </>

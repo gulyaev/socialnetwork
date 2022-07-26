@@ -84,10 +84,40 @@ export const getUsersThunkCreator = (currentPage, perPage) => {
 
 export const updateStatusThunkCreator = (status) => {
   return (dispatch) => {
-    //dispatch(setToggleIsFetchingActionCreator(true));
+    dispatch(setToggleIsFetchingActionCreator(true));
     userApi.updateStatus(status).then((res) => {
-      //dispatch(setToggleIsFetchingActionCreator(false));
+      dispatch(setToggleIsFetchingActionCreator(false));
       dispatch(setCurrentUserActionCreator(res.data));
+    });
+  };
+};
+
+export const setCurrentUserThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(setToggleIsFetchingActionCreator(true));
+    userApi.getOneUser(userId).then((res) => {
+      dispatch(setToggleIsFetchingActionCreator(false));
+      dispatch(setCurrentUserActionCreator(res.data));
+    });
+  };
+};
+
+export const followThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(setFollowingInProgressActionCreator(true));
+    userApi.follow(userId).then((res) => {
+      dispatch(setFollowingInProgressActionCreator(false));
+      console.log(res.data);
+    });
+  };
+};
+
+export const unfollowThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(setFollowingInProgressActionCreator(true));
+    userApi.unfollow(userId).then((res) => {
+      dispatch(setFollowingInProgressActionCreator(false));
+      console.log(res.data);
     });
   };
 };
