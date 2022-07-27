@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import "./css/App.css";
 import {
   BrowserRouter,
@@ -7,8 +7,8 @@ import {
   Routes,
   withRouter,
 } from "react-router-dom";
-import ProfileContainer from "./pages/profile/ProfileContainer";
-import DialogsContainer from "./pages/dialogs/DialogsContainer";
+//import ProfileContainer from "./pages/profile/ProfileContainer";
+//import DialogsContainer from "./pages/dialogs/DialogsContainer";
 import Main from "./pages/Main";
 import UsersPageContainer from "./pages/users/UsersPageContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
@@ -24,6 +24,8 @@ import { connect } from "react-redux";
 import { useSelector } from "react-redux";
 import { withMyRouter } from "./hoc/withMyRouter";
 import { compose } from "redux";
+const DialogsContainer = lazy(() => import("./pages/dialogs/DialogsContainer"));
+const ProfileContainer = lazy(() => import("./pages/profile/ProfileContainer"));
 
 class App extends React.Component {
   componentDidMount() {
@@ -40,11 +42,15 @@ class App extends React.Component {
           <HeaderContainer />
           <div className="main">
             <section className="content">
+              <Suspense fallback={<div>Загрузка...</div>}>
+                <Routes>
+                  <Route path="/profile" element={<ProfileContainer />} />
+                  <Route path="/profile/:id" element={<ProfileContainer />} />
+                  <Route path="/dialogs" element={<DialogsContainer />} />
+                  <Route path="/dialogs/:id" element={<DialogsContainer />} />
+                </Routes>
+              </Suspense>
               <Routes>
-                <Route path="/profile" element={<ProfileContainer />} />
-                <Route path="/profile/:id" element={<ProfileContainer />} />
-                <Route path="/dialogs" element={<DialogsContainer />} />
-                <Route path="/dialogs/:id" element={<DialogsContainer />} />
                 <Route path="/users" element={<UsersPageContainer />} />
                 <Route path="/login" element={<Main />} />
                 <Route exact path="/" element={<Main />} />
