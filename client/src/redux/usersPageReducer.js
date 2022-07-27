@@ -103,25 +103,24 @@ export const setCurrentUser = (userId) => {
   };
 };
 
+const followUnfollowFlow = (dispatch, userId, ApiMethod) => {
+  dispatch(setFollowingInProgressActionCreator(true));
+  ApiMethod(userId).then((res) => {
+    debugger;
+    dispatch(setFollowingInProgressActionCreator(false));
+    console.log(res.data);
+  });
+};
+
 export const follow = (userId) => {
   return (dispatch) => {
-    dispatch(setFollowingInProgressActionCreator(true));
-    userApi.follow(userId).then((res) => {
-      debugger;
-      dispatch(setFollowingInProgressActionCreator(false));
-      console.log(res.data);
-    });
+    followUnfollowFlow(dispatch, userId, userApi.follow.bind(userApi));
   };
 };
 
 export const unfollow = (userId) => {
   return (dispatch) => {
-    dispatch(setFollowingInProgressActionCreator(true));
-    userApi.unfollow(userId).then((res) => {
-      debugger;
-      dispatch(setFollowingInProgressActionCreator(false));
-      console.log(res.data);
-    });
+    followUnfollowFlow(dispatch, userId, userApi.unfollow.bind(userApi));
   };
 };
 

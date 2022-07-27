@@ -21,7 +21,8 @@ import { userApi } from "../../api/api";
 
 class UsersPageContainer extends React.Component {
   componentDidMount() {
-    this.props.getUsersThunkCreator(this.props.currentPage, this.props.perPage);
+    const { currentPage, perPage } = this.props;
+    this.props.getUsersThunkCreator(currentPage, perPage);
   }
 
   onPageChanged = (page) => {
