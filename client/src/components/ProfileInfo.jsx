@@ -3,7 +3,12 @@ import ProfileStatus from "./profilestatus/ProfileStatus";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space, Button } from "antd";
 
-const ProfileInfo = (props) => {
+const ProfileInfo = ({
+  currentUser,
+  isFetching,
+  followingInProgress,
+  ...props
+}) => {
   const [follow, setFollow] = useState(false);
 
   const menu = (
@@ -37,7 +42,7 @@ const ProfileInfo = (props) => {
           <Dropdown.Button
             type="primary"
             overlay={menu}
-            disabled={props.followingInProgress}
+            disabled={followingInProgress}
           >
             Вы подписаны
           </Dropdown.Button>
@@ -45,21 +50,21 @@ const ProfileInfo = (props) => {
           <Button
             className="profileinfo__follow"
             onClick={() => followHandler()}
-            disabled={props.followingInProgress}
+            disabled={followingInProgress}
           >
             Подписаться
           </Button>
         )}
       </div>
       <div className="profileinfo__description">
-        <div className="profileinfo__nikname">{props.currentUser.nikname}</div>
+        <div className="profileinfo__nikname">{currentUser.nikname}</div>
         <ProfileStatus
-          isFetching={props.isFetching}
-          status={props.currentUser.status}
+          isFetching={isFetching}
+          status={currentUser.status}
           updateStatus={props.updateStatus}
         />
         <div className="profileinfo__mail">
-          Почта для связи: {props.currentUser.email}
+          Почта для связи: {currentUser.email}
         </div>
       </div>
     </div>

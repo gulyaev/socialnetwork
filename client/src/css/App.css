@@ -418,21 +418,25 @@ h6 {
 }
 
 .wrapper .main .content .userspage__pagination {
-  margin: 0 0 30px 0;
+  margin: 0 0 15px 0;
 }
 
-.wrapper .main .content .userspage__pagination .page,
-.wrapper .main .content .userspage__pagination .current-page {
+.wrapper .main .content .userspage__pagination .ant-pagination-item,
+.wrapper .main .content .userspage__pagination .ant-pagination-prev .ant-pagination-item-link,
+.wrapper .main .content .userspage__pagination .ant-pagination-next .ant-pagination-item-link {
   border: 1px solid #75aa4b;
-  border-radius: 100%;
-  padding: 5px 10px;
-  margin: 0 10px;
-  cursor: pointer;
+  border-radius: 50%;
 }
 
-.wrapper .main .content .userspage__pagination .current-page {
+.wrapper .main .content .userspage__pagination .ant-pagination-item.ant-pagination-item-active {
   border: 2px solid #75aa4b;
-  font-weight: 700;
+}
+
+.wrapper .main .content .userspage__pagination .ant-pagination-item.ant-pagination-item-active a,
+.wrapper .main .content .userspage__pagination .ant-pagination-item.ant-pagination-item-active a:hover,
+.wrapper .main .content .userspage__pagination .ant-pagination-item a:hover,
+.wrapper .main .content .userspage__pagination .ant-pagination-item a:focus {
+  color: #212121;
 }
 
 .wrapper .main .sidebar {

@@ -284,20 +284,24 @@
         }
 
         &__pagination {
-          margin: 0 0 30px 0;
+          margin: 0 0 15px 0;
 
-          .page,
-          .current-page {
+          .ant-pagination-item,
+          .ant-pagination-prev .ant-pagination-item-link,
+          .ant-pagination-next .ant-pagination-item-link {
             border: 1px solid #75aa4b;
-            border-radius: 100%;
-            padding: 5px 10px;
-            margin: 0 10px;
-            cursor: pointer;
+            border-radius: 50%;
           }
 
-          .current-page {
+          .ant-pagination-item.ant-pagination-item-active {
             border: 2px solid #75aa4b;
-            font-weight: 700;
+          }
+
+          .ant-pagination-item.ant-pagination-item-active a,
+          .ant-pagination-item.ant-pagination-item-active a:hover,
+          .ant-pagination-item a:hover,
+          .ant-pagination-item a:focus {
+            color: #212121;
           }
         }
       }

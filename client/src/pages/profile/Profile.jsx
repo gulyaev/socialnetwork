@@ -2,16 +2,23 @@ import React from "react";
 import ProfileInfo from "../../components/ProfileInfo";
 import MyPostsContainer from "../../components/myposts/MyPostsContainer";
 
-const Profile = (props) => {
+const Profile = ({
+  currentUser,
+  follow,
+  unfollow,
+  followingInProgress,
+  updateStatus,
+  isFetching,
+}) => {
   return (
     <>
       <ProfileInfo
-        currentUser={props.currentUser}
-        follow={props.follow}
-        unfollow={props.unfollow}
-        followingInProgress={props.followingInProgress}
-        updateStatus={props.updateStatus}
-        isFetching={props.isFetching}
+        currentUser={currentUser}
+        follow={follow}
+        unfollow={unfollow}
+        followingInProgress={followingInProgress}
+        updateStatus={updateStatus}
+        isFetching={isFetching}
       />
       <MyPostsContainer />
     </>

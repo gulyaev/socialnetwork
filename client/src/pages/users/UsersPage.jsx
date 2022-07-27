@@ -1,17 +1,18 @@
 import React from "react";
-import { Avatar, List } from "antd";
-import { NavLink } from "react-router-dom";
 import Loader from "../../components/Loader";
+import Paginator from "../../components/userspage/Paginator";
+import UsersList from "../../components/userspage/UsersList";
 
-const UsersPage = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.perPage);
-
-  let pages = [];
-
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-
+const UsersPage = ({
+  totalUsersCount,
+  perPage,
+  isFetching,
+  currentPage,
+  onPageChanged,
+  usersData,
+  clickUserHandler,
+  ...props
+}) => {
   return (
     <div className="userspage">
       {props.isFetching ? (
@@ -19,47 +20,14 @@ const UsersPage = (props) => {
           <Loader />
         </div>
       ) : null}
-
-      <div className="userspage__pagination">
-        {pages.map((page, index) => (
-          <span
-            key={index}
-            className={props.currentPage == page ? "current-page" : "page"}
-            onClick={() => props.onPageChanged(page)}
-          >
-            {page}
-          </span>
-        ))}
-      </div>
-      <List
-        itemLayout="horizontal"
-        dataSource={props.usersData}
-        renderItem={(item) => (
-          <List.Item>
-            <List.Item.Meta
-              avatar={
-                <NavLink to={"/profile/" + item.id}>
-                  <Avatar
-                    onClick={() => props.clickUserHandler(item.id)}
-                    src="https://joeschmoe.io/api/v1/random"
-                  />{" "}
-                </NavLink>
-              }
-              title={
-                <NavLink
-                  to={"/profile/" + item.id}
-                  onClick={() => {
-                    props.clickUserHandler(item.id);
-                  }}
-                >
-                  {item.nikname}
-                </NavLink>
-              }
-              description={item.email}
-            />
-          </List.Item>
-        )}
+      <Paginator
+        totalUsersCount={totalUsersCount}
+        perPage={perPage}
+        isFetching={isFetching}
+        currentPage={currentPage}
+        onPageChanged={onPageChanged}
       />
+      {<UsersList usersData={usersData} clickUserHandler={clickUserHandler} />}
     </div>
   );
 };
