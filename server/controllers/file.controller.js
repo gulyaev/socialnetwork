@@ -42,12 +42,20 @@ class FileController {
   async getFiles(req, res) {
     const userId = req.user.id;
     const { parent } = req.query;
+    let files = null;
 
     try {
-      const files = await db.query(
-        `select * from files where (person_id=$1 and parent=$2)`,
-        [userId, parent]
-      );
+      if (!parent) {
+        files = await db.query(`select * from files where (person_id=$1)`, [
+          userId,
+        ]);
+      } else {
+        files = await db.query(
+          `select * from files where (person_id=$1 and parent=$2)`,
+          [userId, parent]
+        );
+      }
+
       return res.json(files.rows);
     } catch (e) {
       console.log(e);
