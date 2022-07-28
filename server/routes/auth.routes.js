@@ -6,6 +6,7 @@ const { check, validationResult } = require("express-validator");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middleware/auth.middleware");
+const fileService = require("../services/fileService");
 
 router.post(
   "/register",
@@ -41,6 +42,7 @@ router.post(
             `insert into person (email, nikname, password) values ($1, $2, $3) RETURNING *`,
             [email, nikname, hashedpassword]
           );
+          await fileService.createDir(newUser.rows[0]);
           //res.status(200).json({ message: "User was created" })
           res.status(200).json(newUser.rows[0]);
         }

@@ -11,6 +11,9 @@ add column followers INTEGER[];
 update person 
   set followers  = ARRAY[]::integer[];
 
+
+
+
 create table post (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
@@ -18,6 +21,31 @@ create table post (
     person_id INTEGER,
     FOREIGN KEY (person_id) REFERENCES person(id)
 );
+
+
+
+create TABLE files (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    type VARCHAR(255),
+    access_link VARCHAR(255),
+    size NUMERIC,
+    path VARCHAR(255),
+    person_id INTEGER,
+    FOREIGN KEY (person_id) REFERENCES person(id)
+);
+
+ALTER TABLE files 
+add column parent INTEGER;
+
+ALTER TABLE files 
+add column childs INTEGER[];
+
+update files 
+set childs  = ARRAY[]::integer[];
+
+
+
 
 create table comment (
     id SERIAL PRIMARY KEY,
