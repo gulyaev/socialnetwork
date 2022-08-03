@@ -116,6 +116,7 @@
           font-weight: 500;
           color: #fff;
           width: 155px;
+          margin: 0 0 10px 0;
         }
 
         .ant-btn-primary {
@@ -124,6 +125,23 @@
           font-size: 13px;
           line-height: 15px;
           font-weight: 500;
+        }
+
+        &__uploadfoto {
+          display: block;
+          padding: 4px 15px;
+          text-align: center;
+          background-color: #8ac858;
+          border-color: #8ac858;
+          border-radius: 2px;
+          font-size: 13px;
+          line-height: 22px;
+          font-weight: 500;
+          color: #fff;
+          width: 155px;
+          height: 32px;
+          margin: 0 0 10px 0;
+          cursor: pointer;
         }
 
         .ant-btn-icon-only {

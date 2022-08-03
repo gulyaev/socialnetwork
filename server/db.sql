@@ -12,6 +12,10 @@ update person
   set followers  = ARRAY[]::integer[];
 
 
+ALTER TABLE person 
+add column personImage VARCHAR(255);
+
+
 
 
 create table post (

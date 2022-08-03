@@ -6,11 +6,8 @@ class fileService {
   createDir(file) {
     var filePath = "";
 
-    if (!file.person_id) {
-      filePath = `${config.get("filePath")}/${file.id}`;
-    } else {
-      filePath = `${config.get("filePath")}/${file.person_id}/${file.path}`;
-    }
+    filePath = `${config.get("filePath")}/${file.person_id}/${file.path}`;
+
     console.log("filePath " + filePath);
 
     return new Promise((resolve, reject) => {
@@ -22,6 +19,7 @@ class fileService {
           return reject({ message: "File allready exists" });
         }
       } catch (error) {
+        console.log(error);
         return reject({ message: "File error" });
       }
     });
