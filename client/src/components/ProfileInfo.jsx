@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ProfileStatus from "./profilestatus/ProfileStatus";
+import LoadFoto from "./profileinfo/LoadFoto";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space, Button } from "antd";
 
@@ -32,12 +33,14 @@ const ProfileInfo = ({
     props.unfollow();
     setFollow(!follow);
   };
+
   return (
     <div className="profileinfo">
       <div className="profileinfo__container">
         <div className="profileinfo__avatar">
           <img src={require("../img/logo.jpeg")} alt="avatar" />
         </div>
+        <LoadFoto />
         {follow ? (
           <Dropdown.Button
             type="primary"
