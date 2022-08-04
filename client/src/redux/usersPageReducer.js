@@ -86,7 +86,6 @@ export const updateStatus = (status) => {
   return (dispatch) => {
     dispatch(setToggleIsFetchingActionCreator(true));
     userApi.updateStatus(status).then((res) => {
-      debugger;
       dispatch(setToggleIsFetchingActionCreator(false));
       dispatch(setCurrentUserActionCreator(res.data));
     });
@@ -106,7 +105,6 @@ export const setCurrentUser = (userId) => {
 const followUnfollowFlow = (dispatch, userId, ApiMethod) => {
   dispatch(setFollowingInProgressActionCreator(true));
   ApiMethod(userId).then((res) => {
-    debugger;
     dispatch(setFollowingInProgressActionCreator(false));
     console.log(res.data);
   });

@@ -1,5 +1,6 @@
 {
   "PORT": 5000,
   "secretKey": "mern-secret-key",
-  "filePath": "/Users/vaceslav/Documents/pikabuclone/server/files"
+  "filePath": "/Users/vaceslav/Documents/pikabuclone/server/files",
+  "staticPath": "/Users/vaceslav/Documents/pikabuclone/server/static"
 }

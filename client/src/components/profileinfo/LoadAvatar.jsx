@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Dropdown, Menu, Space, Button } from "antd";
+import { Button } from "antd";
 import axios from "axios";
-import { addFile } from "../../redux/fileReducer";
 
-const LoadFoto = () => {
+const LoadAvatar = () => {
   const [load, setLoad] = useState(false);
-  const [myFile, setMyFile] = useState();
+  const [myAvatar, setMyAvatar] = useState();
   const dispatch = useDispatch();
 
-  let selectFile = (e) => {
-    setMyFile(e.target.files[0]);
+  let selectAvatar = (e) => {
+    setMyAvatar(e.target.files[0]);
     setLoad(!load);
   };
 
-  let send = (file, dirId) => {
+  let uploadAvatar = (file) => {
     return async (dispatch) => {
       try {
         setLoad(!load);
         const formData = new FormData();
         formData.append("file", file);
-        if (dirId) {
-          formData.append("parent", dirId);
-        }
         const response = await axios.post(
-          `http://localhost:5000/api/uploadfile`,
+          `http://localhost:5000/api/avatar`,
           formData,
           {
             headers: {
@@ -32,7 +28,6 @@ const LoadFoto = () => {
             },
           }
         );
-        dispatch(addFile(response.data));
       } catch (error) {
         alert(error.response.data.message);
       }
@@ -42,24 +37,28 @@ const LoadFoto = () => {
   if (!load) {
     return (
       <>
-        <label htmlFor="file" className="profileinfo__uploadfoto">
-          Загрузить файл
+        <label htmlFor="avatar" className="profileinfo__uploadfoto">
+          Загрузить аватар
         </label>
         <input
           type="file"
           accept=".jpg"
-          id="file"
+          id="avatar"
           name="uploaded_file"
           style={{ display: "none" }}
           onChange={(e) => {
-            selectFile(e);
+            selectAvatar(e);
           }}
         />
       </>
     );
   } else {
-    return <Button onClick={() => dispatch(send(myFile))}>Опубликовать</Button>;
+    return (
+      <Button onClick={() => dispatch(uploadAvatar(myAvatar))}>
+        Опубликовать
+      </Button>
+    );
   }
 };
 
-export default LoadFoto;
+export default LoadAvatar;

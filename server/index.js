@@ -17,6 +17,8 @@ app.use(express.json());
 //fileUpload
 app.use(fileUpload({}));
 
+app.use(express.static("static"));
+
 app.use("/api", userRouter);
 //app.use('/api', postRouter)
 app.use("/api", authRouter);

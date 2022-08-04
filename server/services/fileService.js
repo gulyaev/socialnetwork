@@ -6,7 +6,11 @@ class fileService {
   createDir(file) {
     var filePath = "";
 
-    filePath = `${config.get("filePath")}/${file.person_id}/${file.path}`;
+    if (!file.person_id) {
+      filePath = `${config.get("filePath")}/${file.id}`;
+    } else {
+      filePath = `${config.get("filePath")}/${file.person_id}/${file.path}`;
+    }
 
     console.log("filePath " + filePath);
 

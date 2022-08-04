@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ProfileStatus from "./profilestatus/ProfileStatus";
 import LoadFoto from "./profileinfo/LoadFoto";
+import LoadAvatar from "./profileinfo/LoadAvatar";
+import DeleteAvatar from "./profileinfo/DeleteAvatar";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space, Button } from "antd";
 
@@ -41,6 +43,8 @@ const ProfileInfo = ({
           <img src={require("../img/logo.jpeg")} alt="avatar" />
         </div>
         <LoadFoto />
+        <LoadAvatar />
+        <DeleteAvatar />
         {follow ? (
           <Dropdown.Button
             type="primary"

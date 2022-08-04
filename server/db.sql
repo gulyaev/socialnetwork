@@ -15,6 +15,12 @@ update person
 ALTER TABLE person 
 add column personImage VARCHAR(255);
 
+ALTER TABLE person 
+DROP COLUMN personImage;
+
+ALTER TABLE person 
+add column avatar VARCHAR(255);
+
 
 
 
