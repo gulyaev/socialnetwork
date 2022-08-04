@@ -11,6 +11,7 @@ import usersPageReducer from "./usersPageReducer";
 import usersSidebarReducer from "./usersSidebarReducer";
 import authReducer from "./authReducer";
 import appReducer from "./appReducer";
+import fileReducer from "./fileReducer";
 
 let rootReducer = combineReducers({
   postsData: postsReducer,
@@ -19,6 +20,7 @@ let rootReducer = combineReducers({
   usersData: usersPageReducer,
   auth: authReducer,
   app: appReducer,
+  files: fileReducer,
 });
 
 const store = createStore(

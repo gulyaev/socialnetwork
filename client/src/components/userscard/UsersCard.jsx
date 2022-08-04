@@ -1,14 +1,30 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { SettingFilled } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar } from "antd";
+import { API_URL } from "../../config";
 
 const UsersCard = (props) => {
+  const avatarLogo = <Avatar size={55} icon={<UserOutlined />} />;
+
+  const avatar = props.currentUser.avatar ? (
+    <img src={`${API_URL}` + `${props.currentUser.avatar}`} alt="avatar" />
+  ) : (
+    avatarLogo
+  );
+
   return (
     <div className="sidebar__flex userscard">
       <div className="userscard__header">
-        <div className="userscard__avatar">
-          <img src={require("../../img/logo.jpeg")} width="48px" alt="" />
-        </div>
+        <NavLink to="/profile">
+          {props.isAuth ? (
+            <div className="userscard__avatar">{avatar}</div>
+          ) : (
+            avatarLogo
+          )}
+        </NavLink>
+
         <div className="userscard__nik_container">
           <div className="userscard__nik_big">{props.nikname}</div>
           <div
