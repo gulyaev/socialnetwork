@@ -15,22 +15,32 @@ const Header = (props) => {
             </li>
             <li>
               <a href="" className="header__link">
-                Пункт меню
+                Лучшее
               </a>
             </li>
             <li>
               <a href="" className="header__link">
-                Пункт меню
+                Горячее
               </a>
             </li>
             <li>
               <a href="" className="header__link">
-                Пункт меню
+                Свежее
               </a>
             </li>
             <li>
               <a href="" className="header__link">
-                Пункт меню
+                Подписки
+              </a>
+            </li>
+            <li>
+              <a href="" className="header__link">
+                Сообщества
+              </a>
+            </li>
+            <li>
+              <a href="" className="header__link">
+                Компании
               </a>
             </li>
           </ul>

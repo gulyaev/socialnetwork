@@ -32,6 +32,15 @@ create table post (
     FOREIGN KEY (person_id) REFERENCES person(id)
 );
 
+ALTER TABLE post 
+add column likes INTEGER;
+
+ALTER TABLE post 
+add column dislikes INTEGER;
+
+ALTER TABLE post 
+add column views INTEGER;
+
 
 
 create TABLE files (
