@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 //import ProfileContainer from "./pages/profile/ProfileContainer";
 //import DialogsContainer from "./pages/dialogs/DialogsContainer";
-import Main from "./pages/Main";
+import MainPage from "./pages/MainPage";
 import UsersPageContainer from "./pages/users/UsersPageContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
 import LoginContainer from "./components/authform/login/LoginContainer";
@@ -52,8 +52,8 @@ class App extends React.Component {
               </Suspense>
               <Routes>
                 <Route path="/users" element={<UsersPageContainer />} />
-                <Route path="/login" element={<Main />} />
-                <Route exact path="/" element={<Main />} />
+                <Route path="/login" element={<MainPage />} />
+                <Route exact path="/" element={<MainPage />} />
               </Routes>
             </section>
             <aside className="sidebar">

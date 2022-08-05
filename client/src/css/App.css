@@ -127,8 +127,8 @@ h6 {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr;
-  -ms-grid-columns: 1fr minmax(auto, 140px) minmax(auto, 880px) minmax(auto, 50px) 1fr;
-      grid-template: 1fr/1fr minmax(auto, 140px) minmax(auto, 880px) minmax(auto, 50px) 1fr;
+  -ms-grid-columns: 1fr minmax(auto, 101px) minmax(auto, 663px) minmax(auto, 141px) minmax(auto, 50px) 1fr;
+      grid-template: 1fr/1fr minmax(auto, 101px) minmax(auto, 663px) minmax(auto, 141px) minmax(auto, 50px) 1fr;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -162,7 +162,6 @@ h6 {
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  justify-items: end;
   margin-bottom: 0;
 }
 
@@ -197,7 +196,7 @@ h6 {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
-  padding: 0 20px;
+  padding: 0 25px;
 }
 
 .wrapper .main .content .profileinfo {
@@ -455,6 +454,166 @@ h6 {
 .wrapper .main .content .userspage__pagination .ant-pagination-item a:hover,
 .wrapper .main .content .userspage__pagination .ant-pagination-item a:focus {
   color: #212121;
+}
+
+.wrapper .main .content .mainpage__container {
+  width: 588px;
+  margin: 0 auto;
+}
+
+.wrapper .main .content .mainpage__article {
+  width: 658px;
+}
+
+.wrapper .main .content .mainpage .story {
+  position: relative;
+}
+
+.wrapper .main .content .mainpage .story__left {
+  text-align: center;
+  width: 70px;
+  position: absolute;
+  left: -80px;
+  top: 0;
+  bottom: 30px;
+  right: 0;
+  z-index: 3000;
+  font-size: 16px;
+  font-weight: 700;
+  color: #757575;
+}
+
+.wrapper .main .content .mainpage .story__left-like:hover {
+  color: #212121;
+}
+
+.wrapper .main .content .mainpage .story__left-dislike:hover {
+  color: #212121;
+}
+
+.wrapper .main .content .mainpage .story__main {
+  min-height: 75px;
+  border: 1px solid #e9e9e9;
+  border-radius: 2px;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.wrapper .main .content .mainpage .story .user {
+  padding: 15px 0 0 0;
+  margin: 0 0 8px 0;
+}
+
+.wrapper .main .content .mainpage .story .user__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .main .content .mainpage .story .user__avatar-small {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: #212121;
+  margin: 0 8px 0 0;
+}
+
+.wrapper .main .content .mainpage .story .user__avatar-small img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrapper .main .content .mainpage .story .user__nickname {
+  font-weight: 550;
+  margin-right: 4px;
+  font-size: 13px;
+  color: #4d4d4d;
+  cursor: pointer;
+}
+
+.wrapper .main .content .mainpage .story .user__time {
+  font-size: 13px;
+  line-height: 18px;
+  padding-left: 4px;
+  color: #757575;
+  font-weight: 400;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.wrapper .main .content .mainpage .story__title {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  color: #212121;
+  margin: 0 0 16px 0;
+}
+
+.wrapper .main .content .mainpage .story__content p {
+  line-height: 24px;
+  text-align: left;
+  color: #212121;
+  font-size: 16px;
+  margin: 0 0 16px 0;
+}
+
+.wrapper .main .content .mainpage .story .make-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.wrapper .main .content .mainpage .story__footer {
+  font-size: 13px;
+  line-height: 36px;
+  overflow: hidden;
+  height: 52px;
+  padding: 8px 0px;
+  border-top: 1px solid #e9e9e9;
+  background-color: #f9f9fb;
+}
+
+.wrapper .main .content .mainpage .story__tools {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .main .content .mainpage .story__comments {
+  margin: 0 25px 0 0;
+  position: relative;
+}
+
+.wrapper .main .content .mainpage .story__comments-icon {
+  position: absolute;
+  top: 7px;
+  left: 0;
+}
+
+.wrapper .main .content .mainpage .story__comments-count {
+  padding: 0 0 0 22px;
+}
+
+.wrapper .main .content .mainpage .story__views {
+  margin: 0 25px 0 0;
+  position: relative;
+}
+
+.wrapper .main .content .mainpage .story__views-icon {
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+
+.wrapper .main .content .mainpage .story__views-count {
+  padding: 0 0 0 23px;
 }
 
 .wrapper .main .sidebar {
