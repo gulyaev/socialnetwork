@@ -39,6 +39,9 @@ ALTER TABLE post
 add column dislikes INTEGER;
 
 ALTER TABLE post 
+add column comments INTEGER;
+
+ALTER TABLE post 
 add column views INTEGER;
 
 

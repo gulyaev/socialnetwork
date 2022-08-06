@@ -1,17 +1,12 @@
-const Router = require('express')
-const router = new Router()
+const Router = require("express");
+const router = new Router();
+const authMiddleware = require("../middleware/auth.middleware");
+const postController = require("../controllers/post.controller");
 
-//authMiddleware refactoring required
+router.post("/post", authMiddleware, postController.createPost);
+router.get("/post", authMiddleware, postController.getPosts);
+router.get("/post/:id", authMiddleware, postController.getOnePost);
+router.put("/post", authMiddleware, postController.updatePost);
+router.delete("/post/:id", authMiddleware, postController.deletePost);
 
-/*
-const authMiddleware = require('../middleware/auth.middleware');
-const postController = require('../controllers/post.controller')
-
-router.post('/post', authMiddleware, postController.createPost)
-router.get('/get', authMiddleware, postController.getPosts)
-router.get('/post/:id', authMiddleware, postController.getOnePost)
-router.put('/post', authMiddleware, postController.updatePost)
-router.delete('/post/:id', authMiddleware, postController.deletePost)
-*/
-
-module.exports = router
+module.exports = router;
