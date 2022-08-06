@@ -573,11 +573,8 @@ h6 {
 .wrapper .main .content .mainpage .story__footer {
   font-size: 13px;
   line-height: 36px;
-  overflow: hidden;
   height: 52px;
-  padding: 8px 0px;
   border-top: 1px solid #e9e9e9;
-  background-color: #f9f9fb;
 }
 
 .wrapper .main .content .mainpage .story__tools {
@@ -614,6 +611,56 @@ h6 {
 
 .wrapper .main .content .mainpage .story__views-count {
   padding: 0 0 0 23px;
+}
+
+.wrapper .main .content .addpostpage__container {
+  width: 588px;
+  margin: 0 auto;
+}
+
+.wrapper .main .content .addpostpage__storyinput {
+  line-height: 56px;
+  min-height: 58px;
+  border-radius: 2px;
+  border: 1px solid #e9e9e9;
+  width: 100%;
+  margin: 0 0 15px 0;
+}
+
+.wrapper .main .content .addpostpage__header {
+  font-size: 20px;
+  line-height: 28px;
+  color: #212121;
+  width: 100%;
+}
+
+.wrapper .main .content .addpostpage__storytextarea {
+  line-height: 100px;
+  min-height: 20px;
+  border-radius: 2px;
+  border: 1px solid #e9e9e9;
+  width: 100%;
+  padding: 15px 0 0 0;
+  margin: 0 0 15px 0;
+}
+
+.wrapper .main .content .addpostpage__content {
+  font-size: 14px;
+  line-height: 22px;
+  color: #212121;
+  width: 100%;
+}
+
+.wrapper .main .content .addpostpage__submit {
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.wrapper .main .content .addpostpage__addpost {
+  font-size: 14px;
+  line-height: 40px;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .wrapper .main .sidebar {
@@ -793,20 +840,11 @@ h6 {
 }
 
 .wrapper .main .sidebar__addpost {
-  display: block;
   font-size: 14px;
   line-height: 40px;
   position: relative;
   width: 100%;
-  text-align: center;
-  padding: 0 20px;
-  background-color: #8ac858;
-  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
-  cursor: pointer;
-  font-weight: 500;
-  color: #fff;
   margin: 0 0 8px 0;
-  border-radius: 2px;
 }
 
 .wrapper .main .sidebar__createpublic {
@@ -1084,4 +1122,21 @@ h6 {
   -ms-grid-column-span: 1;
   grid-column: 3/4;
   text-align: end;
+}
+
+.wrapper .sectiongray {
+  overflow: hidden;
+  padding: 8px 0px;
+  background-color: #f9f9fb;
+}
+
+.wrapper .addpost {
+  text-align: center;
+  padding: 0 20px;
+  background-color: #8ac858;
+  font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
+  cursor: pointer;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 2px;
 }

@@ -7,9 +7,8 @@ import {
   Routes,
   withRouter,
 } from "react-router-dom";
-//import ProfileContainer from "./pages/profile/ProfileContainer";
-//import DialogsContainer from "./pages/dialogs/DialogsContainer";
 import MainPage from "./pages/MainPage";
+import AddPostPage from "./pages/AddPostPage";
 import UsersPageContainer from "./pages/users/UsersPageContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
 import LoginContainer from "./components/authform/login/LoginContainer";
@@ -54,6 +53,7 @@ class App extends React.Component {
                 <Route path="/users" element={<UsersPageContainer />} />
                 <Route path="/login" element={<MainPage />} />
                 <Route exact path="/" element={<MainPage />} />
+                <Route path="/add" element={<AddPostPage />} />
               </Routes>
             </section>
             <aside className="sidebar">
@@ -99,7 +99,9 @@ class App extends React.Component {
               {this.props.isAuth && <UsersCardContainer />}
 
               <div className="sidebar__flex flex__center">
-                <div className="sidebar__addpost">Добавить пост</div>
+                <NavLink to="/add" className="menu__navlink">
+                  <div className="sidebar__addpost addpost">Добавить пост</div>
+                </NavLink>
                 <div className="sidebar__createpublic">Создать сообщество</div>
               </div>
 

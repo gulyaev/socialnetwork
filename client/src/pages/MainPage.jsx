@@ -2,8 +2,6 @@ import React from "react";
 import { CommentOutlined } from "@ant-design/icons";
 import { BiComment } from "react-icons/bi";
 import { IoEyeOutline } from "react-icons/io5";
-import { BiLike } from "react-icons/bi";
-import { BiDislike } from "react-icons/bi";
 import { AiFillDislike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 
@@ -17,7 +15,7 @@ const MainPage = () => {
             onMouseOver={({ target }) => (target.style.color = "#75aa4b")}
             onMouseOut={({ target }) => (target.style.color = "#757575")}
           />
-          <div>10772</div>
+          <div>10 772</div>
           <AiFillDislike
             style={{
               fontSize: "25px",
@@ -58,7 +56,7 @@ const MainPage = () => {
             </div>
           </div>
 
-          <div className="story__footer">
+          <div className="story__footer sectiongray">
             <div className="mainpage__container">
               <div className="make-flex">
                 <div className="story__tools">
