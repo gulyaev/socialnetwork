@@ -1,10 +1,18 @@
 const ADD_POST = "ADD-POST";
+const ADD_STORY = "ADD-STORY";
 
 let initialState = {
   postsData: [
-    { id: 0, text: "Текст поста 1", likesCount: 5, disLikesCount: 3 },
-    { id: 1, text: "Текст поста 2", likesCount: 4, disLikesCount: 2 },
-    { id: 2, text: "Текст поста 3", likesCount: 3, disLikesCount: 1 },
+    {
+      id: 3,
+      title: "Title 1",
+      content: "Content 1",
+      person_id: 40,
+      likes: 1,
+      dislikes: 1,
+      views: 1,
+      comments: 1,
+    },
   ],
 };
 
@@ -21,6 +29,22 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         postsData: [...state.postsData, newPost],
       };
+
+    case ADD_STORY:
+      let newStory = {
+        id: Date.now(),
+        title: action.payload.title,
+        content: action.payload.content,
+        person_id: action.payload.person_id,
+        likes: action.payload.likes,
+        dislikes: action.payload.dislikes,
+        views: action.payload.views,
+        comments: action.payload.comments,
+      };
+      return {
+        ...state,
+        postsData: [...state.postsData, newStory],
+      };
     default:
       return state;
   }
@@ -28,6 +52,10 @@ const postsReducer = (state = initialState, action) => {
 
 export const addPostActionCreator = (text) => {
   return { type: ADD_POST, payload: text };
+};
+
+export const addStoryActionCreator = (data) => {
+  return { type: ADD_STORY, payload: data };
 };
 
 export const addPost = (text) => {
