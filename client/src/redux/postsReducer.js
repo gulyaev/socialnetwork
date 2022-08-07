@@ -1,3 +1,6 @@
+import { postApi } from "../api/api";
+
+const SET_POSTS = "SET-POST";
 const ADD_POST = "ADD-POST";
 const ADD_STORY = "ADD-STORY";
 
@@ -18,6 +21,11 @@ let initialState = {
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_POSTS:
+      return {
+        ...state,
+        postsData: action.payload,
+      };
     case ADD_POST:
       let newPost = {
         id: Date.now(),
@@ -50,6 +58,10 @@ const postsReducer = (state = initialState, action) => {
   }
 };
 
+export const setPostsActionCreator = (data) => {
+  return { type: SET_POSTS, payload: data };
+};
+
 export const addPostActionCreator = (text) => {
   return { type: ADD_POST, payload: text };
 };
@@ -61,6 +73,16 @@ export const addStoryActionCreator = (data) => {
 export const addPost = (text) => {
   return (dispatch) => {
     dispatch(addPostActionCreator(text));
+  };
+};
+
+export const getPostsByUserThunkCreator = () => {
+  return (dispatch) => {
+    //dispatch(setToggleIsFetchingActionCreator(true));
+    postApi.getPostsByUser().then((res) => {
+      //dispatch(setToggleIsFetchingActionCreator(false));
+      dispatch(setPostsActionCreator(res.data));
+    });
   };
 };
 
