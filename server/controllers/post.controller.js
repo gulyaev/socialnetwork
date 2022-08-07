@@ -27,6 +27,17 @@ class PostController {
     }
   }
 
+  async getAllPosts(req, res) {
+    try {
+      const posts = await db.query(
+        `select * from post join person on person_id=person.id`
+      );
+      res.status(200).json(posts.rows);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getOnePost(req, res) {
     try {
       const postId = req.params.id;
