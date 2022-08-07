@@ -25,6 +25,6 @@ let mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getPostsThunkCreator })(
+export default connect(mapStateToProps, { getPostsByUserThunkCreator })(
   MyPostsContainer
 );
