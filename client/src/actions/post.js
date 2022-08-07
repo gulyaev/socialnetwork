@@ -1,5 +1,8 @@
 import axios from "axios";
-import { addStoryActionCreator } from "../redux/postsReducer";
+import {
+  addStoryActionCreator,
+  setPostsActionCreator,
+} from "../redux/postsReducer";
 
 export const addStory = (title, content) => {
   return async (dispatch) => {
@@ -19,6 +22,17 @@ export const addStory = (title, content) => {
         config
       );
       dispatch(addStoryActionCreator(response.data));
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
+export const getAllPosts = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/allpost");
+      dispatch(setPostsActionCreator(response.data));
     } catch (error) {
       alert(error);
     }

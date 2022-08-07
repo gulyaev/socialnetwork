@@ -5,18 +5,7 @@ const ADD_POST = "ADD-POST";
 const ADD_STORY = "ADD-STORY";
 
 let initialState = {
-  postsData: [
-    {
-      id: 3,
-      title: "Title 1",
-      content: "Content 1",
-      person_id: 40,
-      likes: 1,
-      dislikes: 1,
-      views: 1,
-      comments: 1,
-    },
-  ],
+  postsData: [],
 };
 
 const postsReducer = (state = initialState, action) => {
