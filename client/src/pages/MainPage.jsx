@@ -1,5 +1,4 @@
 import React from "react";
-import { CommentOutlined } from "@ant-design/icons";
 import { BiComment } from "react-icons/bi";
 import { IoEyeOutline } from "react-icons/io5";
 import { AiFillDislike } from "react-icons/ai";
@@ -8,7 +7,7 @@ import { AiFillLike } from "react-icons/ai";
 const MainPage = () => {
   return (
     <div className="mainpage">
-      <div className="mainpage__article story">
+      <div className="story">
         <div className="story__left">
           <AiFillLike
             style={{ fontSize: "25px", color: "#757575", cursor: "pointer" }}
@@ -29,7 +28,7 @@ const MainPage = () => {
         </div>
         <div className="story__main">
           <div className="story__header">
-            <div className="mainpage__container">
+            <div className="story__container">
               <div className="story__user user">
                 <div className="user__info">
                   <div className="user__avatar-small">
@@ -46,7 +45,7 @@ const MainPage = () => {
           </div>
 
           <div className="story__content">
-            <div className="mainpage__container">
+            <div className="story__container">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Voluptates quis perspiciatis veniam ducimus accusamus. Nesciunt
@@ -57,7 +56,7 @@ const MainPage = () => {
           </div>
 
           <div className="story__footer sectiongray">
-            <div className="mainpage__container">
+            <div className="story__container">
               <div className="make-flex">
                 <div className="story__tools">
                   <div className="story__comments">

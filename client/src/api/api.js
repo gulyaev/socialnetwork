@@ -50,6 +50,15 @@ export const userApi = {
   },
 };
 
+export const postApi = {
+  getPostsByUser() {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    };
+    return axios.get(baseURL + `post`, config);
+  },
+};
+
 export const authApi = {
   auth() {
     const config = {
