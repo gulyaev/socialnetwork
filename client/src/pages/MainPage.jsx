@@ -10,25 +10,29 @@ import { AiFillLike } from "react-icons/ai";
 const MainPage = () => {
   const dispatch = useDispatch();
   const postsData = useSelector((state) => state.postsData.postsData);
+  const commentAuthor = useSelector((state) => state.auth.nikname);
+  const authorAvatar = useSelector((state) => state.auth.avatar);
 
   useEffect(() => {
     dispatch(getAllPosts());
   }, []);
 
-  debugger;
   return (
     <div className="mainpage">
       {postsData.map((post) => {
         return (
           <MainPagePost
-            title={post.title}
-            content={post.content}
-            likes={post.likes}
-            dislikes={post.dislikes}
-            views={post.views}
-            comments={post.comments}
-            nikname={post.nikname}
-            avatar={post.avatar}
+            postId={post.post_id}
+            title={post.post_title}
+            content={post.post_content}
+            likes={post.post_likes}
+            dislikes={post.post_dislikes}
+            views={post.post_views}
+            comments={post.post_comments}
+            nikname={post.person_nikname}
+            avatar={post.person_avatar}
+            commentAuthor={commentAuthor}
+            authorAvatar={authorAvatar}
           />
         );
       })}

@@ -9,6 +9,7 @@ let initialState = {
   email: null,
   nikname: null,
   isAuth: false,
+  avatar: null,
   message: null,
 };
 
@@ -30,6 +31,7 @@ const authReducer = (state = initialState, action) => {
         nikname: action.payload.user.nikname,
         email: action.payload.user.email,
         isAuth: true,
+        avatar: action.payload.user.avatar,
         message: "Вы авторизованы",
       };
     case LOGOUT:
