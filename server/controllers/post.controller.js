@@ -30,7 +30,18 @@ class PostController {
   async getAllPosts(req, res) {
     try {
       const posts = await db.query(
-        `select * from post join person on person_id=person.id`
+        `select p.id as post_id,
+        p.title as post_title,
+        p.content as post_content,
+        p.likes as post_likes,
+        p.dislikes as post_dislikes,
+        p.views as post_views,
+        p.comments as post_comments,
+        per.id as person_id,
+        per.nikname as person_nikname,
+        per.avatar as person_avatar
+    from post as p
+    inner join person as per on per.id = p.person_id`
       );
       res.status(200).json(posts.rows);
     } catch (error) {

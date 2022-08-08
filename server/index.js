@@ -4,6 +4,7 @@ const userRouter = require("./routes/user.routes");
 const postRouter = require("./routes/post.routes");
 const authRouter = require("./routes/auth.routes");
 const fileRouter = require("./routes/file.routes");
+const commentRouter = require("./routes/comment.routes");
 const corsMiddleware = require("./middleware/cors.middleware");
 //fileUpload
 const fileUpload = require("express-fileupload");
@@ -23,6 +24,7 @@ app.use("/api", userRouter);
 app.use("/api", postRouter);
 app.use("/api", authRouter);
 app.use("/api", fileRouter);
+app.use("/api", commentRouter);
 
 const start = () => {
   try {

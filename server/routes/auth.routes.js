@@ -102,6 +102,7 @@ router.get("/auth", authMiddleware, async (req, res) => {
           id: user.rows[0].id,
           email: user.rows[0].email,
           nikname: user.rows[0].nikname,
+          avatar: user.rows[0].avatar,
         },
       });
     }

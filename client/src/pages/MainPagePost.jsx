@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiComment } from "react-icons/bi";
 import { IoEyeOutline } from "react-icons/io5";
 import { AiFillDislike } from "react-icons/ai";
@@ -7,8 +7,10 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { API_URL } from "../config";
 import { NavLink } from "react-router-dom";
+import Comments from "../components/Comments";
 
 const MainPagePost = (props) => {
+  const [commentLists, setCommentLists] = useState([]);
   const avatarLogo = <Avatar size={20} icon={<UserOutlined />} />;
 
   const avatar = props.avatar ? (
@@ -16,6 +18,10 @@ const MainPagePost = (props) => {
   ) : (
     avatarLogo
   );
+
+  const updateComment = (newCommentLists) => {
+    setCommentLists(newCommentLists);
+  };
   debugger;
   return (
     <div className="postpage">
@@ -83,6 +89,17 @@ const MainPagePost = (props) => {
                 </div>
                 <div className="story__emotions"></div>
               </div>
+            </div>
+          </div>
+          <div className="story__commentslist">
+            <div className="story__container">
+              <Comments
+                commentLists={commentLists}
+                postId={props.postId}
+                refreshFunction={updateComment}
+                commentAuthor={props.commentAuthor}
+                authorAvatar={props.authorAvatar}
+              />
             </div>
           </div>
         </div>
