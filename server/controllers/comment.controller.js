@@ -17,7 +17,54 @@ class CommentController {
       p.then((receivedNewComment) => {
         return new Promise((resolve, reject) => {
           const comments = db.query(
-            `select * from comment join person on writer=person.id where post_id=$1`,
+            `select c.id as comment_id,
+            c.content as comment_content,
+            c.post_id as comment_postid,
+            c.response_to as comment_responseto,
+            c.writer as comment_writer,
+            per.id as person_id,
+            per.nikname as person_nikname,
+            per.avatar as person_avatar
+        from comment as c
+        inner join person as per on per.id = c.writer where post_id=$1`,
+            [postId]
+          );
+          resolve(comments);
+        });
+      }).then((receivedComments) => {
+        res.status(200).json({ success: true, result: receivedComments.rows });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async createCommentReply(req, res) {
+    try {
+      const { content, response_to, postId } = req.body;
+      const userId = req.user.id;
+
+      const p = new Promise((resolve, reject) => {
+        const newComment = db.query(
+          `insert into comment (content, response_to, post_id, writer) values ($1, $2, $3, $4) RETURNING *`,
+          [content, response_to, postId, userId]
+        );
+        resolve(newComment);
+      });
+
+      p.then((receivedNewComment) => {
+        return new Promise((resolve, reject) => {
+          const comments = db.query(
+            `select c.id as comment_id,
+              c.content as comment_content,
+              c.response_to as comment_responseto,
+              c.post_id as comment_postid,
+              c.writer as comment_writer,
+              per.id as person_id,
+              per.nikname as person_nikname,
+              per.avatar as person_avatar
+          from comment as c
+          inner join person as per on per.id = c.writer where post_id=$1`,
             [postId]
           );
           resolve(comments);
@@ -32,11 +79,21 @@ class CommentController {
 
   async getCommentsByPostId(req, res) {
     try {
+      const { postId } = req.body;
       const comments = await db.query(
-        `select * from comment where post_id = $1`,
+        `select c.id as comment_id,
+            c.content as comment_content,
+            c.post_id as comment_postid,
+            c.response_to as comment_responseto,
+            c.writer as comment_writer,
+            per.id as person_id,
+            per.nikname as person_nikname,
+            per.avatar as person_avatar
+        from comment as c
+        inner join person as per on per.id = c.writer where post_id=$1`,
         [postId]
       );
-      res.status(200).json(comments.rows);
+      res.status(200).json({ success: true, comments: comments.rows });
     } catch (error) {
       console.log(error);
     }

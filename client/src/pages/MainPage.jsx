@@ -10,7 +10,7 @@ import { AiFillLike } from "react-icons/ai";
 const MainPage = () => {
   const dispatch = useDispatch();
   const postsData = useSelector((state) => state.postsData.postsData);
-  const commentAuthor = useSelector((state) => state.auth.nikname);
+  const postAuthor = useSelector((state) => state.auth.nikname);
   const authorAvatar = useSelector((state) => state.auth.avatar);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const MainPage = () => {
             comments={post.post_comments}
             nikname={post.person_nikname}
             avatar={post.person_avatar}
-            commentAuthor={commentAuthor}
+            postAuthor={postAuthor}
             authorAvatar={authorAvatar}
           />
         );
