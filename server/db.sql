@@ -73,9 +73,12 @@ create table comment (
     id SERIAL PRIMARY KEY,
     content VARCHAR(255),
     response_to INTEGER,
-    FOREIGN KEY (response_to) REFERENCES person(id),
+    FOREIGN KEY (response_to) REFERENCES comment(id),
     post_id INTEGER,
     FOREIGN KEY (post_id) REFERENCES post(id),
     writer INTEGER,
     FOREIGN KEY (writer) REFERENCES person(id)
 );
+
+ALTER TABLE comment 
+DROP COLUMN response_to;

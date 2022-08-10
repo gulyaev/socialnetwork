@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiComment } from "react-icons/bi";
 import { IoEyeOutline } from "react-icons/io5";
 import { AiFillDislike } from "react-icons/ai";
@@ -8,21 +8,38 @@ import { Avatar } from "antd";
 import { API_URL } from "../config";
 import { NavLink } from "react-router-dom";
 import Comments from "../components/Comments";
+import axios from "axios";
 
 const MainPagePost = (props) => {
   const [commentLists, setCommentLists] = useState([]);
+  const [ready, setReady] = useState([]);
   const avatarLogo = <Avatar size={20} icon={<UserOutlined />} />;
-
   const avatar = props.avatar ? (
     <img src={`${API_URL}` + `${props.avatar}`} alt="avatar" />
   ) : (
     avatarLogo
   );
 
+  useEffect(() => {
+    console.log("inside useEffect");
+    const bodyParameters = {
+      postId: props.postId,
+    };
+
+    axios
+      .post(`http://localhost:5000/api/commentbypostid`, bodyParameters)
+      .then((response) => {
+        if (response.data.success) {
+          setCommentLists(response.data.comments);
+        } else {
+          alert("Failed to load comments");
+        }
+      });
+  }, []);
+
   const updateComment = (newCommentLists) => {
     setCommentLists(newCommentLists);
   };
-  debugger;
   return (
     <div className="postpage">
       <div className="story">
@@ -93,13 +110,16 @@ const MainPagePost = (props) => {
           </div>
           <div className="story__commentslist">
             <div className="story__container">
-              <Comments
-                commentLists={commentLists}
-                postId={props.postId}
-                refreshFunction={updateComment}
-                commentAuthor={props.commentAuthor}
-                authorAvatar={props.authorAvatar}
-              />
+              {
+                <Comments
+                  commentLists={commentLists}
+                  postId={props.postId}
+                  refreshFunction={updateComment}
+                  postAuthor={props.postAuthor}
+                  authorAvatar={props.authorAvatar}
+                  setReady={setReady}
+                />
+              }
             </div>
           </div>
         </div>
