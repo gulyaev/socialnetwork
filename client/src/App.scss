@@ -369,6 +369,89 @@
           margin: 0 auto;
         }
       }
+
+      .settings {
+        &__title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        &__change {
+          font-size: 24px;
+          line-height: 28px;
+          font-weight: 400;
+          color: #212121;
+          margin: 0 0 20px 0;
+        }
+
+        &__updateaccount {
+          font-size: 30px;
+        }
+
+        &__deleteaccount {
+          color: red;
+          font-size: 12px;
+          cursor: pointer;
+        }
+
+        &__data {
+          display: flex;
+          flex-direction: column;
+        }
+
+        &__data label {
+          margin: 0 0 0px 0;
+          font-size: 14px;
+          cursor: pointer;
+        }
+
+        &__data input {
+          margin: 0 0 20px 0;
+          height: 30px;
+          font-size: 20px;
+          color: gray;
+          border-bottom: 1px solid lightgray;
+        }
+
+        &__profilepicture {
+          display: flex;
+          align-items: center;
+          margin: 0 0 25px 0;
+        }
+
+        &__avatar {
+          overflow: hidden;
+          height: 155px;
+          width: 155px;
+          border-radius: 5px;
+          margin: 0 10px 0 0;
+          cursor: pointer;
+        }
+
+        &__avatar img {
+          max-width: 100%;
+          display: block;
+        }
+
+        &__uploadfoto {
+          display: block;
+          padding: 4px 15px;
+          text-align: center;
+          background-color: #8ac858;
+          border-color: #8ac858;
+          border-radius: 2px;
+          font-size: 13px;
+          line-height: 22px;
+          font-weight: 500;
+          color: #fff;
+          width: 155px;
+          height: 32px;
+          margin: 0 0 10px 0;
+          align-self: center;
+          cursor: pointer;
+        }
+      }
     }
 
     .sidebar {
