@@ -1,4 +1,5 @@
 const db = require("../db");
+const bcrypt = require("bcryptjs");
 
 class UserController {
   async getUsers(req, res) {
@@ -54,25 +55,41 @@ class UserController {
   }
 
   async updateUser(req, res) {
-    try {
-      const { id, email, password } = req.body;
-      const user = await db.query(
-        `update person set email=$2, password=$3 where id=$1 RETURNING *`,
-        [id, email, password]
-      );
-      res.json(user.rows[0]);
-    } catch (error) {
-      console.log(error);
+    const { email, password } = req.body;
+    const userId = req.user.id; //loggedin
+    const id = req.params.id;
+
+    if (userId == id) {
+      if (req.body.password) {
+        req.body.password = await bcrypt.hash(req.body.password, 15);
+      }
+      try {
+        const user = await db.query(
+          `update person set email=$2, password=$3 where id=$1 RETURNING *`,
+          [id, email, req.body.password]
+        );
+        res.json(user.rows[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      res.status(401).json("You can update only your account");
     }
   }
 
   async deleteUser(req, res) {
-    try {
-      const id = req.params.id;
-      const user = await db.query(`DELETE FROM person where id=$1`, [id]);
-      res.status(200).json({ message: "User was deleted" });
-    } catch (error) {
-      console.log(error);
+    const userId = req.user.id; //loggedin
+    const id = req.params.id;
+
+    if (userId == id) {
+      try {
+        const user = await db.query(`DELETE FROM person where id=$1`, [id]);
+        res.status(200).json({ message: "User was deleted" });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      res.status(401).json("You can delete only your account");
     }
   }
 
