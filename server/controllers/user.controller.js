@@ -84,7 +84,7 @@ class UserController {
     if (userId == id) {
       try {
         const user = await db.query(`DELETE FROM person where id=$1`, [id]);
-        res.status(200).json({ message: "User was deleted" });
+        res.status(200).json({ message: "User has been deleted" });
       } catch (error) {
         console.log(error);
       }

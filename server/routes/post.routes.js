@@ -7,7 +7,7 @@ router.post("/post", authMiddleware, postController.createPost);
 router.get("/post", authMiddleware, postController.getPosts);
 router.get("/allpost", postController.getAllPosts);
 router.get("/post/:id", authMiddleware, postController.getOnePost);
-router.put("/post", authMiddleware, postController.updatePost);
+router.put("/post/:id", authMiddleware, postController.updatePost);
 router.delete("/post/:id", authMiddleware, postController.deletePost);
 
 module.exports = router;
