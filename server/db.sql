@@ -44,6 +44,13 @@ add column comments INTEGER;
 ALTER TABLE post 
 add column views INTEGER;
 
+ALTER TABLE post
+DROP CONSTRAINT post_person_id_fkey,
+ADD CONSTRAINT post_person_id_fkey
+  FOREIGN KEY (person_id)
+  REFERENCES person(id)
+  ON DELETE CASCADE;
+
 
 
 create TABLE files (
@@ -66,6 +73,13 @@ add column childs INTEGER[];
 update files 
 set childs  = ARRAY[]::integer[];
 
+ALTER TABLE files
+DROP CONSTRAINT files_person_id_fkey,
+ADD CONSTRAINT files_person_id_fkey
+  FOREIGN KEY (person_id)
+  REFERENCES person(id)
+  ON DELETE CASCADE;
+
 
 
 
@@ -82,3 +96,24 @@ create table comment (
 
 ALTER TABLE comment 
 DROP COLUMN response_to;
+
+ALTER TABLE comment
+DROP CONSTRAINT comment_writer_fkey,
+ADD CONSTRAINT comment_writer_fkey
+  FOREIGN KEY (writer)
+  REFERENCES person(id)
+  ON DELETE CASCADE;
+
+ALTER TABLE comment
+DROP CONSTRAINT comment_response_to_fkey,
+ADD CONSTRAINT comment_response_to_fkey
+  FOREIGN KEY (response_to)
+  REFERENCES comment(id)
+  ON DELETE CASCADE;
+
+ALTER TABLE comment
+DROP CONSTRAINT comment_post_id_fkey,
+ADD CONSTRAINT comment_post_id_fkey
+  FOREIGN KEY (post_id)
+  REFERENCES post(id)
+  ON DELETE CASCADE;
