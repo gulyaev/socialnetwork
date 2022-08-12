@@ -10,6 +10,7 @@ import {
 import MainPage from "./pages/MainPage";
 import AddPostPage from "./pages/AddPostPage";
 import UsersPageContainer from "./pages/users/UsersPageContainer";
+import Settings from "./pages/settings/Settings";
 import HeaderContainer from "./components/header/HeaderContainer";
 import LoginContainer from "./components/authform/login/LoginContainer";
 import RegistrationContainer from "./components/authform/RegistrationContainer";
@@ -49,11 +50,16 @@ class App extends React.Component {
                   <Route path="/dialogs/:id" element={<DialogsContainer />} />
                 </Routes>
               </Suspense>
+              {this.props.isAuth && (
+                <Routes>
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/add" element={<AddPostPage />} />
+                </Routes>
+              )}
               <Routes>
                 <Route path="/users" element={<UsersPageContainer />} />
                 <Route path="/login" element={<MainPage />} />
                 <Route exact path="/" element={<MainPage />} />
-                <Route path="/add" element={<AddPostPage />} />
               </Routes>
             </section>
             <aside className="sidebar">

@@ -495,6 +495,104 @@ h6 {
   margin: 0 auto;
 }
 
+.wrapper .main .content .settings__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.wrapper .main .content .settings__change {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+  color: #212121;
+  margin: 0 0 20px 0;
+}
+
+.wrapper .main .content .settings__updateaccount {
+  font-size: 30px;
+}
+
+.wrapper .main .content .settings__deleteaccount {
+  color: red;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.wrapper .main .content .settings__data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.wrapper .main .content .settings__data label {
+  margin: 0 0 0px 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.wrapper .main .content .settings__data input {
+  margin: 0 0 20px 0;
+  height: 30px;
+  font-size: 20px;
+  color: gray;
+  border-bottom: 1px solid lightgray;
+}
+
+.wrapper .main .content .settings__profilepicture {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 0 25px 0;
+}
+
+.wrapper .main .content .settings__avatar {
+  overflow: hidden;
+  height: 155px;
+  width: 155px;
+  border-radius: 5px;
+  margin: 0 10px 0 0;
+  cursor: pointer;
+}
+
+.wrapper .main .content .settings__avatar img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrapper .main .content .settings__uploadfoto {
+  display: block;
+  padding: 4px 15px;
+  text-align: center;
+  background-color: #8ac858;
+  border-color: #8ac858;
+  border-radius: 2px;
+  font-size: 13px;
+  line-height: 22px;
+  font-weight: 500;
+  color: #fff;
+  width: 155px;
+  height: 32px;
+  margin: 0 0 10px 0;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  cursor: pointer;
+}
+
 .wrapper .main .sidebar {
   -ms-grid-column: 3;
   -ms-grid-column-span: 1;
