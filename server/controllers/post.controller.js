@@ -64,24 +64,48 @@ class PostController {
   }
 
   async updatePost(req, res) {
+    const { title, content } = req.body;
+    const postId = req.params.id;
+    const userId = req.user.id;
+
     try {
-      const { id, title, content } = req.body;
-      const userId = req.user.id;
-      const post = await db.query(
-        `update post set title=$2, content=$3 where id=$1 and person_id=$4 RETURNING *`,
-        [id, title, content, userId]
-      );
-      res.status(200).json(post.rows[0]);
+      const post = await db.query(`select * from post where id=$1`, [postId]);
+      if (post.rows[0].person_id == userId) {
+        try {
+          const updatedPost = await db.query(
+            `update post set title=$2, content=$3 where id=$1 and person_id=$4 RETURNING *`,
+            [postId, title, content, userId]
+          );
+          res.status(200).json(updatedPost.rows[0]);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        res.status(401).json("You can update only your post");
+      }
     } catch (error) {
       console.log(error);
     }
   }
 
   async deletePost(req, res) {
+    const postId = req.params.id;
+    const userId = req.user.id;
+
     try {
-      const postId = req.params.id;
-      const post = await db.query(`DELETE FROM post where id=$1`, [postId]);
-      res.status(200).json({ message: "Post was deleted" });
+      const post = await db.query(`select * from post where id=$1`, [postId]);
+      if (post.rows[0].person_id == userId) {
+        try {
+          const deleted = await db.query(`DELETE FROM post where id=$1`, [
+            postId,
+          ]);
+          res.status(200).json({ message: "Post has been deleted" });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        res.status(401).json("You can delete only your post");
+      }
     } catch (error) {
       console.log(error);
     }
