@@ -51,6 +51,11 @@ ADD CONSTRAINT post_person_id_fkey
   REFERENCES person(id)
   ON DELETE CASCADE;
 
+ALTER TABLE post 
+add column categories VARCHAR[];
+
+update post 
+set categories  = ARRAY[]::text[];
 
 
 create TABLE files (
@@ -117,3 +122,15 @@ ADD CONSTRAINT comment_post_id_fkey
   FOREIGN KEY (post_id)
   REFERENCES post(id)
   ON DELETE CASCADE;
+
+
+create table category (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255)
+);
+
+/*удаление дубликатов*/
+DELETE FROM category a
+WHERE a.ctid <> (SELECT min(b.ctid)
+                 FROM   category b
+                 WHERE  a.title = b.title);
