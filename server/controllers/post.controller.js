@@ -3,19 +3,37 @@ const db = require("../db");
 class PostController {
   async createPost(req, res) {
     try {
-      const { title, content } = req.body;
+      const { category, title, content } = req.body;
       const userId = req.user.id;
-      const newPost = await db.query(
-        `insert into post (title, content, person_id, likes, dislikes, views, comments) values ($1, $2, $3, 1, 1, 1, 1) RETURNING *`,
-        [title, content, userId]
-      );
-      res.status(200).json(newPost.rows[0]);
+
+      const p = new Promise((resolve, reject) => {
+        const newPost = db.query(
+          `insert into post (title, content, person_id, likes, dislikes, views, comments) values ($1, $2, $3, 1, 1, 1, 1) RETURNING *`,
+          [title, content, userId]
+        );
+        resolve(newPost);
+      });
+
+      p.then((receivedNewPost) => {
+        return new Promise((resolve, reject) => {
+          const post = db.query(
+            `update post set categories = array_cat(categories, $1) where id=$2 RETURNING *`,
+            [category, receivedNewPost.rows[0].id]
+          );
+          resolve(post);
+        });
+      }).then((createdPost) => {
+        db.query(`insert into category (title) values ($1) RETURNING *`, [
+          category,
+        ]);
+        res.status(200).json({ success: true, result: createdPost.rows[0] });
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getPosts(req, res) {
+  async getPostsByActiveUser(req, res) {
     try {
       const userId = req.user.id;
       const posts = await db.query(`select * from post where person_id = $1`, [
@@ -28,21 +46,60 @@ class PostController {
   }
 
   async getAllPosts(req, res) {
+    const username = req.query.user;
+    const catName = req.query.cat;
     try {
-      const posts = await db.query(
-        `select p.id as post_id,
-        p.title as post_title,
-        p.content as post_content,
-        p.likes as post_likes,
-        p.dislikes as post_dislikes,
-        p.views as post_views,
-        p.comments as post_comments,
-        per.id as person_id,
-        per.nikname as person_nikname,
-        per.avatar as person_avatar
-    from post as p
-    inner join person as per on per.id = p.person_id`
-      );
+      let posts;
+      if (username) {
+        posts = await db.query(
+          `select p.id as post_id,
+          p.title as post_title,
+          p.content as post_content,
+          p.likes as post_likes,
+          p.dislikes as post_dislikes,
+          p.views as post_views,
+          p.comments as post_comments,
+          p.categories as post_categories,
+          per.id as person_id,
+          per.nikname as person_nikname,
+          per.avatar as person_avatar
+      from post as p
+      inner join person as per on per.id = p.person_id where nikname=$1`,
+          [username]
+        );
+      } else if (catName) {
+        posts = await db.query(
+          `select p.id as post_id,
+          p.title as post_title,
+          p.content as post_content,
+          p.likes as post_likes,
+          p.dislikes as post_dislikes,
+          p.views as post_views,
+          p.comments as post_comments,
+          p.categories as post_categories,
+          per.id as person_id,
+          per.nikname as person_nikname,
+          per.avatar as person_avatar
+      from post as p
+      inner join person as per on per.id = p.person_id where  $1=ANY(categories)`,
+          [catName]
+        );
+      } else {
+        posts = await db.query(
+          `select p.id as post_id,
+          p.title as post_title,
+          p.content as post_content,
+          p.likes as post_likes,
+          p.dislikes as post_dislikes,
+          p.views as post_views,
+          p.comments as post_comments,
+          per.id as person_id,
+          per.nikname as person_nikname,
+          per.avatar as person_avatar
+      from post as p
+      inner join person as per on per.id = p.person_id`
+        );
+      }
       res.status(200).json(posts.rows);
     } catch (error) {
       console.log(error);
