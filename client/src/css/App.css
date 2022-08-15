@@ -449,6 +449,16 @@ h6 {
   margin: 0 auto;
 }
 
+.wrapper .main .content .addpostpage__image {
+  max-width: 400px;
+  overflow: hidden;
+  margin: 0 0 20px 0;
+}
+
+.wrapper .main .content .addpostpage__img {
+  max-width: 100%;
+}
+
 .wrapper .main .content .addpostpage__storyinput {
   line-height: 56px;
   min-height: 58px;
@@ -1171,6 +1181,15 @@ h6 {
   color: #212121;
   font-size: 14px;
   margin: 0 0 16px 0;
+}
+
+.wrapper .story__photo {
+  max-width: 588px;
+  overflow: hidden;
+}
+
+.wrapper .story__photo img {
+  max-width: 100%;
 }
 
 .wrapper .story .make-flex {

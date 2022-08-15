@@ -37,6 +37,7 @@ const postsReducer = (state = initialState, action) => {
         dislikes: action.payload.dislikes,
         views: action.payload.views,
         comments: action.payload.comments,
+        photo: action.payload.photo,
       };
       return {
         ...state,

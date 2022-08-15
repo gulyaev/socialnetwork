@@ -3,13 +3,13 @@ const db = require("../db");
 class PostController {
   async createPost(req, res) {
     try {
-      const { category, title, content } = req.body;
+      const { category, title, content, photo } = req.body;
       const userId = req.user.id;
 
       const p = new Promise((resolve, reject) => {
         const newPost = db.query(
-          `insert into post (title, content, person_id, likes, dislikes, views, comments) values ($1, $2, $3, 1, 1, 1, 1) RETURNING *`,
-          [title, content, userId]
+          `insert into post (title, content, person_id, likes, dislikes, views, comments, photo) values ($1, $2, $3, 1, 1, 1, 1, $4) RETURNING *`,
+          [title, content, userId, photo]
         );
         resolve(newPost);
       });
@@ -60,6 +60,8 @@ class PostController {
           p.views as post_views,
           p.comments as post_comments,
           p.categories as post_categories,
+          p.postdate as post_postdate,
+          p.photo as post_photo,
           per.id as person_id,
           per.nikname as person_nikname,
           per.avatar as person_avatar
@@ -77,6 +79,8 @@ class PostController {
           p.views as post_views,
           p.comments as post_comments,
           p.categories as post_categories,
+          p.postdate as post_postdate,
+          p.photo as post_photo,
           per.id as person_id,
           per.nikname as person_nikname,
           per.avatar as person_avatar
@@ -93,6 +97,9 @@ class PostController {
           p.dislikes as post_dislikes,
           p.views as post_views,
           p.comments as post_comments,
+          p.categories as post_categories,
+          p.postdate as post_postdate,
+          p.photo as post_photo,
           per.id as person_id,
           per.nikname as person_nikname,
           per.avatar as person_avatar

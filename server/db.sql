@@ -44,6 +44,12 @@ add column comments INTEGER;
 ALTER TABLE post 
 add column views INTEGER;
 
+ALTER TABLE post 
+add column postDate DATE NOT NULL DEFAULT CURRENT_DATE;
+
+ALTER TABLE post 
+add column photo VARCHAR(255);
+
 ALTER TABLE post
 DROP CONSTRAINT post_person_id_fkey,
 ADD CONSTRAINT post_person_id_fkey

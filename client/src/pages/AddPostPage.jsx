@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addStory } from "../actions/post";
 import { AiOutlinePlus } from "react-icons/ai";
+import axios from "axios";
+import { Image } from "antd";
 
 const AddPostPage = () => {
   const dispatch = useDispatch();
@@ -13,6 +15,28 @@ const AddPostPage = () => {
   let selectFile = (e) => {
     setMyFile(e.target.files[0]);
     setLoad(!load);
+  };
+
+  let publish = (header, content, file) => {
+    dispatch(addStory(header, content));
+    setHeader("");
+    setContent("");
+
+    const formData = new FormData();
+    if (file) {
+      setLoad(!load);
+      formData.append("file", file);
+      formData.append("header", header);
+      try {
+        axios.post(`http://localhost:5000/api/postphoto`, formData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -59,7 +83,14 @@ const AddPostPage = () => {
           </div>
         </div>
       </div>
-
+      <div className="addpostpage__image">
+        {myFile && (
+          <Image
+            className="addpostpage__img"
+            src={URL.createObjectURL(myFile)}
+          />
+        )}
+      </div>
       <div className="addpostpage__storytextarea">
         <div className="addpostpage__container">
           <textarea
@@ -75,11 +106,7 @@ const AddPostPage = () => {
       <div className="addpostpage__submit sectiongray">
         <div
           className="addpostpage__addpost addpost"
-          onClick={() => {
-            dispatch(addStory(header, content));
-            setHeader("");
-            setContent("");
-          }}
+          onClick={() => publish(header, content, myFile)}
         >
           Опубликовать
         </div>
