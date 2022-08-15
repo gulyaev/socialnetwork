@@ -62,7 +62,6 @@ const Comments = (props) => {
   const handleChange = (e) => {
     setValue(e.target.value);
   };
-  debugger;
   return (
     <div className="comments">
       {props.commentLists &&

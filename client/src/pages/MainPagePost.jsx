@@ -9,6 +9,8 @@ import { API_URL } from "../config";
 import { NavLink } from "react-router-dom";
 import Comments from "../components/Comments";
 import axios from "axios";
+import moment from "moment";
+import "moment/locale/ru";
 
 const MainPagePost = (props) => {
   const [commentLists, setCommentLists] = useState([]);
@@ -40,6 +42,12 @@ const MainPagePost = (props) => {
   const updateComment = (newCommentLists) => {
     setCommentLists(newCommentLists);
   };
+
+  const postPhoto = props.photo && (
+    <img src={`${API_URL}` + `${props.photo}`} alt="photo" />
+  );
+  debugger;
+
   return (
     <div className="postpage">
       <div className="story">
@@ -73,7 +81,9 @@ const MainPagePost = (props) => {
                 <div className="user__info">
                   <div className="user__avatar-small">{avatar}</div>
                   <div className="user__nickname">{props.nikname}</div>
-                  <div className="user__time">5 дней назад главная</div>
+                  <div className="user__time">
+                    {moment(props.postdate).locale("ru").fromNow()}
+                  </div>
                 </div>
               </div>
               <h2 className="story__title">{props.title}</h2>
@@ -82,7 +92,36 @@ const MainPagePost = (props) => {
 
           <div className="story__content">
             <div className="story__container">
+              <div className="story__photo">{postPhoto}</div>
               <p>{props.content}</p>
+            </div>
+          </div>
+          <div className="story__tags tags">
+            <div className="story__container">
+              {props.categories && (
+                <div
+                  style={{
+                    display: "flex",
+                    paddingTop: "16px",
+                    paddingBottom: "16px",
+                    fontSize: "13px",
+                    color: "#757575",
+                  }}
+                >
+                  {props.categories.map((category) => {
+                    return (
+                      <div
+                        style={{
+                          marginRight: "10px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {category}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
           <div className="story__footer sectiongray">

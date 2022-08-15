@@ -323,6 +323,16 @@
           margin: 0 auto;
         }
 
+        &__image {
+          max-width: 400px;
+          overflow: hidden;
+          margin: 0 0 20px 0;
+        }
+
+        &__img {
+          max-width: 100%;
+        }
+
         &__storyinput {
           line-height: 56px;
           min-height: 58px;
@@ -975,6 +985,15 @@
       color: #212121;
       font-size: 14px;
       margin: 0 0 16px 0;
+    }
+
+    &__photo {
+      max-width: 588px;
+      overflow: hidden;
+    }
+
+    &__photo img {
+      max-width: 100%;
     }
 
     .make-flex {

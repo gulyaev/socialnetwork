@@ -29,6 +29,9 @@ const MainPage = () => {
             dislikes={post.post_dislikes}
             views={post.post_views}
             comments={post.post_comments}
+            categories={post.post_categories}
+            postdate={post.post_postdate}
+            photo={post.post_photo}
             nikname={post.person_nikname}
             avatar={post.person_avatar}
             postAuthor={postAuthor}

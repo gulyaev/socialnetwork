@@ -123,6 +123,29 @@ class FileController {
     }
   }
 
+  async uploadPostPhoto(req, res) {
+    try {
+      const file = req.files.file;
+      const userId = req.user.id;
+      const header = req.body.header;
+
+      const postPhotoName = Uuid.v4() + ".jpg";
+
+      file.mv(config.get("staticPath") + "/" + postPhotoName);
+
+      const post = await db.query(
+        `update post set photo=$1 where title=$2 RETURNING *`,
+        [postPhotoName, header]
+      );
+
+      //return res.json({ message: "postPhoto has been uploaded" });
+      return res.json(post.rows[0]);
+    } catch (error) {
+      console.log(error);
+      res.send({ message: "Upload postPhoto server error" });
+    }
+  }
+
   async uploadAvatar(req, res) {
     try {
       const file = req.files.file;
