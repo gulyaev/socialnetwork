@@ -17,6 +17,7 @@ import LoginContainer from "./components/authform/login/LoginContainer";
 import RegistrationContainer from "./components/authform/RegistrationContainer";
 import UsersCardContainer from "./components/userscard/UsersCardContainer";
 import UsersContainer from "./components/users/UsersContainer";
+import CategoriesContainer from "./components/categories/CategoriesContainer";
 import LoaderLarge from "./components/LoaderLarge";
 import axios from "axios";
 import { setLoginDataActionCreator } from "./redux/authReducer";
@@ -126,6 +127,7 @@ class App extends React.Component {
                 </div>
               </div>
               {<UsersContainer />}
+              {<CategoriesContainer />}
             </aside>
           </div>
           <div className="footer">
