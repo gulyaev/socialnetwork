@@ -10,6 +10,7 @@ import {
 import MainPage from "./pages/MainPage";
 import AddPostPage from "./pages/AddPostPage";
 import UsersPageContainer from "./pages/users/UsersPageContainer";
+import SinglePostContainer from "./pages/SinglePostContainer";
 import Settings from "./pages/settings/Settings";
 import HeaderContainer from "./components/header/HeaderContainer";
 import LoginContainer from "./components/authform/login/LoginContainer";
@@ -59,6 +60,7 @@ class App extends React.Component {
               <Routes>
                 <Route path="/users" element={<UsersPageContainer />} />
                 <Route path="/login" element={<MainPage />} />
+                <Route path="/post/:id" element={<SinglePostContainer />} />
                 <Route exact path="/" element={<MainPage />} />
               </Routes>
             </section>

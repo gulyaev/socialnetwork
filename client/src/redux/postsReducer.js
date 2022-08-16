@@ -1,11 +1,13 @@
 import { postApi } from "../api/api";
 
 const SET_POSTS = "SET-POST";
+const SET_SINGLE_POST = "SET-SINGLE-POST";
 const ADD_POST = "ADD-POST";
 const ADD_STORY = "ADD-STORY";
 
 let initialState = {
   postsData: [],
+  singlePostsData: [],
 };
 
 const postsReducer = (state = initialState, action) => {
@@ -14,6 +16,11 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         postsData: action.payload,
+      };
+    case SET_SINGLE_POST:
+      return {
+        ...state,
+        singlePostsData: action.payload,
       };
     case ADD_POST:
       let newPost = {
@@ -52,6 +59,10 @@ export const setPostsActionCreator = (data) => {
   return { type: SET_POSTS, payload: data };
 };
 
+export const setSinglePostActionCreator = (data) => {
+  return { type: SET_SINGLE_POST, payload: data };
+};
+
 export const addPostActionCreator = (text) => {
   return { type: ADD_POST, payload: text };
 };
@@ -72,6 +83,16 @@ export const getPostsByUserThunkCreator = () => {
     postApi.getPostsByUser().then((res) => {
       //dispatch(setToggleIsFetchingActionCreator(false));
       dispatch(setPostsActionCreator(res.data));
+    });
+  };
+};
+
+export const getSinglePostThunkCreator = (postId) => {
+  return (dispatch) => {
+    //dispatch(setToggleIsFetchingActionCreator(true));
+    postApi.getSinglePost(postId).then((res) => {
+      //dispatch(setToggleIsFetchingActionCreator(false));
+      dispatch(setSinglePostActionCreator(res.data));
     });
   };
 };

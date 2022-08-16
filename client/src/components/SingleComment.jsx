@@ -87,7 +87,6 @@ const SingleComment = (props) => {
       Reply to
     </span>,
   ];
-  debugger;
   return (
     <>
       <Comment

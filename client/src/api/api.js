@@ -57,6 +57,16 @@ export const postApi = {
     };
     return axios.get(baseURL + `post`, config);
   },
+
+  getSinglePost(postId) {
+    // const config = {
+    //   headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    // };
+    return axios.get(
+      baseURL + `post/${postId}`
+      //config
+    );
+  },
 };
 
 export const authApi = {
