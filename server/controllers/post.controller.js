@@ -115,11 +115,14 @@ class PostController {
 
   async getOnePost(req, res) {
     try {
-      const postId = req.params.id;
-      const userId = req.user.id;
+      const postId = req.params;
+      //const userId = req.user.id;
+
       const post = await db.query(
-        `select * from post where id=$1 and person_id=$2`,
-        [postId, userId]
+        //`select * from post where id=$1 and person_id=$2`,
+        `select * from post where id=$1`,
+        [postId.id]
+        //[postId, userId]
       );
       res.status(200).json(post.rows[0]);
     } catch (error) {

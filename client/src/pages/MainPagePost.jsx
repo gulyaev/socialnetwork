@@ -46,7 +46,6 @@ const MainPagePost = (props) => {
   const postPhoto = props.photo && (
     <img src={`${API_URL}` + `${props.photo}`} alt="photo" />
   );
-  debugger;
 
   return (
     <div className="postpage">
@@ -86,7 +85,9 @@ const MainPagePost = (props) => {
                   </div>
                 </div>
               </div>
-              <h2 className="story__title">{props.title}</h2>
+              <NavLink to={`/post/${props.postId}`}>
+                <h2 className="story__title">{props.title}</h2>
+              </NavLink>
             </div>
           </div>
 
