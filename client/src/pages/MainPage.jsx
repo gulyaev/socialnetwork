@@ -6,16 +6,19 @@ import { BiComment } from "react-icons/bi";
 import { IoEyeOutline } from "react-icons/io5";
 import { AiFillDislike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
+import { useLocation } from "react-router";
 
 const MainPage = () => {
   const dispatch = useDispatch();
+  const { search } = useLocation();
+
   const postsData = useSelector((state) => state.postsData.postsData);
   const postAuthor = useSelector((state) => state.auth.nikname);
   const authorAvatar = useSelector((state) => state.auth.avatar);
 
   useEffect(() => {
-    dispatch(getAllPosts());
-  }, []);
+    dispatch(getAllPosts(search));
+  }, [search]);
 
   return (
     <div className="mainpage">
