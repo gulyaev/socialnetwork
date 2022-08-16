@@ -64,7 +64,12 @@ const SinglePost = (props) => {
                 <div className="user__info">
                   <div className="user__avatar-small">{avatar}</div>
                   <div className="user__nickname">
-                    {props.postsData.person_nikname}
+                    <NavLink
+                      to={`/?user=${props.postsData.person_nikname}`}
+                      className="user__nickname"
+                    >
+                      {props.postsData.person_nikname}
+                    </NavLink>
                   </div>
                   <div className="user__time">
                     {moment(props.postsData.post_postdate)

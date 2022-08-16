@@ -28,10 +28,12 @@ export const addStory = (title, content) => {
   };
 };
 
-export const getAllPosts = () => {
+export const getAllPosts = (search) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/allpost");
+      const response = await axios.get(
+        `http://localhost:5000/api/allpost/` + search
+      );
       dispatch(setPostsActionCreator(response.data));
     } catch (error) {
       alert(error);
