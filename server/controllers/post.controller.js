@@ -23,9 +23,6 @@ class PostController {
           resolve(post);
         });
       }).then((createdPost) => {
-        db.query(`insert into category (title) values ($1) RETURNING *`, [
-          category,
-        ]);
         res.status(200).json({ success: true, result: createdPost.rows[0] });
       });
     } catch (error) {

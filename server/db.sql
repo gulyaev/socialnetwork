@@ -140,3 +140,6 @@ DELETE FROM category a
 WHERE a.ctid <> (SELECT min(b.ctid)
                  FROM   category b
                  WHERE  a.title = b.title);
+
+/*добавление значений в массив*/
+insert into category(title) values(array['ресторан'])
