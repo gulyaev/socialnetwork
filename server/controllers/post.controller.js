@@ -116,13 +116,24 @@ class PostController {
   async getOnePost(req, res) {
     try {
       const postId = req.params;
-      //const userId = req.user.id;
 
       const post = await db.query(
-        //`select * from post where id=$1 and person_id=$2`,
-        `select * from post where id=$1`,
+        `select p.id as post_id,
+          p.title as post_title,
+          p.content as post_content,
+          p.likes as post_likes,
+          p.dislikes as post_dislikes,
+          p.views as post_views,
+          p.comments as post_comments,
+          p.categories as post_categories,
+          p.postdate as post_postdate,
+          p.photo as post_photo,
+          per.id as person_id,
+          per.nikname as person_nikname,
+          per.avatar as person_avatar
+      from post as p
+      inner join person as per on per.id = p.person_id where p.id=$1`,
         [postId.id]
-        //[postId, userId]
       );
       res.status(200).json(post.rows[0]);
     } catch (error) {
