@@ -1042,4 +1042,31 @@
       padding: 0 0 0 23px;
     }
   }
+
+  .singlepostpage {
+    .user {
+      &__info {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &__infoblock,
+      &__editblock {
+        display: flex;
+      }
+
+      &__deleteicon {
+        color: red;
+        font-size: 18px;
+        margin: 0 15px 0 0;
+        cursor: pointer;
+      }
+
+      &__editicon {
+        color: #8ac858;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    }
+  }
 }
