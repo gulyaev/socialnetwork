@@ -10,13 +10,21 @@ import { NavLink } from "react-router-dom";
 import Comments from "../components/Comments";
 import moment from "moment";
 import "moment/locale/ru";
+import { DeleteFilled } from "@ant-design/icons";
+import { MdModeEditOutline } from "react-icons/md";
+import { Tooltip } from "antd";
 
 const SinglePost = (props) => {
   const [commentLists, setCommentLists] = useState([]);
   const [ready, setReady] = useState([]);
+  const textDelete = <span>Удалить</span>;
+  const textEdit = <span>Редактировать</span>;
   const avatarLogo = <Avatar size={20} icon={<UserOutlined />} />;
-  const avatar = props.postsData.person_avatar ? (
-    <img src={`${API_URL}` + `${props.postsData.person_avatar}`} alt="avatar" />
+  const avatar = props.singlePostsData.person_avatar ? (
+    <img
+      src={`${API_URL}` + `${props.singlePostsData.person_avatar}`}
+      alt="avatar"
+    />
   ) : (
     avatarLogo
   );
@@ -25,12 +33,23 @@ const SinglePost = (props) => {
     setCommentLists(newCommentLists);
   };
 
-  const postPhoto = props.postsData.post_photo && (
-    <img src={`${API_URL}` + `${props.postsData.post_photo}`} alt="photo" />
+  const postPhoto = props.singlePostsData.post_photo && (
+    <img
+      src={`${API_URL}` + `${props.singlePostsData.post_photo}`}
+      alt="photo"
+    />
   );
-  debugger;
+
+  const handleDelete = () => {
+    alert("delete");
+  };
+
+  const handleEdit = () => {
+    alert("edit");
+  };
+
   return (
-    <div className="postpage">
+    <div className="singlepostpage">
       <div className="story">
         <div className="story__left">
           <AiFillLike
@@ -43,7 +62,8 @@ const SinglePost = (props) => {
             onMouseOut={({ target }) => (target.style.color = "#757575")}
           />
           <div>
-            {props.postsData.post_likes - props.postsData.post_dislikes}
+            {props.singlePostsData.post_likes -
+              props.singlePostsData.post_dislikes}
           </div>
           <AiFillDislike
             style={{
@@ -62,24 +82,48 @@ const SinglePost = (props) => {
             <div className="story__container">
               <div className="story__user user">
                 <div className="user__info">
-                  <div className="user__avatar-small">{avatar}</div>
-                  <div className="user__nickname">
-                    <NavLink
-                      to={`/?user=${props.postsData.person_nikname}`}
-                      className="user__nickname"
-                    >
-                      {props.postsData.person_nikname}
-                    </NavLink>
+                  <div className="user__infoblock">
+                    <div className="user__avatar-small">{avatar}</div>
+                    <div className="user__nickname">
+                      <NavLink
+                        to={`/?user=${props.singlePostsData.person_nikname}`}
+                        className="user__nickname"
+                      >
+                        {props.singlePostsData.person_nikname}
+                      </NavLink>
+                    </div>
+                    <div className="user__time">
+                      {moment(props.singlePostsData.post_postdate)
+                        .locale("ru")
+                        .fromNow()}
+                    </div>
                   </div>
-                  <div className="user__time">
-                    {moment(props.postsData.post_postdate)
-                      .locale("ru")
-                      .fromNow()}
-                  </div>
+                  {props.stateAuth.nikname ==
+                  props.singlePostsData.person_nikname ? (
+                    <div className="user__editblock">
+                      <Tooltip placement="top" title={textDelete}>
+                        <div
+                          className="user__deleteicon"
+                          onClick={handleDelete}
+                        >
+                          <DeleteFilled />
+                        </div>
+                      </Tooltip>
+                      <Tooltip placement="top" title={textEdit}>
+                        <div className="user__editicon" onClick={handleEdit}>
+                          <MdModeEditOutline />
+                        </div>
+                      </Tooltip>
+                    </div>
+                  ) : (
+                    <div className="user__editblock"></div>
+                  )}
                 </div>
               </div>
-              <NavLink to={`/post/${props.postsData.post_id}`}>
-                <h2 className="story__title">{props.postsData.post_title}</h2>
+              <NavLink to={`/post/${props.singlePostsData.post_id}`}>
+                <h2 className="story__title">
+                  {props.singlePostsData.post_title}
+                </h2>
               </NavLink>
             </div>
           </div>
@@ -87,12 +131,12 @@ const SinglePost = (props) => {
           <div className="story__content">
             <div className="story__container">
               <div className="story__photo">{postPhoto}</div>
-              <p>{props.postsData.post_content}</p>
+              <p>{props.singlePostsData.post_content}</p>
             </div>
           </div>
           <div className="story__tags tags">
             <div className="story__container">
-              {props.postsData.post_categories && (
+              {props.singlePostsData.post_categories && (
                 <div
                   style={{
                     display: "flex",
@@ -102,7 +146,7 @@ const SinglePost = (props) => {
                     color: "#757575",
                   }}
                 >
-                  {props.postsData.post_categories.map((category) => {
+                  {props.singlePostsData.post_categories.map((category) => {
                     return (
                       <div
                         style={{

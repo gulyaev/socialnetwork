@@ -1,7 +1,8 @@
 import React from "react";
 import SinglePost from "./SinglePost";
 import { getSinglePostThunkCreator } from "../redux/postsReducer";
-import { getPostsData } from "../redux/postsSelectors";
+import { getSinglePostsData } from "../redux/postsSelectors";
+import { getAuth } from "../redux/authSelectors";
 import { withMyRouter } from "../hoc/withMyRouter";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -13,13 +14,19 @@ class SinglePostContainer extends React.Component {
   }
 
   render = () => {
-    return <SinglePost postsData={this.props.postsData} />;
+    return (
+      <SinglePost
+        singlePostsData={this.props.singlePostsData}
+        stateAuth={this.props.stateAuth}
+      />
+    );
   };
 }
 
 let mapStateToProps = (state) => {
   return {
-    postsData: getPostsData(state),
+    singlePostsData: getSinglePostsData(state),
+    stateAuth: getAuth(state),
   };
 };
 
