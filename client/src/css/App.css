@@ -1244,6 +1244,38 @@ h6 {
   padding: 0 0 0 23px;
 }
 
+.wrapper .singlepostpage__submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 16px 24px;
+}
+
+.wrapper .singlepostpage .story__edittitleinut {
+  border-bottom: 1px solid lightgray;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  color: gray;
+  text-align: center;
+  width: 100%;
+  margin: 0 0 30px 0;
+  padding: 5px 0;
+}
+
+.wrapper .singlepostpage .story__editcontentinut {
+  line-height: 24px;
+  text-align: left;
+  color: gray;
+  font-size: 14px;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.wrapper .singlepostpage .story__edittitleinut:focus, .wrapper .singlepostpage .story__editcontentinut:focus {
+  outline: none;
+}
+
 .wrapper .singlepostpage .user__info {
   display: -webkit-box;
   display: -ms-flexbox;
