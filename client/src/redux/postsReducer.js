@@ -2,7 +2,6 @@ import { postApi } from "../api/api";
 
 const SET_POSTS = "SET-POST";
 const SET_SINGLE_POST = "SET-SINGLE-POST";
-const ADD_POST = "ADD-POST";
 const ADD_STORY = "ADD-STORY";
 
 let initialState = {
@@ -21,17 +20,6 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         singlePostsData: action.payload,
-      };
-    case ADD_POST:
-      let newPost = {
-        id: Date.now(),
-        text: action.payload,
-        likesCount: 53,
-        disLikesCount: 3,
-      };
-      return {
-        ...state,
-        postsData: [...state.postsData, newPost],
       };
 
     case ADD_STORY:
@@ -63,18 +51,8 @@ export const setSinglePostActionCreator = (data) => {
   return { type: SET_SINGLE_POST, payload: data };
 };
 
-export const addPostActionCreator = (text) => {
-  return { type: ADD_POST, payload: text };
-};
-
 export const addStoryActionCreator = (data) => {
   return { type: ADD_STORY, payload: data };
-};
-
-export const addPost = (text) => {
-  return (dispatch) => {
-    dispatch(addPostActionCreator(text));
-  };
 };
 
 export const getPostsByUserThunkCreator = () => {

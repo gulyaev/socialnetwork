@@ -10,7 +10,6 @@ class Categories extends React.Component {
     //         <Loader />
     //         </div>)
     // } else {
-    debugger;
     return (
       <div className="sidebar__flex users">
         <div className="users__header">

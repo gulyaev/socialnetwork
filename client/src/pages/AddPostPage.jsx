@@ -37,6 +37,7 @@ const AddPostPage = () => {
         console.log(error);
       }
     }
+    window.location.replace("/");
   };
 
   return (

@@ -13,12 +13,22 @@ import "moment/locale/ru";
 import { DeleteFilled } from "@ant-design/icons";
 import { MdModeEditOutline } from "react-icons/md";
 import { Tooltip } from "antd";
+import { useDispatch } from "react-redux";
+import { deletePost, updatePost } from "../actions/post";
+import { useLocation } from "react-router";
 
 const SinglePost = (props) => {
+  const location = useLocation();
+  const dispatch = useDispatch();
   const [commentLists, setCommentLists] = useState([]);
-  const [ready, setReady] = useState([]);
+  const [title, setTitle] = useState(props.singlePostsData.post_title);
+  const [content, setContent] = useState(props.singlePostsData.post_content);
+  const [editMode, setEditMode] = useState(false);
   const textDelete = <span>Удалить</span>;
   const textEdit = <span>Редактировать</span>;
+
+  const postId = location.pathname.split("/")[2];
+
   const avatarLogo = <Avatar size={20} icon={<UserOutlined />} />;
   const avatar = props.singlePostsData.person_avatar ? (
     <img
@@ -40,13 +50,24 @@ const SinglePost = (props) => {
     />
   );
 
-  const handleDelete = () => {
-    alert("delete");
+  const handleEdit = () => {
+    setEditMode(true);
   };
 
-  const handleEdit = () => {
-    alert("edit");
+  const handleDelete = (postId) => {
+    dispatch(deletePost(postId));
+    window.location.replace("/");
   };
+
+  const saveEditedPost = (postId, title, content) => {
+    dispatch(updatePost(postId, title, content));
+    setEditMode(false);
+  };
+
+  useEffect(() => {
+    setTitle(props.singlePostsData.post_title);
+    setContent(props.singlePostsData.post_content);
+  }, [props.singlePostsData.post_title, props.singlePostsData.post_content]);
 
   return (
     <div className="singlepostpage">
@@ -100,40 +121,64 @@ const SinglePost = (props) => {
                   </div>
                   {props.stateAuth.nikname ==
                   props.singlePostsData.person_nikname ? (
-                    <div className="user__editblock">
-                      <Tooltip placement="top" title={textDelete}>
-                        <div
-                          className="user__deleteicon"
-                          onClick={handleDelete}
-                        >
-                          <DeleteFilled />
-                        </div>
-                      </Tooltip>
-                      <Tooltip placement="top" title={textEdit}>
-                        <div className="user__editicon" onClick={handleEdit}>
-                          <MdModeEditOutline />
-                        </div>
-                      </Tooltip>
-                    </div>
+                    !editMode && (
+                      <div className="user__editblock">
+                        <Tooltip placement="top" title={textDelete}>
+                          <div
+                            className="user__deleteicon"
+                            onClick={() => handleDelete(postId)}
+                          >
+                            <DeleteFilled />
+                          </div>
+                        </Tooltip>
+                        <Tooltip placement="top" title={textEdit}>
+                          <div
+                            className="user__editicon"
+                            onClick={() => {
+                              handleEdit();
+                            }}
+                          >
+                            <MdModeEditOutline />
+                          </div>
+                        </Tooltip>
+                      </div>
+                    )
                   ) : (
                     <div className="user__editblock"></div>
                   )}
                 </div>
               </div>
-              <NavLink to={`/post/${props.singlePostsData.post_id}`}>
-                <h2 className="story__title">
-                  {props.singlePostsData.post_title}
-                </h2>
-              </NavLink>
+              {editMode ? (
+                <input
+                  className="story__edittitleinut"
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  autoFocus
+                />
+              ) : (
+                <NavLink to={`/post/${props.singlePostsData.post_id}`}>
+                  <h2 className="story__title">{title}</h2>
+                </NavLink>
+              )}
             </div>
           </div>
-
           <div className="story__content">
             <div className="story__container">
               <div className="story__photo">{postPhoto}</div>
-              <p>{props.singlePostsData.post_content}</p>
+              {editMode ? (
+                <input
+                  className="story__editcontentinut"
+                  type="text"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                />
+              ) : (
+                <p>{content}</p>
+              )}
             </div>
           </div>
+
           <div className="story__tags tags">
             <div className="story__container">
               {props.singlePostsData.post_categories && (
@@ -164,6 +209,26 @@ const SinglePost = (props) => {
           </div>
         </div>
       </div>
+      {editMode && (
+        <div className="singlepostpage__submit sectiongray">
+          <div
+            className="addpostpage__addpost addpost"
+            onClick={() => saveEditedPost(postId, title, content)}
+          >
+            Сохранить изменения
+          </div>
+          <div
+            className="addpostpage__addpost addpost"
+            onClick={() => {
+              setEditMode(!editMode);
+              setTitle(props.singlePostsData.post_title);
+              setContent(props.singlePostsData.post_content);
+            }}
+          >
+            Отменить
+          </div>
+        </div>
+      )}
     </div>
   );
 };
