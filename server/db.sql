@@ -143,3 +143,7 @@ WHERE a.ctid <> (SELECT min(b.ctid)
 
 /*добавление значений в массив*/
 insert into category(title) values(array['ресторан'])
+
+/*добавление категорий к посту*/
+update post set categories = array_cat(categories, array['ресторан']) where id=67;
+update post set categories = array_cat(categories, array['ресторан', 'кафе']) where id=68;

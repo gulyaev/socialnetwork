@@ -64,7 +64,6 @@ export const authThunkCreator = () => {
     return authApi
       .auth()
       .then((res) => {
-        //debugger;
         dispatch(setLoginDataActionCreator(res.data));
         localStorage.setItem("token", res.data.token);
       })
@@ -72,11 +71,8 @@ export const authThunkCreator = () => {
         localStorage.removeItem("token");
         console.log(err);
         console.log(err.response.data.message);
-        //alert(err.response.data.message);
       });
   };
-
-  // return "from authThunkCreator";
 };
 
 export default authReducer;

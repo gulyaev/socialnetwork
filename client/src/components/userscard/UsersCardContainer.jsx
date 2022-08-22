@@ -11,8 +11,7 @@ class UsersCardContainer extends React.Component {
   render = () => {
     return (
       <UsersCard
-        nikname={this.props.nikname}
-        isAuth={this.props.isAuth}
+        authData={this.props.authData}
         currentUser={this.props.currentUser}
         logout={this.logout}
       />
@@ -22,8 +21,7 @@ class UsersCardContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    nikname: state.auth.nikname,
-    isAuth: state.auth.isAuth,
+    authData: state.auth,
     currentUser: state.usersData.currentUser,
   };
 };

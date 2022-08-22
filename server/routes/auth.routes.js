@@ -43,7 +43,6 @@ router.post(
             [email, nikname, hashedpassword]
           );
           await fileService.createDir(newUser.rows[0]);
-          //res.status(200).json({ message: "User was created" })
           res.status(200).json(newUser.rows[0]);
         }
       }
@@ -74,6 +73,7 @@ router.post("/login", async (req, res) => {
           id: user.rows[0].id,
           email: user.rows[0].email,
           nikname: user.rows[0].nikname,
+          avatar: user.rows[0].avatar,
         },
       });
     }
@@ -91,7 +91,6 @@ router.get("/auth", authMiddleware, async (req, res) => {
     if (!user) {
       res.status(404).json({ message: "user not found" });
     } else {
-      //res.status(200).json(user.rows[0].id)
       const token = jwt.sign({ id: user.rows[0].id }, config.get("secretKey"), {
         expiresIn: "1h",
       });
