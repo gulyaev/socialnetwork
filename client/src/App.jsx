@@ -11,7 +11,7 @@ import MainPage from "./pages/MainPage";
 import AddPostPage from "./pages/AddPostPage";
 import UsersPageContainer from "./pages/users/UsersPageContainer";
 import SinglePostContainer from "./pages/SinglePostContainer";
-import Settings from "./pages/settings/Settings";
+import SettingsContainer from "./pages/settings/SettingsContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
 import LoginContainer from "./components/authform/login/LoginContainer";
 import RegistrationContainer from "./components/authform/RegistrationContainer";
@@ -54,7 +54,7 @@ class App extends React.Component {
               </Suspense>
               {this.props.isAuth && (
                 <Routes>
-                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/settings" element={<SettingsContainer />} />
                   <Route path="/add" element={<AddPostPage />} />
                 </Routes>
               )}

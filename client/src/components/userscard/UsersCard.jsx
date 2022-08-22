@@ -8,8 +8,8 @@ import { API_URL } from "../../config";
 const UsersCard = (props) => {
   const avatarLogo = <Avatar size={55} icon={<UserOutlined />} />;
 
-  const avatar = props.currentUser.avatar ? (
-    <img src={`${API_URL}` + `${props.currentUser.avatar}`} alt="avatar" />
+  const avatar = props.authData.avatar ? (
+    <img src={`${API_URL}` + `${props.authData.avatar}`} alt="avatar" />
   ) : (
     avatarLogo
   );
@@ -18,7 +18,7 @@ const UsersCard = (props) => {
     <div className="sidebar__flex userscard">
       <div className="userscard__header">
         <NavLink to="/profile">
-          {props.isAuth ? (
+          {props.authData.isAuth ? (
             <div className="userscard__avatar">{avatar}</div>
           ) : (
             avatarLogo
@@ -26,7 +26,7 @@ const UsersCard = (props) => {
         </NavLink>
 
         <div className="userscard__nik_container">
-          <div className="userscard__nik_big">{props.nikname}</div>
+          <div className="userscard__nik_big">{props.authData.nikname}</div>
           <div
             className="userscard__logout"
             onClick={() => {

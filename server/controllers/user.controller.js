@@ -55,19 +55,27 @@ class UserController {
   }
 
   async updateUser(req, res) {
-    const { email, password } = req.body;
+    const { nikname, email, password } = req.body;
     const userId = req.user.id; //loggedin
     const id = req.params.id;
 
     if (userId == id) {
-      if (req.body.password) {
-        req.body.password = await bcrypt.hash(req.body.password, 15);
-      }
       try {
-        const user = await db.query(
-          `update person set email=$2, password=$3 where id=$1 RETURNING *`,
-          [id, email, req.body.password]
-        );
+        let user = null;
+        if (req.body.password) {
+          req.body.password = await bcrypt.hash(req.body.password, 15);
+
+          user = await db.query(
+            `update person set nikname=$2, email=$3, password=$4 where id=$1 RETURNING *`,
+            [id, nikname, email, req.body.password]
+          );
+        } else {
+          user = await db.query(
+            `update person set nikname=$2, email=$3 where id=$1 RETURNING *`,
+            [id, nikname, email]
+          );
+        }
+
         res.json(user.rows[0]);
       } catch (error) {
         console.log(error);
