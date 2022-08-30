@@ -13,12 +13,6 @@ class Users extends React.Component {
   }
 
   render = () => {
-    // if (this.props.isFetching) {
-    //     return (
-    //         <div className="userspage__loader">
-    //         <Loader />
-    //         </div>)
-    // } else {
     return (
       <div className="sidebar__flex users">
         <div className="users__header">
@@ -30,20 +24,28 @@ class Users extends React.Component {
           </div>
         </div>
         <div className="users__items">
-          {this.props.usersSidebarData.usersSidebarData.map((user) => {
+        {this.props.isFetching ? (
+            <div className="userspage__loader">
+            <Loader />
+            </div>)
+        :
+          this.props.usersSidebarData.usersSidebarData.map((user) => {
             return (
               <div className="users__item">
                 <div className="users__image">
+                <NavLink to={"/profile/"+user.id}>
                   <img src={require("../../img/logo.jpeg")} alt="ava" />
+                  </NavLink>
                 </div>
+                <NavLink to={"/profile/"+user.id}>
                 <div className="users__name">{user.nikname}</div>
+                </NavLink>
               </div>
             );
           })}
-        </div>
+        </div>  
       </div>
     );
-    //}
   };
 }
 

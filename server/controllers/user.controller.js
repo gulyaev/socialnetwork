@@ -55,7 +55,8 @@ class UserController {
   }
 
   async updateUser(req, res) {
-    const { nikname, email, password } = req.body;
+    //const { nikname, email, password } = req.body;
+    const { email, password } = req.body;
     const userId = req.user.id; //loggedin
     const id = req.params.id;
 
@@ -66,13 +67,13 @@ class UserController {
           req.body.password = await bcrypt.hash(req.body.password, 15);
 
           user = await db.query(
-            `update person set nikname=$2, email=$3, password=$4 where id=$1 RETURNING *`,
-            [id, nikname, email, req.body.password]
+            `update person set email=$3, password=$4 where id=$1 RETURNING *`,
+            [id, email, req.body.password]
           );
         } else {
           user = await db.query(
-            `update person set nikname=$2, email=$3 where id=$1 RETURNING *`,
-            [id, nikname, email]
+            `update person set email=$3 where id=$1 RETURNING *`,
+            [id, email]
           );
         }
 

@@ -77,7 +77,7 @@ class App extends React.Component {
                     <Route exact path="/" element={<LoginContainer />} />
                   </Routes>
 
-                  <div className="form__social social">
+                  {/* <div className="form__social social">
                     <div href="#" className="social__vk">
                       <img
                         src={require("./img/social_vk.png")}
@@ -102,7 +102,8 @@ class App extends React.Component {
                         alt="form__gmail"
                       />
                     </div>
-                  </div>
+                  </div> */}
+
                 </div>
               )}
               {this.props.isAuth && <UsersCardContainer />}

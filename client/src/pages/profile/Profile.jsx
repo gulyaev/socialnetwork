@@ -1,24 +1,26 @@
-import React from "react";
+import React, {useEffect} from "react";
 import ProfileInfo from "../../components/ProfileInfo";
 import MyPostsContainer from "../../components/myposts/MyPostsContainer";
 
 const Profile = ({
   currentUser,
+  isFetching,
+  userId,
+  followingInProgress,
   follow,
   unfollow,
-  followingInProgress,
   updateStatus,
-  isFetching,
 }) => {
   return (
     <>
       <ProfileInfo
         currentUser={currentUser}
+        isFetching={isFetching}
+        userId={userId}
+        followingInProgress={followingInProgress}
         follow={follow}
         unfollow={unfollow}
-        followingInProgress={followingInProgress}
         updateStatus={updateStatus}
-        isFetching={isFetching}
       />
       <MyPostsContainer />
     </>
