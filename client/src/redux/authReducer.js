@@ -3,6 +3,7 @@ import { authApi } from "../api/api";
 const SET_REGISTER_DATA = "SET-REGISTER-DATA";
 const SET_LOGIN_DATA = "SET-LOGIN-DATA";
 const LOGOUT = "LOGOUT";
+const SET_IS_FETCHING = "SET-IS-FETCHING";
 
 let initialState = {
   usersId: null,
@@ -11,6 +12,7 @@ let initialState = {
   isAuth: false,
   avatar: null,
   message: null,
+  isFetching: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -44,9 +46,19 @@ const authReducer = (state = initialState, action) => {
         isAuth: false,
         message: "Вы вышли",
       };
+      case SET_IS_FETCHING: {
+        return {
+          ...state,
+          isFetching: action.payload,
+        };
+      }
     default:
       return state;
   }
+};
+
+export const setToggleIsFetchingActionCreator = (isFetching) => {
+  return { type: SET_IS_FETCHING, payload: isFetching };
 };
 
 export const setRegisterDataActionCreator = (registerData) => {

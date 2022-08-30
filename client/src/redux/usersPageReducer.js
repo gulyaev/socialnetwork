@@ -14,7 +14,7 @@ const initialState = {
   totalUsersCount: 0,
   perPage: 1,
   currentPage: 1,
-  isFetching: true,
+  isFetching: false,
   followingInProgress: false,
 };
 

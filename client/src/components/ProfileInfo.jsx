@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import ProfileStatus from "./profilestatus/ProfileStatus";
-import LoadFoto from "./profileinfo/LoadFoto";
-import LoadAvatar from "./profileinfo/LoadAvatar";
-import DeleteAvatar from "./profileinfo/DeleteAvatar";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space, Button } from "antd";
 
 const ProfileInfo = ({
   currentUser,
   isFetching,
+  userId,
   followingInProgress,
   ...props
 }) => {
@@ -35,16 +33,12 @@ const ProfileInfo = ({
     props.unfollow();
     setFollow(!follow);
   };
-
   return (
     <div className="profileinfo">
       <div className="profileinfo__container">
         <div className="profileinfo__avatar">
           <img src={require("../img/logo.jpeg")} alt="avatar" />
         </div>
-        <LoadFoto />
-        <LoadAvatar />
-        <DeleteAvatar />
         {follow ? (
           <Dropdown.Button
             type="primary"
@@ -54,6 +48,7 @@ const ProfileInfo = ({
             Вы подписаны
           </Dropdown.Button>
         ) : (
+          userId!==currentUser.id && (
           <Button
             className="profileinfo__follow"
             onClick={() => followHandler()}
@@ -61,6 +56,8 @@ const ProfileInfo = ({
           >
             Подписаться
           </Button>
+          )
+          
         )}
       </div>
       <div className="profileinfo__description">

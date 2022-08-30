@@ -17,11 +17,7 @@ class ProfileContainer extends React.Component {
     let userId = this.props.params.id;
     if (!userId) {
       userId = this.props.userId;
-      // if (!userId) {
-      //   debugger;
-      // }
     }
-
     this.props.setCurrentUser(userId);
   }
 
@@ -49,11 +45,13 @@ class ProfileContainer extends React.Component {
         ) : (
           <Profile
             currentUser={this.props.currentUser}
+            isFetching={this.props.isFetching}
+            userId={this.props.userId}
+            followingInProgress={this.props.followingInProgress}
+            params={this.props.params}
             follow={this.follow}
             unfollow={this.unfollow}
-            followingInProgress={this.props.followingInProgress}
             isAuth={this.props.isAuth}
-            isFetching={this.props.isFetching}
             updateStatus={this.updateStatus}
           />
         )}

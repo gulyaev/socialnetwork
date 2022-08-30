@@ -1,6 +1,18 @@
 import React, { useState } from "react"
 import Input from "../../input/Input"
 import { NavLink } from 'react-router-dom'
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = (
+    <LoadingOutlined
+      style={{
+        fontSize: 18,
+        color: "#fff"
+      }}
+      spin
+    />
+  );
 
 const Login = (props) => {
     const [email, setEmail] = useState("")
@@ -22,13 +34,18 @@ const Login = (props) => {
                 <Input type="text" placeholder='password' value={password} setValue={setPassword} />
             </div>
             <div className="form__forget">Забыли пароль?</div>
-            <div className="form__button" onClick={()=>{login(email, password)}}>Войти</div>
+
+            <div className="form__button" onClick={()=>{login(email, password)}} style={props.isFetching ? {pointerEvents: "none", opacity: "0.8"} : {}}>
+                <span style={{margin: "0 10px 0 0"}}>Войти</span>
+                {props.isFetching && <Spin indicator={antIcon} />}    
+            </div>
+
             <div className="form__registration"><NavLink to="/registration">Регистрация</NavLink></div>
-            <div className="form__or">
+            {/* <div className="form__or">
                 <div className="form__section_or">
                     <span>или</span>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

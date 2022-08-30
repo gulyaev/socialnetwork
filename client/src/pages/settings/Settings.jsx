@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { UserOutlined } from "@ant-design/icons";
-import { Avatar } from "antd";
 import { API_URL } from "../../config";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { updateProfile, deleteProfile } from "../../actions/user";
-import { Image } from "antd";
+import { Avatar, Image, Input } from "antd";
+import { UserOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 
 function Settings(props) {
   const isAuth = props.stateAuth.isAuth;
@@ -19,6 +18,7 @@ function Settings(props) {
   const [nikname, setNikname] = useState(currentNikname);
   const [email, setEmail] = useState(currentEmail);
   const [password, setPassword] = useState("");
+  const [passwordShown, setPasswordShown] = useState(false);
 
   useEffect(() => {
     setNikname(currentNikname);
@@ -39,9 +39,8 @@ function Settings(props) {
     setMyAvatar(e.target.files[0]);
   };
 
-  let publish = (userId, nikname, email, password, file) => {
-    dispatch(updateProfile(userId, nikname, email, password));
-    setNikname("");
+  let publish = (userId, email, password, file) => {
+    dispatch(updateProfile(userId, email, password));
     setEmail("");
     setPassword("");
 
@@ -60,16 +59,20 @@ function Settings(props) {
     }
   };
 
+  const togglePassword = () => {    
+    setPasswordShown(!passwordShown);
+  };
+
   return (
     <div className="settings">
       <div className="settings__title">
         <span className="settings__change">Изменить профиль</span>
-        <span
+        {/* <span
           className="settings__deleteaccount"
           onClick={() => dispatch(deleteProfile(userId))}
         >
           Удалить профиль
-        </span>
+        </span> */}
       </div>
       <div className="settings__data">
         <div className="settings__profilepicture">
@@ -113,9 +116,6 @@ function Settings(props) {
           className="settings__nikname"
           placeholder={currentNikname}
           value={nikname}
-          onChange={(e) => {
-            setNikname(e.target.value);
-          }}
         />
 
         <label htmlFor="email">Email</label>
@@ -130,16 +130,23 @@ function Settings(props) {
           }}
         />
 
-        <label htmlFor="password">Пароль</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          className="settings__password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+<label htmlFor="password">Пароль</label>
+        <div style={{display:"flex"}}>
+          <input
+            id="password"
+            type={passwordShown ? "text" : "password"}
+            placeholder="сменить пароль"
+            value={password}
+            className="settings__password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <div onClick={togglePassword} style={{padding:"5px 0 0 0", cursor:"pointer"}}>
+          {passwordShown ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+          </div>
+        </div>
+        
 
         <div
           className="settings__uploadfoto"
