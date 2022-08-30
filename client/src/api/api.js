@@ -76,4 +76,19 @@ export const authApi = {
     };
     return axios.get(baseURL + `auth`, config);
   },
+
+  login(email, password) {
+    return axios.post(baseURL + `login`, {
+              email, 
+              password
+          })
+  },
+
+  register(email, nikname, password) {
+    return axios.post(baseURL + `register`, {
+              email, 
+              nikname,
+              password
+          })
+  },
 };

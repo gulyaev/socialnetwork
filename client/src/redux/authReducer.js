@@ -87,4 +87,38 @@ export const authThunkCreator = () => {
   };
 };
 
+export const login = (email, password) => {
+  return (dispatch) => {
+    dispatch(setToggleIsFetchingActionCreator(true))
+    return authApi
+      .login(email, password)
+      .then((res) => {
+        dispatch(setLoginDataActionCreator(res.data));
+        localStorage.setItem("token", res.data.token);
+        dispatch(setToggleIsFetchingActionCreator(false))
+      })
+      .catch((err) => {
+        localStorage.removeItem("token");
+        console.log(err);
+        console.log(err.response.data.message);
+      });
+  };
+};
+
+export const register = (email, nikname, password) => {
+  return (dispatch) => {
+    dispatch(setToggleIsFetchingActionCreator(true))
+    return authApi
+      .register(email, nikname, password)
+      .then((res) => {
+        dispatch(setRegisterDataActionCreator(res.data));
+        dispatch(setToggleIsFetchingActionCreator(false))
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(err.response.data.message);
+      });
+  };
+};
+
 export default authReducer;
