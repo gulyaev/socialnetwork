@@ -6,6 +6,7 @@ import { logoutActionCreator } from "../../redux/authReducer";
 class UsersCardContainer extends React.Component {
   logout = () => {
     this.props.logout();
+    window.location.replace("/");
   };
 
   render = () => {
