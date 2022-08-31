@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ProfileStatus from "./profilestatus/ProfileStatus";
-import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Menu, Space, Button } from "antd";
+import { API_URL } from "../config";
+import { Avatar, Dropdown, Menu, Button } from "antd";
+import { UserOutlined, DownOutlined } from '@ant-design/icons';
 
 const ProfileInfo = ({
   currentUser,
@@ -11,6 +12,8 @@ const ProfileInfo = ({
   ...props
 }) => {
   const [follow, setFollow] = useState(false);
+  const isAuth = props.stateAuth.isAuth;
+  const profileAvatar = currentUser.avatar;
 
   const menu = (
     <Menu
@@ -33,11 +36,20 @@ const ProfileInfo = ({
     props.unfollow();
     setFollow(!follow);
   };
+
+  const avatarLogo = <Avatar shape="square" size={155} icon={<UserOutlined />} />;
+
+  const avatar = profileAvatar ? (
+    <img src={`${API_URL}` + `${profileAvatar}`} alt="avatar" />
+  ) : (
+    avatarLogo
+  );
+
   return (
     <div className="profileinfo">
       <div className="profileinfo__container">
         <div className="profileinfo__avatar">
-          <img src={require("../img/logo.jpeg")} alt="avatar" />
+        {isAuth ? avatar : avatarLogo}
         </div>
         {follow ? (
           <Dropdown.Button
