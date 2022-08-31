@@ -168,6 +168,10 @@
           line-height: 24px;
           font-weight: 500;
         }
+
+        .profile__status {
+          color:rgba(0,0,0,0.5);
+        }
       }
 
       .myposts {
@@ -462,6 +466,18 @@
           cursor: pointer;
         }
       }
+
+      .ant-typography-copy {
+        color: #8ac858;
+      }
+      .anticon-copy {
+        color: #8ac858;
+      }
+      .ant-tooltip-open {
+        color: #8ac858;
+      }
+
+
     }
 
     .sidebar {
@@ -510,7 +526,16 @@
           width: 100%;
         }
 
-        &__forget {
+        &__forget{
+          cursor: pointer;
+          font-size: 12px;
+          line-height: 18px;
+          color: var(--color-black-700);
+          font-style: italic;
+          margin: 0 0 12px 0;
+        }
+
+        &__forget a{
           cursor: pointer;
           font-size: 12px;
           line-height: 18px;

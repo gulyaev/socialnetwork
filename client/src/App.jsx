@@ -15,6 +15,7 @@ import SettingsContainer from "./pages/settings/SettingsContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
 import LoginContainer from "./components/authform/login/LoginContainer";
 import RegistrationContainer from "./components/authform/RegistrationContainer";
+import ForgottenPassword from "./pages/forgottenpassword/ForgottenPassword";
 import UsersCardContainer from "./components/userscard/UsersCardContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import CategoriesContainer from "./components/categories/CategoriesContainer";
@@ -63,6 +64,7 @@ class App extends React.Component {
                 <Route path="/login" element={<MainPage />} />
                 <Route path="/post/:id" element={<SinglePostContainer />} />
                 <Route exact path="/" element={<MainPage />} />
+                <Route path="/forgottenpassword" element={<ForgottenPassword />} />
               </Routes>
             </section>
             <aside className="sidebar">
