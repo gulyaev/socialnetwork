@@ -47,11 +47,13 @@ class ProfileContainer extends React.Component {
             currentUser={this.props.currentUser}
             isFetching={this.props.isFetching}
             userId={this.props.userId}
+            isAuth={this.props.isAuth}
+            userId={this.props.stateAuth.usersId}
             followingInProgress={this.props.followingInProgress}
             params={this.props.params}
             follow={this.follow}
             unfollow={this.unfollow}
-            isAuth={this.props.isAuth}
+            stateAuth={this.props.stateAuth}
             updateStatus={this.updateStatus}
           />
         )}
@@ -65,6 +67,7 @@ let mapStateToProps = (state) => {
     currentUser: state.usersData.currentUser,
     isFetching: state.usersData.isFetching,
     userId: state.auth.usersId,
+    stateAuth: state.auth,
     followingInProgress: state.usersData.followingInProgress,
   };
 };

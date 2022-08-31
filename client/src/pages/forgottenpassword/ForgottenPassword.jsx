@@ -9,7 +9,7 @@ function ForgottenPassword() {
         <Title level={3}>Для восстановления пароля напишите на почту нашей техподдержки:</Title>
         <Title copyable={{
           tooltips: ['Скопировать адрес', 'Адрес скопирован'],
-        }} level={4} type="success">naglampe@mail.ru</Title>
+        }} level={4} type="success">naglampe@gmail.com</Title>
     </div>
   )
 }

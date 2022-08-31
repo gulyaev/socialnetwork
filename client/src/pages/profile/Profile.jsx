@@ -6,6 +6,7 @@ const Profile = ({
   currentUser,
   isFetching,
   userId,
+  stateAuth,
   followingInProgress,
   follow,
   unfollow,
@@ -17,6 +18,7 @@ const Profile = ({
         currentUser={currentUser}
         isFetching={isFetching}
         userId={userId}
+        stateAuth={stateAuth}
         followingInProgress={followingInProgress}
         follow={follow}
         unfollow={unfollow}

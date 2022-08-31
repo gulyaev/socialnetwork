@@ -40,10 +40,6 @@ function Settings(props) {
   };
 
   let publish = (userId, email, password, file) => {
-    dispatch(updateProfile(userId, email, password));
-    setEmail("");
-    setPassword("");
-
     const formData = new FormData();
     if (file) {
       formData.append("file", file);
@@ -57,6 +53,11 @@ function Settings(props) {
         console.log(error);
       }
     }
+
+    dispatch(updateProfile(userId, email, password));
+    setEmail("");
+    setPassword("");
+    window.location.reload();
   };
 
   const togglePassword = () => {    
@@ -150,7 +151,7 @@ function Settings(props) {
 
         <div
           className="settings__uploadfoto"
-          onClick={() => publish(userId, nikname, email, password, myAvatar)}
+          onClick={() => publish(userId, email, password, myAvatar)}
         >
           Сохранить
         </div>
