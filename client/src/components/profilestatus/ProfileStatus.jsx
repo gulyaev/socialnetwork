@@ -46,9 +46,17 @@ class ProfileStatus extends React.Component {
         );
       } else if (!this.state.editMode) {
         return (
+          this.props.userId===this.props.currentUser.id ? (
           <div onClick={this.activateEditMode} className="profile__status">
-            {this.props.status || "ваш статус"}
+            {this.props.status || "установить статус"}
           </div>
+          )
+          :
+          (
+            <div className="profile__status">
+              {this.props.status || "статус"}
+            </div>
+            )
         );
       }
     }

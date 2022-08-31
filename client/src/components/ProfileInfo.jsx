@@ -66,6 +66,8 @@ const ProfileInfo = ({
           isFetching={isFetching}
           status={currentUser.status}
           updateStatus={props.updateStatus}
+          userId={userId}
+          currentUser={currentUser}
         />
         <div className="profileinfo__mail">
           Почта для связи: {currentUser.email}

@@ -24,7 +24,7 @@ export const userApi = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     };
 
-    return axios.put(baseURL + `user/status`, bodyParameters, config);
+    return axios.put(baseURL + `user/status/updatestatus`, bodyParameters, config);
   },
 
   follow(userId) {

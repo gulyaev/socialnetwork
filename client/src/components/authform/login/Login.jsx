@@ -33,7 +33,7 @@ const Login = (props) => {
             <div className="form__password">
                 <Input type="text" placeholder='password' value={password} setValue={setPassword} />
             </div>
-            <div className="form__forget">Забыли пароль?</div>
+            <div className="form__forget"><NavLink to="/forgottenpassword">Забыли пароль?</NavLink></div>
 
             <div className="form__button" onClick={()=>{login(email, password)}} style={props.isFetching ? {pointerEvents: "none", opacity: "0.8"} : {}}>
                 <span style={{margin: "0 10px 0 0"}}>Войти</span>

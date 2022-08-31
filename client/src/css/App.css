@@ -283,6 +283,10 @@ h6 {
   font-weight: 500;
 }
 
+.wrapper .main .content .profileinfo .profile__status {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .wrapper .main .content .myposts__container {
   display: -ms-grid;
   display: grid;
@@ -603,6 +607,18 @@ h6 {
   cursor: pointer;
 }
 
+.wrapper .main .content .ant-typography-copy {
+  color: #8ac858;
+}
+
+.wrapper .main .content .anticon-copy {
+  color: #8ac858;
+}
+
+.wrapper .main .content .ant-tooltip-open {
+  color: #8ac858;
+}
+
 .wrapper .main .sidebar {
   -ms-grid-column: 3;
   -ms-grid-column-span: 1;
@@ -664,6 +680,15 @@ h6 {
 }
 
 .wrapper .main .sidebar .form__forget {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--color-black-700);
+  font-style: italic;
+  margin: 0 0 12px 0;
+}
+
+.wrapper .main .sidebar .form__forget a {
   cursor: pointer;
   font-size: 12px;
   line-height: 18px;

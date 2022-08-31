@@ -10,6 +10,6 @@ router.delete("/user/:id", authMiddleware, userController.deleteUser);
 router.put("/follow", authMiddleware, userController.followUser);
 router.put("/unfollow", authMiddleware, userController.unfollowUser);
 router.get("/status", authMiddleware, userController.getStatus);
-router.put("/user/status", authMiddleware, userController.updateStatus);
+router.put("/user/status/updatestatus", authMiddleware, userController.updateStatus);
 
 module.exports = router;

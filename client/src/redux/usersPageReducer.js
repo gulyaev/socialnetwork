@@ -86,8 +86,8 @@ export const updateStatus = (status) => {
   return (dispatch) => {
     dispatch(setToggleIsFetchingActionCreator(true));
     userApi.updateStatus(status).then((res) => {
-      dispatch(setToggleIsFetchingActionCreator(false));
       dispatch(setCurrentUserActionCreator(res.data));
+      dispatch(setToggleIsFetchingActionCreator(false));
     });
   };
 };
