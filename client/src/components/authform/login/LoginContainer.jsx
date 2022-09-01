@@ -10,14 +10,15 @@ class LoginContainer extends React.Component {
 
     render = () => {
         return (
-            <Login login={this.login} isFetching={this.props.isFetching}/>
+            <Login login={this.login} isFetching={this.props.isFetching} errorMessage={this.props.errorMessage}/>
         )   
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        isFetching: state.auth.isFetching
+        isFetching: state.auth.isFetching,
+        errorMessage: state.auth.errorMessage
     }
 }
 

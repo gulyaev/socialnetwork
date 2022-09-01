@@ -4,6 +4,7 @@ const SET_REGISTER_DATA = "SET-REGISTER-DATA";
 const SET_LOGIN_DATA = "SET-LOGIN-DATA";
 const LOGOUT = "LOGOUT";
 const SET_IS_FETCHING = "SET-IS-FETCHING";
+const SET_ERROR_MESSAGE = "SET-ERROR-MESSAGE";
 
 let initialState = {
   usersId: null,
@@ -12,6 +13,7 @@ let initialState = {
   isAuth: false,
   avatar: null,
   message: null,
+  errorMessage: null,
   isFetching: false,
 };
 
@@ -52,6 +54,12 @@ const authReducer = (state = initialState, action) => {
           isFetching: action.payload,
         };
       }
+      case SET_ERROR_MESSAGE: {
+        return {
+          ...state,
+          errorMessage: action.payload,
+        };
+      }
     default:
       return state;
   }
@@ -59,6 +67,10 @@ const authReducer = (state = initialState, action) => {
 
 export const setToggleIsFetchingActionCreator = (isFetching) => {
   return { type: SET_IS_FETCHING, payload: isFetching };
+};
+
+export const setErrorMessageActionCreator = (errorMessage) => {
+  return { type: SET_ERROR_MESSAGE, payload: errorMessage };
 };
 
 export const setRegisterDataActionCreator = (registerData) => {
@@ -100,7 +112,9 @@ export const login = (email, password) => {
       .catch((err) => {
         localStorage.removeItem("token");
         console.log(err);
-        console.log(err.response.data.message);
+        console.log("err.response.data.message ", err.response.data.message);
+        dispatch(setErrorMessageActionCreator(err.response.data.message))
+        dispatch(setToggleIsFetchingActionCreator(false))
       });
   };
 };
@@ -116,7 +130,12 @@ export const register = (email, nikname, password) => {
       })
       .catch((err) => {
         console.log(err);
-        console.log(err.response.data.message);
+        console.log("err.response.data.message ", err.response.data.message);
+        for(let i=0; i<err.response.data.errors.errors.length; i++) {
+          console.log("err.response.data.errors i ", err.response.data.errors.errors[i].msg);
+        }
+        dispatch(setErrorMessageActionCreator(err.response.data.message))
+        dispatch(setToggleIsFetchingActionCreator(false))
       });
   };
 };

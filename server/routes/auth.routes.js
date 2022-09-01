@@ -11,12 +11,12 @@ const fileService = require("../services/fileService");
 router.post(
   "/register",
   [
-    check("email", "Email is not correct").isEmail(),
-    check("nikname", "Nikname should be 3 and 12").isLength({
+    check("email", "Нкорректный email").isEmail(),
+    check("nikname", "Nikname должен быть длиной от 3 до 12 символов").isLength({
       min: 3,
       max: 12,
     }),
-    check("password", "Password should be 3 and 12").isLength({
+    check("password", "Пароль должен быть длиной от 3 до 12 символов").isLength({
       min: 3,
       max: 12,
     }),
@@ -27,7 +27,7 @@ router.post(
       if (!errors.isEmpty()) {
         res
           .status(400)
-          .json({ message: "Uncorrect email, nikname or password", errors });
+          .json({ message: "Некорректный email, nikname или пароль", errors });
       } else {
         const { email, nikname, password } = req.body;
         const candidate = await db.query(
@@ -57,8 +57,8 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await db.query(`select * from person where email=$1`, [email]);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    if (user.rows.length === 0) {
+      return res.status(400).json({ message: "Пользователя с таким email не существует" });
     } else {
       const isPassValid = bcrypt.compareSync(password, user.rows[0].password);
       if (!isPassValid) {

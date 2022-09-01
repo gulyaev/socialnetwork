@@ -6,19 +6,19 @@ import Registration from "./Registration"
 class RegistrationContainer extends React.Component {
     register = (email, nikname, password) => {
         this.props.register(email, nikname, password)
-        window.location.replace("/login");
     }
 
     render = () => {
         return (
-            <Registration register={this.register} isFetching={this.props.isFetching}/>
+            <Registration register={this.register} isFetching={this.props.isFetching} errorMessage={this.props.errorMessage}/>
         )
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        isFetching: state.auth.isFetching
+        isFetching: state.auth.isFetching,
+        errorMessage: state.auth.errorMessage
     }
 }
 

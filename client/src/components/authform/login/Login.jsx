@@ -39,7 +39,7 @@ const Login = (props) => {
                 <span style={{margin: "0 10px 0 0"}}>Войти</span>
                 {props.isFetching && <Spin indicator={antIcon} />}    
             </div>
-
+            {props.errorMessage && <span style={{fontSize: "12px", fontWeight:"bold", color:"red"}}>{props.errorMessage}</span>}
             <div className="form__registration"><NavLink to="/registration">Регистрация</NavLink></div>
             {/* <div className="form__or">
                 <div className="form__section_or">
