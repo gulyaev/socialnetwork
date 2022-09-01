@@ -3,7 +3,7 @@
 .wrapper {
   display: grid;
   min-height: 100vh;
-  grid-template: minmax(64px, auto) 1fr minmax(60px, auto) / 1fr;
+  grid-template: minmax(64px, auto) 1fr minmax(160px, auto) / 1fr;
   grid-template-areas:
     "header"
     "main"
@@ -37,7 +37,7 @@
         1fr/1fr minmax(auto, 101px) minmax(auto, 663px) minmax(auto, 141px)
         minmax(auto, 50px) 1fr;
       align-items: center;
-      background-color: rgb(131, 190, 84);
+      background-color: #E54B4A;
       padding: 0px 10px;
       z-index: 2;
     }
@@ -791,8 +791,8 @@
         }
 
         &__avatar {
-          height: 48px;
-          width: 48px;
+          //height: 48px;
+          //width: 48px;
           border-radius: 50%;
           margin: 0 15px 0 0;
           flex: 0 0 48px;
@@ -884,7 +884,7 @@
     display: grid;
     grid-template: 1fr / 1fr minmax(auto, 140px) minmax(auto, 880px) 1fr;
     align-items: center;
-    background-color: rgb(131, 190, 84);
+    background-color: #E54B4A;
     padding: 10px 10px;
     color: #fff;
 

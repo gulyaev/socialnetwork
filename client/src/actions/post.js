@@ -22,6 +22,7 @@ export const addStory = (title, content) => {
         config
       );
       dispatch(addStoryActionCreator(response.data));
+      window.location.replace("/post/" + response.data.result.id)
     } catch (error) {
       alert(error);
     }

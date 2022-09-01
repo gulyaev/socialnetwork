@@ -27,7 +27,7 @@ function Settings(props) {
 
   const dispatch = useDispatch();
 
-  const avatarLogo = <Avatar size={55} icon={<UserOutlined />} />;
+  const avatarLogo = <Avatar shape="square" size={155} icon={<UserOutlined />} />;
 
   const avatar = avatarData ? (
     <img src={`${API_URL}` + `${avatarData}`} alt="avatar" />

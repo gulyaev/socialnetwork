@@ -140,8 +140,8 @@ class App extends React.Component {
             </aside>
           </div>
           <div className="footer">
-            <div className="footer__copy">Copy</div>
-            <div className="footer__text">Text</div>
+            <div className="footer__copy">Оставайся с нами на связи</div>
+            <div className="footer__text">naglampe в социальных сетях</div>
           </div>
         </div>
       </BrowserRouter>

@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await db.query(`select * from person where email=$1`, [email]);
     if (user.rows.length === 0) {
-      return res.status(400).json({ message: "Пользователя с таким email не существует" });
+      return res.status(400).json({ message: `Пользователь с email ${email} не найден` });
     } else {
       const isPassValid = bcrypt.compareSync(password, user.rows[0].password);
       if (!isPassValid) {
