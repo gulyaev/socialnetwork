@@ -9,6 +9,7 @@ const AddPostPage = () => {
   const dispatch = useDispatch();
   const [header, setHeader] = useState("");
   const [content, setContent] = useState("");
+  const [error, setError] = useState("");
   const [load, setLoad] = useState(false);
   const [myFile, setMyFile] = useState();
 
@@ -18,6 +19,14 @@ const AddPostPage = () => {
   };
 
   let publish = (header, content, file) => {
+    if (header === "") {
+      setError("Введите текст заголовка")
+      return
+    }
+    if (content === "") {
+      setError("Введите текст поста")
+      return
+    }
     dispatch(addStory(header, content));
     setHeader("");
     setContent("");
@@ -111,6 +120,7 @@ const AddPostPage = () => {
         >
           Опубликовать
         </div>
+        {error!==null && <span style={{fontSize: "12px", fontWeight:"bold", color:"red"}}>{error}</span>}
       </div>
     </div>
   );
