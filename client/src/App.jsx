@@ -32,7 +32,13 @@ const ProfileContainer = lazy(() => import("./pages/profile/ProfileContainer"));
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.initializeApp();
+    this.props.initializeApp();  
+  }
+
+  componentDidUpdate() {
+    if (this.props.message === "Аккаунт создан") {
+          window.location.replace("/login");
+        }
   }
 
   render = () => {
@@ -146,6 +152,7 @@ class App extends React.Component {
 let mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
+    message: state.auth.message,
     initialized: state.app.initialized,
   };
 };
