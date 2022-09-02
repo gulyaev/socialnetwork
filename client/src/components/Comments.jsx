@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button, Comment, Form, Input, List } from "antd";
-import { Tooltip } from "antd";
 import moment from "moment";
 import { GrSend } from "react-icons/gr";
 import axios from "axios";
 import SingleComment from "./SingleComment";
 import ReplyComment from "./ReplyComment";
+import { UserOutlined } from "@ant-design/icons";
+import { Button, Comment, Form, Input, List, Avatar, Tooltip } from "antd";
+import { API_URL } from "../config";
 const { TextArea } = Input;
 
 //форма отправки комментария
@@ -62,6 +63,15 @@ const Comments = (props) => {
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+  //Аватар поля воода коммента (залогиненого пользователя)
+  const avatarLogo = <Avatar size={32} icon={<UserOutlined />} />;
+
+  const avatar = props.commentAuthorAvatar ? (
+    <img src={`${API_URL}` + `${props.commentAuthorAvatar}`} alt="avatar" />
+  ) : (
+    avatarLogo
+  );
+
   return (
     <div className="comments">
       {props.commentLists &&
@@ -72,6 +82,8 @@ const Comments = (props) => {
                 <SingleComment
                   comment={comment} //поля в таблице comment bd
                   author={comment.person_nikname}
+                  authorAvatar={comment.person_avatar}
+                  avatarLoggedIn={props.commentAuthorAvatar}
                   content={comment.comment_content}
                   refreshFunction={props.refreshFunction}
                   postId={props.postId}
@@ -88,9 +100,7 @@ const Comments = (props) => {
         })}
       {
         <Comment
-          avatar={
-            <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
-          }
+          avatar={avatar}
           content={
             <Editor
               onChange={handleChange}

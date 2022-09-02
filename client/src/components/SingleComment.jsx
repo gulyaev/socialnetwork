@@ -1,15 +1,16 @@
-import { Avatar, Button, Comment, Form, Input, List } from "antd";
-import { Tooltip } from "antd";
+import React, { createElement, useState } from "react";
+import moment from "moment";
+import { GrSend } from "react-icons/gr";
+import { Avatar, Button, Comment, Form, Input, List, Tooltip } from "antd";
 import {
   DislikeFilled,
   DislikeOutlined,
   LikeFilled,
   LikeOutlined,
+  UserOutlined
 } from "@ant-design/icons";
-import moment from "moment";
-import { GrSend } from "react-icons/gr";
-import React, { createElement, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 const { TextArea } = Input;
 
 const SingleComment = (props) => {
@@ -87,14 +88,29 @@ const SingleComment = (props) => {
       Reply to
     </span>,
   ];
+
+  //Аватар коммента из списка комментов
+  const avatarLogo = <Avatar size={32} icon={<UserOutlined />} />;
+
+  const avatar = props.authorAvatar ? (
+    <img src={`${API_URL}` + `${props.authorAvatar}`} alt="avatar" />
+  ) : (
+    avatarLogo
+  );
+
+  //Аватар поля ввода ответа (залогиненого пользователя)
+  const avatarLoggedIn = props.avatarLoggedIn ? (
+    <img src={`${API_URL}` + `${props.avatarLoggedIn}`} alt="avatar" />
+  ) : (
+    avatarLogo
+  );
+
   return (
     <>
       <Comment
         actions={actions}
         author={props.author && <a>{props.author}</a>}
-        avatar={
-          <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
-        }
+        avatar={avatar}
         content={props.content && <p>{props.content}</p>}
         datetime={
           <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
@@ -107,9 +123,7 @@ const SingleComment = (props) => {
         <div>
           <Comment
             style={{ padding: "0 0 0 40px" }}
-            avatar={
-              <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
-            }
+            avatar={avatarLoggedIn}
             content={
               <div style={{ display: "flex" }}>
                 <Form.Item style={{ flex: "0 1 447px", margin: "0 5px 0 0" }}>
