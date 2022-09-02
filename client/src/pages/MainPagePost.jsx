@@ -159,8 +159,8 @@ const MainPagePost = (props) => {
                   commentLists={commentLists}
                   postId={props.postId}
                   refreshFunction={updateComment}
-                  postAuthor={props.postAuthor}
-                  authorAvatar={props.authorAvatar}
+                  commentAuthorName={props.commentAuthorName}
+                  commentAuthorAvatar={props.commentAuthorAvatar}
                   setReady={setReady}
                 />
               }

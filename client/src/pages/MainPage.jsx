@@ -13,8 +13,8 @@ const MainPage = () => {
   const { search } = useLocation();
 
   const postsData = useSelector((state) => state.postsData.postsData);
-  const postAuthor = useSelector((state) => state.auth.nikname);
-  const authorAvatar = useSelector((state) => state.auth.avatar);
+  const commentAuthorName = useSelector((state) => state.auth.nikname);
+  const commentAuthorAvatar = useSelector((state) => state.auth.avatar);
 
   useEffect(() => {
     dispatch(getAllPosts(search));
@@ -37,8 +37,8 @@ const MainPage = () => {
             photo={post.post_photo}
             nikname={post.person_nikname}
             avatar={post.person_avatar}
-            postAuthor={postAuthor}
-            authorAvatar={authorAvatar}
+            commentAuthorName={commentAuthorName}
+            commentAuthorAvatar={commentAuthorAvatar}
           />
         );
       })}
