@@ -221,8 +221,8 @@ h6 {
 }
 
 .wrapper .main .content .profileinfo .ant-btn-default {
-  background-color: #8ac858;
-  border-color: #8ac858;
+  background-color: #E54B4A;
+  border-color: #E54B4A;
   font-size: 13px;
   line-height: 15px;
   font-weight: 500;
@@ -232,8 +232,8 @@ h6 {
 }
 
 .wrapper .main .content .profileinfo .ant-btn-primary {
-  background-color: #8ac858;
-  border-color: #8ac858;
+  background-color: #E54B4A;
+  border-color: #E54B4A;
   font-size: 13px;
   line-height: 15px;
   font-weight: 500;
@@ -243,8 +243,8 @@ h6 {
   display: block;
   padding: 4px 15px;
   text-align: center;
-  background-color: #8ac858;
-  border-color: #8ac858;
+  background-color: #E54B4A;
+  border-color: #E54B4A;
   border-radius: 2px;
   font-size: 13px;
   line-height: 22px;
@@ -263,7 +263,7 @@ h6 {
   font-size: 16px;
   border-radius: 2px;
   vertical-align: -3px;
-  background-color: green;
+  background-color: #E54B4A;
 }
 
 .wrapper .main .content .profileinfo__description {
@@ -311,7 +311,7 @@ h6 {
   font-size: 13px;
   line-height: 32px;
   font-weight: 500;
-  background-color: #8ac858;
+  background-color: #E54B4A;
   color: #fff;
   margin: 0 0 10px 0;
 }
@@ -411,7 +411,7 @@ h6 {
   left: -10px;
   width: 2px;
   height: 100%;
-  background-color: #83be54;
+  background-color: #E54B4A;
 }
 
 .wrapper .main .content .userspage {
@@ -423,7 +423,7 @@ h6 {
 }
 
 .wrapper .main .content .userspage__loader .ant-spin-dot-item {
-  background-color: #95de64;
+  background-color: #E54B4A;
 }
 
 .wrapper .main .content .userspage__pagination {
@@ -433,12 +433,12 @@ h6 {
 .wrapper .main .content .userspage__pagination .ant-pagination-item,
 .wrapper .main .content .userspage__pagination .ant-pagination-prev .ant-pagination-item-link,
 .wrapper .main .content .userspage__pagination .ant-pagination-next .ant-pagination-item-link {
-  border: 1px solid #75aa4b;
+  border: 1px solid #E54B4A;
   border-radius: 50%;
 }
 
 .wrapper .main .content .userspage__pagination .ant-pagination-item.ant-pagination-item-active {
-  border: 2px solid #75aa4b;
+  border: 2px solid #E54B4A;
 }
 
 .wrapper .main .content .userspage__pagination .ant-pagination-item.ant-pagination-item-active a,
@@ -446,6 +446,13 @@ h6 {
 .wrapper .main .content .userspage__pagination .ant-pagination-item a:hover,
 .wrapper .main .content .userspage__pagination .ant-pagination-item a:focus {
   color: #212121;
+}
+
+.wrapper .main .content .addpostpage__uploadplus {
+  color: #E54B4A;
+  border: 1px solid #E54B4A;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .wrapper .main .content .addpostpage__container {
@@ -534,7 +541,7 @@ h6 {
 }
 
 .wrapper .main .content .settings__deleteaccount {
-  color: red;
+  color: gray;
   font-size: 12px;
   cursor: pointer;
 }
@@ -591,8 +598,8 @@ h6 {
   display: block;
   padding: 4px 15px;
   text-align: center;
-  background-color: #8ac858;
-  border-color: #8ac858;
+  background-color: #E54B4A;
+  border-color: #E54B4A;
   border-radius: 2px;
   font-size: 13px;
   line-height: 22px;
@@ -607,16 +614,22 @@ h6 {
   cursor: pointer;
 }
 
+.wrapper .main .content .settings__avatarselecticon {
+  border-radius: 50%;
+  background-color: #E54B4A;
+  color: #FFF;
+}
+
 .wrapper .main .content .ant-typography-copy {
-  color: #8ac858;
+  color: #E54B4A;
 }
 
 .wrapper .main .content .anticon-copy {
-  color: #8ac858;
+  color: #E54B4A;
 }
 
 .wrapper .main .content .ant-tooltip-open {
-  color: #8ac858;
+  color: #E54B4A;
 }
 
 .wrapper .main .sidebar {
@@ -698,7 +711,7 @@ h6 {
 }
 
 .wrapper .main .sidebar .form__button {
-  background-color: #8ac858;
+  background-color: #E54B4A;
   width: 100%;
   text-align: center;
   font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
@@ -716,13 +729,13 @@ h6 {
   font-size: 13px;
   line-height: 20px;
   font-weight: 500;
-  color: #75aa4b;
+  color: #E54B4A;
   cursor: pointer;
 }
 
 .wrapper .main .sidebar .form__registration a.active,
 .wrapper .main .sidebar .form__registration a {
-  color: #75aa4b;
+  color: #E54B4A;
 }
 
 .wrapper .main .sidebar .form__or {
@@ -848,7 +861,7 @@ h6 {
   left: 0px;
   width: 2px;
   height: 100%;
-  background-color: #83be54;
+  background-color: #E54B4A;
 }
 
 .wrapper .main .sidebar .menu__navlink {
@@ -892,13 +905,13 @@ h6 {
   font-size: 13px;
   line-height: 20px;
   font-weight: 400;
-  color: #75aa4b;
+  color: #E54B4A;
   cursor: pointer;
 }
 
 .wrapper .main .sidebar .users__all a.active,
 .wrapper .main .sidebar .users__all a {
-  color: #75aa4b;
+  color: #E54B4A;
 }
 
 .wrapper .main .sidebar .users__items {
@@ -964,6 +977,8 @@ h6 {
 }
 
 .wrapper .main .sidebar .userscard__avatar {
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   margin: 0 15px 0 0;
   -webkit-box-flex: 0;
@@ -1004,7 +1019,7 @@ h6 {
   font-size: 13px;
   line-height: 20px;
   font-weight: 400;
-  color: #75aa4b;
+  color: #E54B4A;
   -ms-flex-item-align: start;
       align-self: flex-start;
   cursor: pointer;
@@ -1012,7 +1027,7 @@ h6 {
 
 .wrapper .main .sidebar .userscard__all a.active,
 .wrapper .main .sidebar .userscard__all a {
-  color: #75aa4b;
+  color: #E54B4A;
 }
 
 .wrapper .main .sidebar .userscard__items {
@@ -1064,11 +1079,8 @@ h6 {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr;
-  -ms-grid-columns: 1fr minmax(auto, 140px) minmax(auto, 880px) 1fr;
-      grid-template: 1fr/1fr minmax(auto, 140px) minmax(auto, 880px) 1fr;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-grid-columns: 1fr minmax(auto, 440px) minmax(auto, 510px) 1fr;
+      grid-template: 1fr/1fr minmax(auto, 440px) minmax(auto, 510px) 1fr;
   background-color: #E54B4A;
   padding: 10px 10px;
   color: #fff;
@@ -1078,13 +1090,37 @@ h6 {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
+  font-size: 1.6em;
 }
 
 .wrapper .footer__text {
   -ms-grid-column: 3;
   -ms-grid-column-span: 1;
   grid-column: 3/4;
-  text-align: end;
+  text-align: start;
+  font-size: 1.6em;
+}
+
+.wrapper .footer__text .social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .footer__text .social__viber, .wrapper .footer__text .social__vk, .wrapper .footer__text .social__tg, .wrapper .footer__text .social__gmail {
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  margin: 0 25px 0 0;
+  cursor: pointer;
+}
+
+.wrapper .footer__text .social__viber img,
+.wrapper .footer__text .social__vk img,
+.wrapper .footer__text .social__tg img,
+.wrapper .footer__text .social__gmail img {
+  max-width: 100%;
+  display: block;
 }
 
 .wrapper .sectiongray {
@@ -1096,7 +1132,7 @@ h6 {
 .wrapper .addpost {
   text-align: center;
   padding: 0 20px;
-  background-color: #8ac858;
+  background-color: #E54B4A;
   font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
   cursor: pointer;
   font-weight: 500;
@@ -1322,7 +1358,7 @@ h6 {
 }
 
 .wrapper .singlepostpage .user__editicon {
-  color: #8ac858;
+  color: #E54B4A;
   font-size: 18px;
   cursor: pointer;
 }

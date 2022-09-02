@@ -57,15 +57,7 @@ const AddPostPage = () => {
           className="addpostpage__upload"
           style={{ padding: "14px" }}
         >
-          <AiOutlinePlus
-            size={30}
-            style={{
-              color: "#75aa4b",
-              border: "1px solid #75aa4b",
-              borderRadius: "50%",
-              cursor: "pointer",
-            }}
-          />
+          <AiOutlinePlus className="addpostpage__uploadplus" size={30} />
         </label>
         <input
           type="file"
