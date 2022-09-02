@@ -140,8 +140,33 @@ class App extends React.Component {
             </aside>
           </div>
           <div className="footer">
-            <div className="footer__copy">Оставайся с нами на связи</div>
-            <div className="footer__text">naglampe в социальных сетях</div>
+            <div className="footer__copy">
+              <p>Оставайся с нами на связи</p>
+              <img src={require("./img/tgbanner.jpeg")} alt="telegrambanner" />
+            </div>
+            <div className="footer__text">
+              <p>naglampe в социальных сетях</p>
+              <div className="social">
+                    <div href="#" className="social__viber">
+                      <img
+                        src={require("./img/viber.png")}
+                        alt="viber"
+                      />
+                    </div>
+                    <div href="" className="social__vk">
+                      <img
+                        src={require("./img/vk.png")}
+                        alt="vk"
+                      />
+                    </div>
+                    <div href="" className="social__tg">
+                      <img
+                        src={require("./img/tg.png")}
+                        alt="telegram"
+                      />
+                    </div>
+                  </div> 
+            </div>
           </div>
         </div>
       </BrowserRouter>

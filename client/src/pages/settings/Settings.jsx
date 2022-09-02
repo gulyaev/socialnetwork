@@ -88,14 +88,7 @@ function Settings(props) {
           </div>
 
           <label htmlFor="file">
-            <FaUserCircle
-              size={30}
-              style={{
-                borderRadius: "50%",
-                backgroundColor: "#75aa4b",
-                color: "#fff",
-              }}
-            />
+            <FaUserCircle className="settings__avatarselecticon" size={30}/>
           </label>
 
           <input

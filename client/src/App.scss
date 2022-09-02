@@ -107,8 +107,8 @@
         }
 
         .ant-btn-default {
-          background-color: #8ac858;
-          border-color: #8ac858;
+          background-color: #E54B4A;
+          border-color: #E54B4A;
           font-size: 13px;
           line-height: 15px;
           font-weight: 500;
@@ -118,8 +118,8 @@
         }
 
         .ant-btn-primary {
-          background-color: #8ac858;
-          border-color: #8ac858;
+          background-color: #E54B4A;
+          border-color: #E54B4A;
           font-size: 13px;
           line-height: 15px;
           font-weight: 500;
@@ -129,8 +129,8 @@
           display: block;
           padding: 4px 15px;
           text-align: center;
-          background-color: #8ac858;
-          border-color: #8ac858;
+          background-color: #E54B4A;
+          border-color: #E54B4A;
           border-radius: 2px;
           font-size: 13px;
           line-height: 22px;
@@ -149,7 +149,7 @@
           font-size: 16px;
           border-radius: 2px;
           vertical-align: -3px;
-          background-color: green;
+          background-color: #E54B4A;
         }
 
         &__description {
@@ -197,7 +197,7 @@
           font-size: 13px;
           line-height: 32px;
           font-weight: 500;
-          background-color: #8ac858;
+          background-color: #E54B4A;
           color: #fff;
           margin: 0 0 10px 0;
         }
@@ -282,7 +282,7 @@
             left: -10px;
             width: 2px;
             height: 100%;
-            background-color: rgb(131, 190, 84);
+            background-color: #E54B4A;
           }
         }
       }
@@ -294,7 +294,7 @@
           text-align: center;
 
           .ant-spin-dot-item {
-            background-color: #95de64;
+            background-color: #E54B4A;
           }
         }
 
@@ -304,12 +304,12 @@
           .ant-pagination-item,
           .ant-pagination-prev .ant-pagination-item-link,
           .ant-pagination-next .ant-pagination-item-link {
-            border: 1px solid #75aa4b;
+            border: 1px solid #E54B4A;
             border-radius: 50%;
           }
 
           .ant-pagination-item.ant-pagination-item-active {
-            border: 2px solid #75aa4b;
+            border: 2px solid #E54B4A;
           }
 
           .ant-pagination-item.ant-pagination-item-active a,
@@ -322,6 +322,13 @@
       }
 
       .addpostpage {
+        &__uploadplus{
+          color: #E54B4A;
+          border: 1px solid #E54B4A;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+
         &__container {
           width: 588px;
           margin: 0 auto;
@@ -404,7 +411,7 @@
         }
 
         &__deleteaccount {
-          color: red;
+          color: gray;
           font-size: 12px;
           cursor: pointer;
         }
@@ -452,8 +459,8 @@
           display: block;
           padding: 4px 15px;
           text-align: center;
-          background-color: #8ac858;
-          border-color: #8ac858;
+          background-color: #E54B4A;
+          border-color: #E54B4A;
           border-radius: 2px;
           font-size: 13px;
           line-height: 22px;
@@ -465,16 +472,22 @@
           align-self: center;
           cursor: pointer;
         }
+
+        &__avatarselecticon {
+          border-radius: 50%;
+          background-color: #E54B4A;
+          color: #FFF;
+        }
       }
 
       .ant-typography-copy {
-        color: #8ac858;
+        color: #E54B4A;
       }
       .anticon-copy {
-        color: #8ac858;
+        color: #E54B4A;
       }
       .ant-tooltip-open {
-        color: #8ac858;
+        color: #E54B4A;
       }
 
 
@@ -545,7 +558,7 @@
         }
 
         &__button {
-          background-color: #8ac858;
+          background-color: #E54B4A;
           width: 100%;
           text-align: center;
           font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
@@ -563,13 +576,13 @@
           font-size: 13px;
           line-height: 20px;
           font-weight: 500;
-          color: #75aa4b;
+          color: #E54B4A;
           cursor: pointer;
         }
 
         &__registration a.active,
         &__registration a {
-          color: #75aa4b;
+          color: #E54B4A;
         }
 
         &__or {
@@ -689,7 +702,7 @@
           left: 0px;
           width: 2px;
           height: 100%;
-          background-color: rgb(131, 190, 84);
+          background-color: #E54B4A;
         }
 
         &__navlink {
@@ -727,13 +740,13 @@
           font-size: 13px;
           line-height: 20px;
           font-weight: 400;
-          color: #75aa4b;
+          color: #E54B4A;
           cursor: pointer;
         }
 
         &__all a.active,
         &__all a {
-          color: #75aa4b;
+          color: #E54B4A;
         }
 
         &__items {
@@ -791,8 +804,8 @@
         }
 
         &__avatar {
-          //height: 48px;
-          //width: 48px;
+          height: 60px;
+          width: 60px;
           border-radius: 50%;
           margin: 0 15px 0 0;
           flex: 0 0 48px;
@@ -829,14 +842,14 @@
           font-size: 13px;
           line-height: 20px;
           font-weight: 400;
-          color: #75aa4b;
+          color: #E54B4A;
           align-self: flex-start;
           cursor: pointer;
         }
 
         &__all a.active,
         &__all a {
-          color: #75aa4b;
+          color: #E54B4A;
         }
 
         &__items {
@@ -882,19 +895,45 @@
   .footer {
     grid-area: footer;
     display: grid;
-    grid-template: 1fr / 1fr minmax(auto, 140px) minmax(auto, 880px) 1fr;
-    align-items: center;
+    grid-template: 1fr / 1fr minmax(auto, 440px) minmax(auto, 510px) 1fr;
+    //align-items: center;
     background-color: #E54B4A;
     padding: 10px 10px;
     color: #fff;
 
     &__copy {
       grid-column: 2/3;
+      font-size: 1.6em;
     }
 
     &__text {
       grid-column: 3/4;
-      text-align: end;
+      text-align: start;
+      font-size: 1.6em;
+
+      .social {
+        display: flex;
+        //justify-content: space-around;
+
+        &__viber,
+        &__vk,
+        &__tg,
+        &__gmail {
+          width: 32px;
+          height: 32px;
+          overflow: hidden;
+          margin: 0 25px 0 0;
+          cursor: pointer;
+        }
+
+        &__viber img,
+        &__vk img,
+        &__tg img,
+        &__gmail img {
+          max-width: 100%;
+          display: block;
+        }
+      }
     }
   }
 
@@ -907,7 +946,7 @@
   .addpost {
     text-align: center;
     padding: 0 20px;
-    background-color: #8ac858;
+    background-color: #E54B4A;
     font-family: "Roboto", "Open Sans", helvetica, arial, sans-serif;
     cursor: pointer;
     font-weight: 500;
@@ -1121,7 +1160,7 @@
       }
 
       &__editicon {
-        color: #8ac858;
+        color: #E54B4A;
         font-size: 18px;
         cursor: pointer;
       }
