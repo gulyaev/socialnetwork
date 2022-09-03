@@ -61,7 +61,7 @@ const AddPostPage = () => {
         </label>
         <input
           type="file"
-          accept=".jpg"
+          accept=".jpg, .png"
           id="file"
           name="uploaded_file"
           style={{ display: "none" }}

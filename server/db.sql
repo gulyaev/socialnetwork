@@ -24,6 +24,8 @@ add column avatar VARCHAR(255);
 
 
 
+
+
 create table post (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
@@ -40,6 +42,16 @@ add column dislikes INTEGER;
 
 ALTER TABLE post 
 add column comments INTEGER;
+
+ALTER TABLE post 
+DROP COLUMN comments;
+
+ALTER TABLE post 
+add column comments INTEGER[];
+
+update post 
+set comments  = ARRAY[]::integer[];
+
 
 ALTER TABLE post 
 add column views INTEGER;
@@ -63,6 +75,20 @@ add column categories VARCHAR[];
 update post 
 set categories  = ARRAY[]::text[];
 
+/*установка в 0 массива комментов нового поста еще без комментов*/
+insert into post(comments) values(array[0]);
+/*установка в 0 массива комментов нового поста (инициализация сразу после создания поста)*/
+update post set comments = array_cat(comments, array[0]) where id=85;
+/*добавление в массив комментов нового элемента*/
+update post set comments = array_append(comments, 1) where id=71;
+
+
+/*установка в 0 комментов нового поста (инициализация сразу после создания поста)*/
+update post set comments = 0 where id=71;
+/*обновление количества комментов в таблице поста при добавлении нового коммента*/
+update post set comments = comments + 1 where id=71;
+/*обновление количества комментов в таблице поста при удалении коммента*/
+update post set comments = comments - 1 where id=71;
 
 create TABLE files (
     id SERIAL PRIMARY KEY,
@@ -90,6 +116,8 @@ ADD CONSTRAINT files_person_id_fkey
   FOREIGN KEY (person_id)
   REFERENCES person(id)
   ON DELETE CASCADE;
+
+
 
 
 
@@ -128,6 +156,8 @@ ADD CONSTRAINT comment_post_id_fkey
   FOREIGN KEY (post_id)
   REFERENCES post(id)
   ON DELETE CASCADE;
+
+
 
 
 create table category (

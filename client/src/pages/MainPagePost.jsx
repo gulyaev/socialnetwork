@@ -60,7 +60,7 @@ const MainPagePost = (props) => {
               color: "#757575",
               cursor: "pointer",
             }}
-            onMouseOver={({ target }) => (target.style.color = "#75aa4b")}
+            onMouseOver={({ target }) => (target.style.color = "#E54B4A")}
             onMouseOut={({ target }) => (target.style.color = "#757575")}
           />
           <div>{props.likes - props.dislikes}</div>
@@ -71,7 +71,7 @@ const MainPagePost = (props) => {
               cursor: "pointer",
               transform: "scale(-1, 1)",
             }}
-            onMouseOver={({ target }) => (target.style.color = "red")}
+            onMouseOver={({ target }) => (target.style.color = "#0088CC")}
             onMouseOut={({ target }) => (target.style.color = "#757575")}
           />
         </div>
