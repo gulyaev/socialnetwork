@@ -3,13 +3,13 @@ const db = require("../db");
 class PostController {
   async createPost(req, res) {
     try {
-      const { category, title, content, photo } = req.body;
+      const { photo, title, content, category } = req.body;
       const userId = req.user.id;
 
       const p = new Promise((resolve, reject) => {
         const newPost = db.query(
-          `insert into post (title, content, person_id, likes, dislikes, views, comments, photo) values ($1, $2, $3, 1, 1, 1, 1, $4) RETURNING *`,
-          [title, content, userId, photo]
+          `insert into post (photo, title, content, person_id, likes, dislikes, views, comments ) values ($1, $2, $3, $4, 1, 1, 1, 0) RETURNING *`,
+          [photo, title, content, userId ]
         );
         resolve(newPost);
       });

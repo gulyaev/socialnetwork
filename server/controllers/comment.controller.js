@@ -14,7 +14,12 @@ class CommentController {
         resolve(newComment);
       });
 
-      p.then((receivedNewComment) => {
+      p.then(()=>{
+        return new Promise((resolve, reject)=>{
+          const post = db.query(`update post set comments = comments + 1 where id=$1 RETURNING *`, [postId]);
+          resolve(post);
+        });
+      }).then(() => {
         return new Promise((resolve, reject) => {
           const comments = db.query(
             `select c.id as comment_id,
@@ -52,7 +57,12 @@ class CommentController {
         resolve(newComment);
       });
 
-      p.then((receivedNewComment) => {
+      p.then(()=>{
+        return new Promise((resolve, reject)=>{
+          const post = db.query(`update post set comments = comments + 1 where id=$1 RETURNING *`, [postId]);
+          resolve(post);
+        });
+      }).then(() => {
         return new Promise((resolve, reject) => {
           const comments = db.query(
             `select c.id as comment_id,
