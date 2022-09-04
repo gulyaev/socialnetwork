@@ -67,6 +67,34 @@ export const postApi = {
       //config
     );
   },
+
+  likePost(postId) {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    };
+
+    const bodyParameters = {
+    };
+    return axios.put(
+      baseURL + `likepost/`+ postId,
+      bodyParameters,
+      config
+    );
+  },
+
+  dislikePost(postId) {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    };
+
+    const bodyParameters = {
+    };
+    return axios.put(
+      baseURL + `dislikepost/`+ postId,
+      bodyParameters,
+      config
+    );
+  },
 };
 
 export const authApi = {
