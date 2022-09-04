@@ -185,6 +185,36 @@ class PostController {
       console.log(error);
     }
   }
+
+  async likePost(req, res) {
+    const postId = req.params.id;
+    const userId = req.user.id;
+
+    try {
+          const likedPost = await db.query(
+            `update post set likes=likes+1 where id=$1 RETURNING *`,
+            [postId]
+          );
+          res.status(200).json(likedPost.rows[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async dislikePost(req, res) {
+    const postId = req.params.id;
+    const userId = req.user.id;
+
+    try {
+          const dislikePost = await db.query(
+            `update post set dislikes=dislikes+1 where id=$1 RETURNING *`,
+            [postId]
+          );
+          res.status(200).json(dislikedPost.rows[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 module.exports = new PostController();

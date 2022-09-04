@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../actions/post";
-import MainPagePost from "./MainPagePost";
+import MainPagePostContainer from "./mainpagepost/MainPagePostContainer";
 import { BiComment } from "react-icons/bi";
 import { IoEyeOutline } from "react-icons/io5";
 import { AiFillDislike } from "react-icons/ai";
@@ -24,12 +24,12 @@ const MainPage = () => {
     <div className="mainpage">
       {postsData.map((post) => {
         return (
-          <MainPagePost
+          <MainPagePostContainer
             postId={post.post_id}
             title={post.post_title}
             content={post.post_content}
-            likes={post.post_likes}
-            dislikes={post.post_dislikes}
+            stateLikes={post.post_likes}
+            stateDislikes={post.post_dislikes}
             views={post.post_views}
             comments={post.post_comments}
             categories={post.post_categories}

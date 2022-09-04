@@ -52,7 +52,6 @@ function ReplyComment(props) {
   };
 
   if (childCommentNumber) {
-    debugger;
     return (
       <>
         {childCommentNumber && (

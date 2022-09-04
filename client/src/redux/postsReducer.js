@@ -3,10 +3,12 @@ import { postApi } from "../api/api";
 const SET_POSTS = "SET-POST";
 const SET_SINGLE_POST = "SET-SINGLE-POST";
 const ADD_STORY = "ADD-STORY";
+const SET_IS_FETCHING = "SET-IS-FETCHING";
 
 let initialState = {
   postsData: [],
   singlePostsData: [],
+  isFetching: false,
 };
 
 const postsReducer = (state = initialState, action) => {
@@ -38,9 +40,19 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         postsData: [...state.postsData, newStory],
       };
+    case SET_IS_FETCHING: {
+      return {
+        ...state,
+        isFetching: action.payload,
+      };
+    }
     default:
       return state;
   }
+};
+
+export const setToggleIsFetchingActionCreator = (isFetching) => {
+  return { type: SET_IS_FETCHING, payload: isFetching };
 };
 
 export const setPostsActionCreator = (data) => {
@@ -57,20 +69,40 @@ export const addStoryActionCreator = (data) => {
 
 export const getPostsByUserThunkCreator = () => {
   return (dispatch) => {
-    //dispatch(setToggleIsFetchingActionCreator(true));
+    dispatch(setToggleIsFetchingActionCreator(true));
     postApi.getPostsByUser().then((res) => {
-      //dispatch(setToggleIsFetchingActionCreator(false));
       dispatch(setPostsActionCreator(res.data));
+      dispatch(setToggleIsFetchingActionCreator(false));
     });
   };
 };
 
 export const getSinglePostThunkCreator = (postId) => {
   return (dispatch) => {
-    //dispatch(setToggleIsFetchingActionCreator(true));
+    dispatch(setToggleIsFetchingActionCreator(true));
     postApi.getSinglePost(postId).then((res) => {
-      //dispatch(setToggleIsFetchingActionCreator(false));
       dispatch(setSinglePostActionCreator(res.data));
+      dispatch(setToggleIsFetchingActionCreator(false));
+    });
+  };
+};
+
+export const likePost = (postId) => {
+  return (dispatch) => {
+    dispatch(setToggleIsFetchingActionCreator(true));
+    postApi.likePost(postId).then((res) => {
+      dispatch(setSinglePostActionCreator(res.data));
+      dispatch(setToggleIsFetchingActionCreator(false));
+    });
+  };
+};
+
+export const dislikePost = (postId) => {
+  return (dispatch) => {
+    dispatch(setToggleIsFetchingActionCreator(true));
+    postApi.dislikePost(postId).then((res) => {
+      dispatch(setSinglePostActionCreator(res.data));
+      dispatch(setToggleIsFetchingActionCreator(false));
     });
   };
 };

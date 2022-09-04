@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BiComment } from "react-icons/bi";
 import { IoEyeOutline } from "react-icons/io5";
-import { AiFillDislike } from "react-icons/ai";
-import { AiFillLike } from "react-icons/ai";
+import { AiFillDislike, AiFillLike, AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
-import { API_URL } from "../config";
+import { API_URL } from "../../config";
 import { NavLink } from "react-router-dom";
-import Comments from "../components/Comments";
+import Comments from "../../components/Comments";
 import axios from "axios";
 //import moment from "moment";
 //import "moment/locale/ru";
@@ -15,6 +14,13 @@ import axios from "axios";
 const MainPagePost = (props) => {
   const [commentLists, setCommentLists] = useState([]);
   const [ready, setReady] = useState([]);
+
+  const [likes, setLikes] = useState(props.stateLikes);
+  const [dislikes, setDislikes] = useState(props.stateDislikes);
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisliked, setIsDisliked] = useState(false);
+
   const avatarLogo = <Avatar size={20} icon={<UserOutlined />} />;
   const avatar = props.avatar ? (
     <img src={`${API_URL}` + `${props.avatar}`} alt="avatar" />
@@ -55,17 +61,34 @@ const MainPagePost = (props) => {
       <div className="story">
         <div className="story__left">
           <AiFillLike
-            style={{
+            style={isLiked ? {
               fontSize: "25px",
-              color: "#757575",
+              color: "#E54B4A",//красный
+              cursor: "pointer",
+              pointerEvents: "none"
+            } : {
+              fontSize: "25px",
+              color: "#757575",//синий
               cursor: "pointer",
             }}
             onMouseOver={({ target }) => (target.style.color = "#E54B4A")}
             onMouseOut={({ target }) => (target.style.color = "#757575")}
+            onClick={()=>{
+              setIsLiked(true)
+              setIsDisliked(false)
+              setLikes(likes+1)
+              props.likePostHandler(props.postId)
+            }}
           />
-          <div>{props.likes - props.dislikes}</div>
+          <div>{likes - dislikes}</div>
           <AiFillDislike
-            style={{
+            style={ isDisliked ? {
+                fontSize: "25px",
+                color: "#0088CC",
+                cursor: "pointer",
+                transform: "scale(-1, 1)",
+                pointerEvents: "none"
+              } : {
               fontSize: "25px",
               color: "#757575",
               cursor: "pointer",
@@ -73,9 +96,14 @@ const MainPagePost = (props) => {
             }}
             onMouseOver={({ target }) => (target.style.color = "#0088CC")}
             onMouseOut={({ target }) => (target.style.color = "#757575")}
+            onClick={()=>{
+              setIsDisliked(true)
+              setIsLiked(false)
+              setLikes(likes-1)
+              props.dislikePostHandler(props.postId)
+            }}
           />
         </div>
-
         <div className="story__main">
           <div className="story__header">
             <div className="story__container">
@@ -94,7 +122,6 @@ const MainPagePost = (props) => {
               </NavLink>
             </div>
           </div>
-
           <div className="story__content">
             <div className="story__container">
               <div className="story__photo">{postPhoto}</div>
@@ -146,6 +173,51 @@ const MainPagePost = (props) => {
                       <IoEyeOutline style={{ fontSize: "20px" }} />
                     </span>
                     <span className="story__views-count">{props.views}</span>
+                  </div>
+                  <div className="story__likes">
+                    <span className="story__likes-icon">
+                      <AiOutlineLike  
+                      style={isLiked ? {
+                        fontSize: "20px",
+                        cursor: "pointer",
+                        pointerEvents: "none"
+                      } : {
+                        fontSize: "20px",
+                        cursor: "pointer",
+                      }}
+                      onClick={()=>{
+                        setIsLiked(true)
+                        setIsDisliked(false)
+                        setLikes(likes+1)
+                        props.likePostHandler(props.postId)
+                      }}
+                      />
+                    </span>
+                    <span className="story__likes-count">{likes}</span>
+                  </div>
+
+                  <div className="story__dislikes">
+                    <span className="story__dislikes-icon">
+                      <AiOutlineDislike 
+                      style={ isDisliked ? {
+                        fontSize: "20px",
+                        cursor: "pointer",
+                        transform: "scale(-1, 1)",
+                        pointerEvents: "none"
+                      } : {
+                      fontSize: "20px",
+                      cursor: "pointer",
+                      transform: "scale(-1, 1)",
+                    }} 
+                      onClick={()=>{
+                        setIsDisliked(true)
+                        setIsLiked(false)
+                        setDislikes(dislikes+1)
+                        props.dislikePostHandler(props.postId)
+                      }}
+                      />
+                    </span>
+                    <span className="story__likes-count">{dislikes}</span>
                   </div>
                 </div>
                 <div className="story__emotions"></div>

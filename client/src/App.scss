@@ -1052,7 +1052,7 @@
     }
 
     &__photo {
-      max-width: 650px;
+      max-width: 300px;
       overflow: hidden;
     }
 
@@ -1077,7 +1077,7 @@
     }
 
     &__comments {
-      margin: 0 25px 0 0;
+      margin: 0 15px 0 0;
       position: relative;
     }
 
@@ -1092,7 +1092,7 @@
     }
 
     &__views {
-      margin: 0 25px 0 0;
+      margin: 0 35px 0 0;
       position: relative;
     }
 
@@ -1103,6 +1103,36 @@
     }
 
     &__views-count {
+      padding: 0 0 0 23px;
+    }
+
+    &__likes {
+      margin: 0 15px 0 0;
+      position: relative;
+    }
+
+    &__likes-icon {
+      position: absolute;
+      top: 5px;
+      left: 0;
+    }
+
+    &__likes-count {
+      padding: 0 0 0 23px;
+    }
+
+    &__dislikes {
+      margin: 0 25px 0 0;
+      position: relative;
+    }
+
+    &__dislikes-icon {
+      position: absolute;
+      top: 5px;
+      left: 0;
+    }
+
+    &__dislikes-count {
       padding: 0 0 0 23px;
     }
   }

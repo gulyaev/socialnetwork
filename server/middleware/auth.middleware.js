@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
         next();
 
     } catch (e) {
-        return res.status(401).json({ message: `${e}` });
+        return res.status(401).json({ messagent: `${e}` });
     }
 
 }
