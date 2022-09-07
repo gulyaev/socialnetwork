@@ -8,8 +8,6 @@ import { API_URL } from "../../config";
 import { NavLink } from "react-router-dom";
 import Comments from "../../components/Comments";
 import axios from "axios";
-//import moment from "moment";
-//import "moment/locale/ru";
 
 const MainPagePost = (props) => {
   const [commentLists, setCommentLists] = useState([]);
@@ -21,6 +19,9 @@ const MainPagePost = (props) => {
 
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
+
+  const createdAt = new Date(props.postdate);
+  const createdDate = createdAt.toLocaleDateString('ru-RU');
 
   const avatarLogo = <Avatar size={20} icon={<UserOutlined />} />;
   const avatar = props.avatar ? (
@@ -70,9 +71,6 @@ const MainPagePost = (props) => {
   const postPhoto = props.photo && (
     <img src={`${API_URL}` + `${props.photo}`} alt="photo" />
   );
-
-  const createdAt = new Date(props.postdate);
-  const createdDate = createdAt.toLocaleDateString('ru-RU');
 
   return (
     <div className="postpage">

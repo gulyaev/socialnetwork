@@ -52,6 +52,7 @@ function ReplyComment(props) {
                     stateAuth={props.stateAuth}
                     authorAvatar={comment.person_avatar}
                     avatarLoggedIn={props.commentAuthorAvatar}
+                    commentdate={comment.comment_commentdate}
                   />
 
                   <ReplyComment
@@ -60,6 +61,7 @@ function ReplyComment(props) {
                     postId={props.postId}
                     parentCommentId={comment.comment_id}
                     avatarLoggedIn={props.commentAuthorAvatar}
+                    commentdate={comment.comment_commentdate}
                   />
                 </>
               )}
