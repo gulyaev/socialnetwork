@@ -127,6 +127,7 @@ class CommentController {
               c.response_to as comment_responseto,
               c.writer as comment_writer,
               c.responseto_nikname as comment_responsetonikname,
+              c.commentdate as comment_commentdate,
               per.id as person_id,
               per.nikname as person_nikname,
               per.avatar as person_avatar

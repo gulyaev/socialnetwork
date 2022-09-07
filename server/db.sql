@@ -160,6 +160,9 @@ ADD CONSTRAINT comment_post_id_fkey
 ALTER TABLE comment 
 add column responseto_nikname VARCHAR(255);
 
+ALTER TABLE comment 
+add column commentdate DATE NOT NULL DEFAULT CURRENT_DATE;
+
 
 
 

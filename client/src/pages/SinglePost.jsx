@@ -8,8 +8,6 @@ import { Avatar } from "antd";
 import { API_URL } from "../config";
 import { NavLink } from "react-router-dom";
 import Comments from "../components/Comments";
-import moment from "moment";
-import "moment/locale/ru";
 import { DeleteFilled } from "@ant-design/icons";
 import { MdModeEditOutline } from "react-icons/md";
 import { Tooltip } from "antd";
@@ -26,6 +24,8 @@ const SinglePost = (props) => {
   const [editMode, setEditMode] = useState(false);
   const textDelete = <span>Удалить</span>;
   const textEdit = <span>Редактировать</span>;
+  const createdAt = new Date(props.singlePostsData.post_postdate);
+  const createdDate = createdAt.toLocaleDateString('ru-RU');
 
   const postId = location.pathname.split("/")[2];
 
@@ -114,9 +114,10 @@ const SinglePost = (props) => {
                       </NavLink>
                     </div>
                     <div className="user__time">
-                      {moment(props.singlePostsData.post_postdate)
-                        .locale("ru")
-                        .fromNow()}
+                      {
+                        //moment(props.singlePostsData.post_postdate).locale("ru").fromNow()
+                        createdDate
+                      }
                     </div>
                   </div>
 

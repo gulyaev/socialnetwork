@@ -1,6 +1,5 @@
 import React, { createElement, useState } from "react";
 import { useSelector } from "react-redux";
-import moment from "moment";
 import { GrSend } from "react-icons/gr";
 import { Avatar, Button, Comment, Form, Input, List, Tooltip } from "antd";
 import {
@@ -33,6 +32,8 @@ const SingleComment = (props) => {
   const [comment, setComment] = useState(props.content);
   const dispatch = useDispatch();
   const commentAuthorAvatar = useSelector((state) => state.auth.avatar);
+  const createdAt = new Date(props.commentdate);
+  const createdDate = createdAt.toLocaleDateString('ru-RU');
 
   const handleSubmit = (e) => {
     if (!value) return;
@@ -182,8 +183,6 @@ const SingleComment = (props) => {
   return (
     <>
     <div style={{display: "flex", justifyContent:"space-between"}}>
-
-
       <div>
         <Comment
           actions={actions}
@@ -211,9 +210,12 @@ const SingleComment = (props) => {
             )
           }
           datetime={
-            <Tooltip title={moment().format("YYYY-MM-DD HH:MM:SS")}>
-              <span>{moment().fromNow()}</span>
-            </Tooltip>
+              <span>
+                {
+                  //moment(props.commentdate).locale("ru").fromNow()
+                  createdDate
+                }
+              </span>
           }
         />
 

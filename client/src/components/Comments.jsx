@@ -86,6 +86,7 @@ const Comments = (props) => {
                   authorAvatar={comment.person_avatar}
                   avatarLoggedIn={props.commentAuthorAvatar}
                   content={comment.comment_content}
+                  commentdate={comment.comment_commentdate}
                   refreshFunction={props.refreshFunction}
                   postId={props.postId}
                   stateAuth={props.stateAuth}
@@ -96,6 +97,7 @@ const Comments = (props) => {
                   postId={props.postId}
                   parentCommentId={comment.comment_id}
                   avatarLoggedIn={props.commentAuthorAvatar}
+                  commentdate={comment.comment_commentdate}
                 />
               </>
             )
