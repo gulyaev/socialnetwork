@@ -31,6 +31,7 @@ class MainPagePostContainer extends React.Component {
         avatar={this.props.avatar}
         commentAuthorName={this.props.commentAuthorName}
         commentAuthorAvatar={this.props.commentAuthorAvatar}
+        stateAuth={this.props.stateAuth}
         likePostHandler={this.likePostHandler}
         dislikePostHandler={this.dislikePostHandler}
       />

@@ -77,7 +77,8 @@ const Comments = (props) => {
       {props.commentLists &&
         props.commentLists.map((comment, index) => {
           return (
-            !comment.comment_responseto && (
+            !comment.comment_responseto && 
+            (
               <>
                 <SingleComment
                   comment={comment} //поля в таблице comment bd
@@ -87,12 +88,14 @@ const Comments = (props) => {
                   content={comment.comment_content}
                   refreshFunction={props.refreshFunction}
                   postId={props.postId}
+                  stateAuth={props.stateAuth}
                 />
                 <ReplyComment
                   commentLists={props.commentLists}
                   refreshFunction={props.refreshFunction}
                   postId={props.postId}
                   parentCommentId={comment.comment_id}
+                  avatarLoggedIn={props.commentAuthorAvatar}
                 />
               </>
             )

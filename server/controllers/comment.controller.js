@@ -58,9 +58,36 @@ class CommentController {
       });
 
       p.then(()=>{
+          return new Promise((resolve, reject)=>{
+            const post = db.query(`update post set comments = comments + 1 where id=$1 RETURNING *`, [postId]);
+            resolve(post);
+          });
+      }).then(()=>{
         return new Promise((resolve, reject)=>{
-          const post = db.query(`update post set comments = comments + 1 where id=$1 RETURNING *`, [postId]);
-          resolve(post);
+          const resp_comment = db.query(`select c.id as responsetocomment_id,
+          c.writer as responseto_writerid,
+          per.id as responsetowriter_id,
+          per.nikname as responsetowriter_nikname 
+      from comment as c
+      inner join person as per on per.id = c.writer where c.id=$1 `, [response_to]);
+          resolve(resp_comment);
+        });
+      }).then((respToComment) => {
+        return new Promise((resolve, reject) => {
+          console.log(respToComment);
+          resolve(respToComment);
+        });
+      }).then((respComment) => {
+        return new Promise((resolve, reject) => {
+          let commentArray = respComment.rows
+          let responsetowriter_nikname = commentArray[0].responsetowriter_nikname
+        resolve(responsetowriter_nikname);
+        });
+      }).then((responsetowriter_nikname)=>{
+        return new Promise((resolve, reject)=>{
+          const updatedComment = db.query(`update comment set responseto_nikname = $1 where response_to=$2 RETURNING *`, 
+          [responsetowriter_nikname, response_to]);
+          resolve(updatedComment);
         });
       }).then(() => {
         return new Promise((resolve, reject) => {
@@ -70,6 +97,7 @@ class CommentController {
               c.response_to as comment_responseto,
               c.post_id as comment_postid,
               c.writer as comment_writer,
+              c.responseto_nikname as comment_responsetonikname,
               per.id as person_id,
               per.nikname as person_nikname,
               per.avatar as person_avatar
@@ -79,8 +107,8 @@ class CommentController {
           );
           resolve(comments);
         });
-      }).then((receivedComments) => {
-        res.status(200).json({ success: true, result: receivedComments.rows });
+      }).then((comments) => {
+        res.status(200).json({ success: true, result: comments.rows });
       });
     } catch (error) {
       console.log(error);
@@ -90,20 +118,32 @@ class CommentController {
   async getCommentsByPostId(req, res) {
     try {
       const { postId } = req.body;
-      const comments = await db.query(
-        `select c.id as comment_id,
-            c.content as comment_content,
-            c.post_id as comment_postid,
-            c.response_to as comment_responseto,
-            c.writer as comment_writer,
-            per.id as person_id,
-            per.nikname as person_nikname,
-            per.avatar as person_avatar
-        from comment as c
-        inner join person as per on per.id = c.writer where post_id=$1`,
-        [postId]
-      );
-      res.status(200).json({ success: true, comments: comments.rows });
+
+      const p = new Promise((resolve, reject) => {
+        const commentsWithWriterName = db.query(
+          `select c.id as comment_id,
+              c.content as comment_content,
+              c.post_id as comment_postid,
+              c.response_to as comment_responseto,
+              c.writer as comment_writer,
+              c.responseto_nikname as comment_responsetonikname,
+              per.id as person_id,
+              per.nikname as person_nikname,
+              per.avatar as person_avatar
+          from comment as c 
+          inner join person as per on per.id = c.writer where post_id=$1`,
+          [postId]
+        );
+        resolve(commentsWithWriterName);
+      });
+
+      p.then((comments)=>{
+        return new Promise((resolve, reject) => {
+        resolve(comments)
+      })
+        }).then((receivedComments) => {
+          res.status(200).json({ success: true, comments: receivedComments.rows });
+      })
     } catch (error) {
       console.log(error);
     }
@@ -111,11 +151,12 @@ class CommentController {
 
   async updateComment(req, res) {
     try {
-      const { id, content } = req.body;
+      const { content } = req.body;
+      const commentId = req.params.id;
       const userId = req.user.id;
       const comment = await db.query(
-        `update comment set content=$2 where id=$1 and post_id=$3 RETURNING *`,
-        [id, content, postId]
+        `update comment set content=$2 where id=$1 and id=$3 RETURNING *`,
+        [commentId, content, commentId]
       );
       res.status(200).json(comment.rows[0]);
     } catch (error) {
@@ -126,10 +167,29 @@ class CommentController {
   async deleteComment(req, res) {
     try {
       const commentId = req.params.id;
-      const comment = await db.query(`DELETE FROM comment where id=$1`, [
-        commentId,
-      ]);
-      res.status(200).json({ message: "Comment was deleted" });
+
+      const p = new Promise((resolve, reject) => {
+        const post = db.query(`select (post_id) from comment where id=$1`, [commentId]);
+          resolve(post);
+      });
+      
+      p.then((post)=>{
+        const postId = post.rows[0].post_id
+        return new Promise((resolve, reject)=>{
+          const post = db.query(`update post set comments = comments - 1 where id=$1 RETURNING *`, [postId]);
+          resolve(post);
+        });
+      }).then(()=>{
+        return new Promise((resolve, reject)=>{
+          const comment = db.query(`DELETE FROM comment where id=$1`, [
+            commentId,
+          ]);
+          resolve(comment);
+         });
+      })
+      .then(() => {
+        res.status(200).json({ message: "Comment was deleted" });
+      });
     } catch (error) {
       console.log(error);
     }

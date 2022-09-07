@@ -14,6 +14,7 @@ import axios from "axios";
 const MainPagePost = (props) => {
   const [commentLists, setCommentLists] = useState([]);
   const [ready, setReady] = useState([]);
+  const [toggleAllComments, setToggleAllComments] = useState(false);
 
   const [likes, setLikes] = useState(props.stateLikes);
   const [dislikes, setDislikes] = useState(props.stateDislikes);
@@ -29,7 +30,6 @@ const MainPagePost = (props) => {
   );
 
   useEffect(() => {
-    console.log("inside useEffect");
     const bodyParameters = {
       postId: props.postId,
     };
@@ -44,6 +44,24 @@ const MainPagePost = (props) => {
         }
       });
   }, []);
+
+  const showHideAllComments = () => {
+    setToggleAllComments(!toggleAllComments);
+  };
+
+  let renderAllComments = () => {
+    return (
+      <Comments
+        commentLists={commentLists}
+        postId={props.postId}
+        refreshFunction={updateComment}
+        commentAuthorName={props.commentAuthorName}
+        commentAuthorAvatar={props.commentAuthorAvatar}
+        setReady={setReady}
+        stateAuth={props.stateAuth}
+      />
+    );
+  };
 
   const updateComment = (newCommentLists) => {
     setCommentLists(newCommentLists);
@@ -160,9 +178,9 @@ const MainPagePost = (props) => {
             <div className="story__container">
               <div className="make-flex">
                 <div className="story__tools">
-                  <div className="story__comments">
+                  <div className="story__comments" onClick={showHideAllComments}>
                     <span className="story__comments-icon">
-                      <BiComment style={{ fontSize: "20px" }} />
+                      <BiComment style={{ fontSize: "20px" }}/>
                     </span>
                     <span className="story__comments-count">
                       {props.comments}
@@ -226,16 +244,7 @@ const MainPagePost = (props) => {
           </div>
           <div className="story__commentslist">
             <div className="story__container">
-              {
-                <Comments
-                  commentLists={commentLists}
-                  postId={props.postId}
-                  refreshFunction={updateComment}
-                  commentAuthorName={props.commentAuthorName}
-                  commentAuthorAvatar={props.commentAuthorAvatar}
-                  setReady={setReady}
-                />
-              }
+            {toggleAllComments && renderAllComments()}
             </div>
           </div>
         </div>

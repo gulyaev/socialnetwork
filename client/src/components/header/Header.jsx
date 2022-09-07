@@ -6,7 +6,8 @@ const Header = (props) => {
     <div className="header">
       <div className="header__body">
         <NavLink to="/" className="header__logo">
-          <img src={require("../../img/logo.jpeg")} alt="logo" />
+          <img src={require("../../img/mainlogo.jpeg")} alt="logo" />
+          <p>Naglampe</p>
         </NavLink>
         <nav className="header__menu">
           <ul className="header__list">

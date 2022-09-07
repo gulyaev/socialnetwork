@@ -935,6 +935,10 @@
         }
       }
     }
+
+    &__copy p, &__text p {
+      margin: 0 0 10px 0;
+    }
   }
 
   .sectiongray {
@@ -1079,6 +1083,7 @@
     &__comments {
       margin: 0 15px 0 0;
       position: relative;
+      cursor: pointer
     }
 
     &__comments-icon {
