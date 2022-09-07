@@ -119,6 +119,8 @@ const SinglePost = (props) => {
                         .fromNow()}
                     </div>
                   </div>
+
+
                   {props.stateAuth.nikname ==
                   props.singlePostsData.person_nikname ? (
                     !editMode && (
@@ -146,6 +148,8 @@ const SinglePost = (props) => {
                   ) : (
                     <div className="user__editblock"></div>
                   )}
+
+                  
                 </div>
               </div>
               {editMode ? (

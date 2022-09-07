@@ -157,6 +157,9 @@ ADD CONSTRAINT comment_post_id_fkey
   REFERENCES post(id)
   ON DELETE CASCADE;
 
+ALTER TABLE comment 
+add column responseto_nikname VARCHAR(255);
+
 
 
 

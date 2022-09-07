@@ -15,6 +15,7 @@ const MainPage = () => {
   const postsData = useSelector((state) => state.postsData.postsData);
   const commentAuthorName = useSelector((state) => state.auth.nikname);
   const commentAuthorAvatar = useSelector((state) => state.auth.avatar);
+  const stateAuth = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getAllPosts(search));
@@ -39,6 +40,7 @@ const MainPage = () => {
             avatar={post.person_avatar}
             commentAuthorName={commentAuthorName}
             commentAuthorAvatar={commentAuthorAvatar}
+            stateAuth={stateAuth}
           />
         );
       })}
