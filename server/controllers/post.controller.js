@@ -8,7 +8,7 @@ class PostController {
 
       const p = new Promise((resolve, reject) => {
         const newPost = db.query(
-          `insert into post (photo, title, content, person_id, likes, dislikes, views, comments ) values ($1, $2, $3, $4, 1, 1, 1, 0) RETURNING *`,
+          `insert into post (photo, title, content, person_id, likes, dislikes, views, comments ) values ($1, $2, $3, $4, 0, 0, 1, 0) RETURNING *`,
           [photo, title, content, userId ]
         );
         resolve(newPost);

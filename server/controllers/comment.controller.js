@@ -8,7 +8,7 @@ class CommentController {
 
       const p = new Promise((resolve, reject) => {
         const newComment = db.query(
-          `insert into comment (content, post_id, writer) values ($1, $2, $3) RETURNING *`,
+          `insert into comment (content, post_id, writer, likes, dislikes) values ($1, $2, $3, 0, 0) RETURNING *`,
           [content, postId, userId]
         );
         resolve(newComment);
@@ -128,6 +128,8 @@ class CommentController {
               c.writer as comment_writer,
               c.responseto_nikname as comment_responsetonikname,
               c.commentdate as comment_commentdate,
+              c.likes as comment_likes,
+              c.dislikes as comment_dislikes,
               per.id as person_id,
               per.nikname as person_nikname,
               per.avatar as person_avatar
@@ -191,6 +193,36 @@ class CommentController {
       .then(() => {
         res.status(200).json({ message: "Comment was deleted" });
       });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async likeComment(req, res) {
+    const commentId = req.params.id;
+    const userId = req.user.id;
+
+    try {
+          const likedComment = await db.query(
+            `update comment set likes=likes+1 where id=$1 RETURNING *`,
+            [commentId]
+          );
+          res.status(200).json(likedComment.rows[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async dislikeComment(req, res) {
+    const commentId = req.params.id;
+    const userId = req.user.id;
+
+    try {
+          const dislikedComment = await db.query(
+            `update comment set dislikes=dislikes+1 where id=$1 RETURNING *`,
+            [commentId]
+          );
+          res.status(200).json(dislikedComment.rows[0]);
     } catch (error) {
       console.log(error);
     }

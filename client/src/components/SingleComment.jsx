@@ -15,15 +15,18 @@ import axios from "axios";
 import { API_URL } from "../config";
 import { useDispatch } from "react-redux";
 import { deleteComment, updateComment } from "../actions/comment";
+import { commentApi } from "../api/api";
 const { TextArea } = Input;
 
 const SingleComment = (props) => {
   const [value, setValue] = useState("");
   const [editableComment, setEditableComment] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
+
   const [openReply, setOpenReply] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const textDelete = <span>Удалить</span>;
@@ -75,12 +78,14 @@ const SingleComment = (props) => {
     setLikes(1);
     setDislikes(0);
     setAction("liked");
+    commentApi.likeComment(props.comment.comment_id)
   };
 
   const dislike = () => {
     setLikes(0);
     setDislikes(1);
     setAction("disliked");
+    commentApi.dislikeComment(props.comment.comment_id)
   };
 
   const handleCommentEdit = () => {
@@ -99,44 +104,6 @@ const SingleComment = (props) => {
   const handleDeleteComment = (commentId) => {
     deleteComment(commentId);
   };
-
-  const actions = [
-    <Tooltip key="comment-basic-like" title="Like">
-      <span onClick={like}>
-        {createElement(action === "liked" ? LikeFilled : LikeOutlined)}
-        <span className="comment-action">{likes}</span>
-      </span>
-    </Tooltip>,
-    <Tooltip key="comment-basic-dislike" title="Dislike">
-      <span onClick={dislike}>
-        {React.createElement(
-          action === "disliked" ? DislikeFilled : DislikeOutlined
-        )}
-        <span className="comment-action">{dislikes}</span>
-      </span>
-    </Tooltip>,
-    <span onClick={ToggleOpenReply} key="comment-basic-reply-to">
-      Reply to
-    </span>,
-    <span>
-      {editMode && (
-        <span>
-          <span onClick={ToggleReset} 
-            style={{margin:"0 10px 0 0", border:"1px solid gray", borderRadius:"2px", padding:"1px"}}
-          >
-            Отмена
-          </span>
-          <span 
-            onClick={() => saveEditedComment(props.comment.comment_id, editableComment)}
-            style={{border:"1px solid gray", borderRadius:"2px", padding:"1px"}}
-          >
-            Сохранить
-          </span>
-        </span>
-        )}
-    </span>
-    
-  ];
 
   //Аватар коммента из списка комментов
   const avatarLogo = <Avatar size={32} icon={<UserOutlined />} />;
@@ -179,6 +146,49 @@ const SingleComment = (props) => {
       />
     )
   }
+
+  const actions = [
+
+
+    <Tooltip key="comment-basic-like" title="Like">
+      <span onClick={like}>
+        {createElement(action === "liked" ? LikeFilled : LikeOutlined)}
+        <span className="comment-action">{props.commentlikes}</span>
+      </span>
+    </Tooltip>,
+
+
+    <Tooltip key="comment-basic-dislike" title="Dislike">
+      <span onClick={dislike}>
+        {React.createElement(
+          action === "disliked" ? DislikeFilled : DislikeOutlined
+        )}
+        <span className="comment-action">{props.commentdislikes}</span>
+      </span>
+    </Tooltip>,
+    
+
+    <span onClick={ToggleOpenReply} key="comment-basic-reply-to">
+      Reply to
+    </span>,
+    <span>
+      {editMode && (
+        <span>
+          <span onClick={ToggleReset} 
+            style={{margin:"0 10px 0 0", border:"1px solid gray", borderRadius:"2px", padding:"1px"}}
+          >
+            Отмена
+          </span>
+          <span 
+            onClick={() => saveEditedComment(props.comment.comment_id, editableComment)}
+            style={{border:"1px solid gray", borderRadius:"2px", padding:"1px"}}
+          >
+            Сохранить
+          </span>
+        </span>
+        )}
+    </span>
+  ];
     
   return (
     <>

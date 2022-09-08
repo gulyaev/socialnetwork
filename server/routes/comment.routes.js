@@ -8,5 +8,7 @@ router.post("/commentreply", authMiddleware, commentController.createCommentRepl
 router.post("/commentbypostid", commentController.getCommentsByPostId);
 router.put("/comment/:id", authMiddleware, commentController.updateComment);
 router.delete("/deletecomment/:id", authMiddleware, commentController.deleteComment);
+router.put("/likecomment/:id", authMiddleware, commentController.likeComment);
+router.put("/dislikecomment/:id", authMiddleware, commentController.dislikeComment);
 
 module.exports = router;

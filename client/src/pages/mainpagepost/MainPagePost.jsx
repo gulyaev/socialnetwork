@@ -192,7 +192,7 @@ const MainPagePost = (props) => {
                   </div>
                   <div className="story__likes">
                     <span className="story__likes-icon">
-                      <AiOutlineLike  
+                      <AiOutlineLike
                       style={isLiked ? {
                         fontSize: "20px",
                         cursor: "pointer",

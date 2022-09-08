@@ -163,6 +163,12 @@ add column responseto_nikname VARCHAR(255);
 ALTER TABLE comment 
 add column commentdate DATE NOT NULL DEFAULT CURRENT_DATE;
 
+ALTER TABLE comment 
+add column likes INTEGER;
+
+ALTER TABLE comment 
+add column dislikes INTEGER;
+
 
 
 

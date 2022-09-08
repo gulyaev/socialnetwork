@@ -97,6 +97,40 @@ export const postApi = {
   },
 };
 
+
+export const commentApi = {
+  likeComment(commentId) {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    };
+
+    const bodyParameters = {
+    };
+
+    return axios.put(
+      baseURL + `likecomment/`+ commentId,
+      bodyParameters,
+      config
+    );
+  },
+
+  dislikeComment(commentId) {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    };
+
+    const bodyParameters = {
+    };
+
+    return axios.put(
+      baseURL + `dislikecomment/`+ commentId,
+      bodyParameters,
+      config
+    );
+  },
+};
+
+
 export const authApi = {
   auth() {
     const config = {
