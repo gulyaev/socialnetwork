@@ -87,6 +87,8 @@ const Comments = (props) => {
                   avatarLoggedIn={props.commentAuthorAvatar}
                   content={comment.comment_content}
                   commentdate={comment.comment_commentdate}
+                  commentlikes={comment.comment_likes}
+                  commentdislikes={comment.comment_dislikes}
                   refreshFunction={props.refreshFunction}
                   postId={props.postId}
                   stateAuth={props.stateAuth}
